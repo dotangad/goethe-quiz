@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SchoolAuthController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-  return Inertia::render('index');
-})->name('home');
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 // ----- Authentication -----
 Route::prefix('/auth')
