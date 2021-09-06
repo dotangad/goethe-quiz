@@ -5,7 +5,6 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   email: string;
-  name: string;
   email_verified_at?: string;
 }
 

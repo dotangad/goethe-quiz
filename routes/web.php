@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\SchoolAuthController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,26 +36,18 @@ Route::prefix('/auth')
     Route::post('/login', [AuthController::class, 'login'])
       ->name('handleLogin');
 
-    // ----- Social Authentication -----
-    Route::prefix('/social')
-      ->name('social.')
+    Route::prefix('/school')
+      ->name('school.')
       ->group(function () {
-        Route::prefix('/github')
-          ->name('github.')
-          ->group(function () {
-            Route::get('/', [SocialAuthController::class, 'githubRedirect'])
-              ->name('redirect');
-            Route::get('/callback', [SocialAuthController::class, 'githubCallback'])
-              ->name('callback');
-          });
-        Route::prefix('/google')
-          ->name('google.')
-          ->group(function () {
-            Route::get('/', [SocialAuthController::class, 'googleRedirect'])
-              ->name('redirect');
-            Route::get('/callback', [SocialAuthController::class, 'googleCallback'])
-              ->name('callback');
-          });
+        Route::get('/login', [SchoolAuthController::class, 'loginShow'])
+          ->name('login');
+        Route::post('/login', [SchoolAuthController::class, 'login'])
+          ->name('handleLogin');
+
+        Route::get('/register', [SchoolAuthController::class, 'registerShow'])
+          ->name('register');
+        Route::post('/register', [SchoolAuthController::class, 'register'])
+          ->name('handleRegister');
       });
   });
 Route::get('/auth/logout', [AuthController::class, 'destroy'])

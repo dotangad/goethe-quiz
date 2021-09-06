@@ -1,9 +1,17 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable react/prop-types */
 import React from "react";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 
-const Layout = ({ children }: any) => {
-  console.log("hello from layout");
+interface ILayoutProps {
+  children: React.ReactNode;
+  links: { href: string, label: string }[];
+}
+
+const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
+  const {props: {authenticated}} = usePage();
+  links = authenticated ? [...links, {href: "/auth/logout", label: "Logout"}] : links;
+
   return <div className="flex flex-col w-full h-full">
     <nav className="flex p-5 justify-between items-center">
       <div className="flex">
@@ -12,8 +20,14 @@ const Layout = ({ children }: any) => {
       </div>
 
       <div className="flex items-center">
-        <a href="" className="font-bold text-sm text-gray-700 uppercase">Rules</a>
-        <a href="" className="font-bold text-sm text-gray-700 uppercase ml-4">Logout</a>
+        {links.map(({href, label}, i) => 
+          <InertiaLink
+            href={href}
+            key={i}
+            className={"font-bold text-sm text-gray-700 uppercase" + (i === links.length - 1 ? "" : " mr-4")}>
+            {label}
+          </InertiaLink>
+        )}
       </div>
     </nav>
     <main className="flex-1 py-10">

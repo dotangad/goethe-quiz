@@ -6,32 +6,27 @@ import Layout from "../components/Layout";
 
 const Index: React.FC = () => {
   const { props: { authenticated, user } } = usePage<IPageProps>();
-  authenticated ? useTitle(user.name) : useTitle("DPS Goethe Quiz");
+  useTitle("DPS Goethe Quiz");
 
   return (
-    <Layout>
+    <Layout
+      links={[
+        {href: "", label: "Rules"},
+      ]}>
       <div className="flex w-full h-full items-center justify-center">
-        <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-sm p-6 mx-2">
+        <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-sm p-6 mx-2 shadow-sm">
           {!authenticated
             ? <>
               <div>
                 <Link
                   href="/auth/school/login"
-                  className={`w-full cursor-pointer bg-gray-bg block
-                            rounded-lg p-4 text-center uppercase
-                            leading-none font-bold border-2 border-gray-bg
-                          hover:border-goethe text-sm text-gray-800
-                            transition my-5`}
+                  className="w-full button my-5"
                 >
                 School Login
                 </Link>
                 <Link
                   href="/auth/school/register"
-                  className={`w-full cursor-pointer bg-gray-bg block
-                            rounded-lg p-4 text-center uppercase
-                            leading-none font-bold border-2 border-gray-bg
-                          hover:border-goethe text-sm text-gray-800
-                            transition my-5`}
+                  className="w-full button my-5"
                 >
                 School Registration
                 </Link>
@@ -62,9 +57,6 @@ const Index: React.FC = () => {
               }}>
                 {JSON.stringify(user, null, 2)}
               </pre>
-              <div style={{ marginTop: "30px" }}>
-                <Link className="button--primary" href="/auth/logout">Logout</Link>
-              </div>
             </div>}
         </div>
       </div>

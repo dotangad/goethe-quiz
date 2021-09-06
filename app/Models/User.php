@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\SchoolInfo;
 
 class User extends Authenticatable
 {
@@ -20,13 +18,9 @@ class User extends Authenticatable
    * @var array
    */
   protected $fillable = [
-    'name',
     'email',
     'password',
-    'provider',
-    'social_id',
-    'social_username',
-    'social_avatar'
+    'type'
   ];
 
   /**
@@ -48,13 +42,8 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
   ];
 
-  public function hashPassword()
+  public function schoolInfo()
   {
-    $this->password = Hash::make($this->password);
-  }
-
-  public function verifyPassword($password)
-  {
-    return Hash::check($password, $this->password);
+    return $this->hasOne(SchoolInfo::class);
   }
 }
