@@ -1,5 +1,5 @@
 /* From react-use <https://github.com/streamich/react-use/blob/master/src/useTitle.ts> */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 export interface UseTitleOptions {
   restoreOnUnmount?: boolean;
@@ -10,8 +10,6 @@ const DEFAULT_USE_TITLE_OPTIONS: UseTitleOptions = {
 };
 
 function useTitle(title: string, options: UseTitleOptions = DEFAULT_USE_TITLE_OPTIONS) {
-  title = `${title} | LIRET`;
-
   const prevTitleRef = useRef(document.title);
   document.title = title;
   useEffect(() => {
@@ -25,4 +23,4 @@ function useTitle(title: string, options: UseTitleOptions = DEFAULT_USE_TITLE_OP
   }, []);
 }
 
-export default typeof document !== 'undefined' ? useTitle : (_title: string) => { };
+export default typeof document !== "undefined" ? useTitle : () => null;
