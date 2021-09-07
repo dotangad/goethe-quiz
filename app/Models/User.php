@@ -44,16 +44,16 @@ class User extends Authenticatable
 
   public function schoolInfo()
   {
-    return $this->type == 'school' ? $this->hasOne(SchoolInfo::class, 'user_id') : collect();
+    return $this->hasOne(SchoolInfo::class, 'user_id');
   }
 
   public function teamInfo()
   {
-    return $this->type == 'team' ? $this->hasOne(TeamInfo::class, 'user_id') : collect();
+    return $this->hasOne(TeamInfo::class, 'user_id');
   }
 
   public function teams()
   {
-    return $this->type == 'school' ? $this->hasMany(TeamInfo::class, 'school_id') : collect();
+    return $this->hasMany(TeamInfo::class, 'school_id');
   }
 }

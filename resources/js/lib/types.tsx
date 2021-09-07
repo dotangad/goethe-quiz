@@ -27,6 +27,8 @@ export interface IPageProps extends Page<PageProps> {
     authenticated: boolean;
     user: IUser;
     schoolInfo?: ISchoolInfo;
+    startDate: string;
+    endDate: string;
   }
 }
 

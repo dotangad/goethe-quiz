@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PlayController;
 use App\Http\Controllers\SchoolAuthController;
+use App\Http\Controllers\TeamAuthController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +45,15 @@ Route::prefix('/auth')
         Route::post('/register', [SchoolAuthController::class, 'register'])
           ->name('handleRegister');
       });
+
+    Route::prefix('/team')
+      ->name('team.')
+      ->group(function () {
+        Route::get('/login', [TeamAuthController::class, 'loginShow'])
+          ->name('login');
+        Route::post('/login', [TeamAuthController::class, 'login'])
+          ->name('handleLogin');
+      });
   });
 Route::get('/auth/logout', [AuthController::class, 'destroy'])
   ->middleware(['auth'])
@@ -63,6 +74,10 @@ Route::post('/dashboard/teams/del/{team}', [TeamController::class, 'destroy'])
 Route::post('/dashboard/school/edit', [DashboardController::class, 'update'])
   ->middleware(['auth', 'school'])
   ->name('dashboard.school.edit');
+
+Route::get('/play', [PlayController::class, 'index'])
+  ->middleware(['auth', 'team'])
+  ->name('play');
 
 if (App::environment('local')) {
   Route::get('/authn', function () {

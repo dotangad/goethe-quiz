@@ -23,7 +23,17 @@ class RedirectIfAuthenticated
 
     foreach ($guards as $guard) {
       if (Auth::guard($guard)->check()) {
-        return redirect('/dashboard');
+        if (Auth::user()->type == 'school') {
+          return redirect('/dashboard');
+        }
+
+        if (Auth::user()->type == 'team') {
+          return redirect('/play');
+        }
+
+        if (Auth::user()->type == 'admin') {
+          return redirect('/admin');
+        }
       }
     }
 

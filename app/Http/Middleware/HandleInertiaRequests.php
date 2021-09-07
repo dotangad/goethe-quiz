@@ -38,10 +38,13 @@ class HandleInertiaRequests extends Middleware
    */
   public function share(Request $request)
   {
+    $user = User::find(Auth::id());
     return array_merge(parent::share($request), [
       'user' => Auth::user(),
       'authenticated' => Auth::check(),
-      'schoolInfo' => Auth::check() ? User::find(Auth::user()->id)->schoolInfo : null
+      'schoolInfo' => Auth::check() && $user->type == 'school' ? $user->schoolInfo : null,
+      'startDate' => env('START_DATE'),
+      'endDate' => env('END_DATE'),
     ]);
   }
 }
