@@ -6,7 +6,7 @@ import useTitle from "../lib/use-title";
 import Layout from "../components/Layout";
 
 const Index: React.FC = () => {
-  const {props: {startDate, endDate}} = usePage<IPageProps>();
+  const {props: { startDate }} = usePage<IPageProps>();
   useTitle("DPS Goethe Quiz");
 
   const teamLoginOpen = compareAsc(subDays(new Date(startDate), 2), new Date()) === -1;

@@ -1,4 +1,4 @@
-import { Page, PageProps } from "@inertiajs/inertia";
+import { ErrorBag, Errors, Page, PageProps } from "@inertiajs/inertia";
 
 export interface IUser {
   id: number;
@@ -23,7 +23,7 @@ export interface ISchoolInfo {
 
 export interface IPageProps extends Page<PageProps> {
   props: {
-    errors: any;
+    errors: Errors & ErrorBag;
     authenticated: boolean;
     user: IUser;
     schoolInfo?: ISchoolInfo;

@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import Timer from "./Timer";
 
 interface ILayoutProps {
   children: React.ReactNode;
@@ -13,18 +14,22 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
   links = authenticated ? [...links, {href: "/auth/logout", label: "Logout"}] : links;
 
   return <div className="flex flex-col w-full h-full">
-    <nav className="flex p-5 justify-between items-center">
-      <div className="flex">
-        <img className="h-10 w-auto mr-2" src="/img/dpslogo.png" alt="DPS Society" />
-        <img className="h-10 w-auto" src="/img/goethelogo.png" alt="Goethe Institut" />
+    <nav className="flex p-5 justify-between items-center flex-col sm:flex-row">
+      <div className="flex sm:w-1/3 w-full justify-center sm:justify-start">
+        <img className="h-20 sm:h-12 w-auto mr-2" src="/img/dpslogo.png" alt="DPS Society" />
+        <img className="h-20 sm:h-12 w-auto" src="/img/goethelogo.png" alt="Goethe Institut" />
       </div>
 
-      <div className="flex items-center">
+      <div className="flex items-center justify-center sm:w-1/3 w-full sm:my-0 my-4">
+        <Timer />
+      </div>
+
+      <div className="flex items-center justify-center sm:justify-end sm:w-1/3 w-full">
         {links.map(({href, label}, i) => 
           <InertiaLink
             href={href}
             key={i}
-            className={"font-bold text-sm text-gray-700 uppercase" + (i === links.length - 1 ? "" : " mr-4")}>
+            className={"font-bold text-lg sm:text-sm text-gray-700 uppercase" + (i === links.length - 1 ? "" : " mr-4")}>
             {label}
           </InertiaLink>
         )}
