@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SchoolAuthController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,22 +20,16 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/', function () {
+  return Inertia::render('index');
+})->middleware(['guest'])
+  ->name('home');
 
 // ----- Authentication -----
 Route::prefix('/auth')
   ->middleware(['guest'])
   ->name('auth.')
   ->group(function () {
-    Route::get('/register', [AuthController::class, 'registerShow'])
-      ->name('register');
-    Route::get('/login', [AuthController::class, 'loginShow'])
-      ->name('login');
-    Route::post('/register', [AuthController::class, 'register'])
-      ->name('handleRegister');
-    Route::post('/login', [AuthController::class, 'login'])
-      ->name('handleLogin');
-
     Route::prefix('/school')
       ->name('school.')
       ->group(function () {
@@ -51,6 +47,22 @@ Route::prefix('/auth')
 Route::get('/auth/logout', [AuthController::class, 'destroy'])
   ->middleware(['auth'])
   ->name('auth.logout');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+  ->middleware(['auth', 'school'])
+  ->name('dashboard');
+
+Route::post('/dashboard/teams', [TeamController::class, 'create'])
+  ->middleware(['auth', 'school'])
+  ->name('dashboard.teams.create');
+
+Route::post('/dashboard/teams/del/{team}', [TeamController::class, 'destroy'])
+  ->middleware(['auth', 'school'])
+  ->name('dashboard.teams.delete');
+
+Route::post('/dashboard/school/edit', [DashboardController::class, 'update'])
+  ->middleware(['auth', 'school'])
+  ->name('dashboard.school.edit');
 
 if (App::environment('local')) {
   Route::get('/authn', function () {

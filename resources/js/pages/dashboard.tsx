@@ -1,38 +1,135 @@
 import React from "react";
-import _ from "underscore";
-import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 import Layout from "../components/Layout";
-import { IPageProps } from "../lib/types";
+import { ITeamInfo } from "../lib/types";
+import DashboardSchoolCard from "../components/DashboardSchoolCard";
 
-const Dashboard = () => {
-  const {props: {user, schoolInfo}} = usePage<IPageProps>();
-  const show = {
-    Email: user.email,
-    Address: schoolInfo?.address,
-    Country: schoolInfo?.country,
-    Phone: schoolInfo?.phone,
-    Principal: schoolInfo?.principal,
-    "Teacher Incharge": schoolInfo?.teacher_incharge,
-  };
+interface IDashboardProps {
+  teamAddError?: string;
+  teams: ITeamInfo[];
+}
+
+const Dashboard: React.FC<IDashboardProps> = ({teamAddError, teams} : IDashboardProps) => {
+  const { setData, post, processing, errors } = useForm({
+    student_1: "",
+    student_2: "",
+    email: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setData(e.target.name as never, e.target.value as never);
 
   return <Layout links={[{href: "", label: "Rules"}]}>
     <div className="flex w-full h-full items-center justify-start flex-col px-2 sm:px-20">
-      <div className="bg-white border-none border-gray-200 rounded-lg w-full p-6 shadow-sm max-w-screen-md">
-        <h1 className="text-3xl font-bold mb-5">{schoolInfo?.name}</h1> 
+      <DashboardSchoolCard />
 
-        <div className="flex flex-wrap items-center">
-          {Object.entries(show).map(([label, value], i) => (
-            <div className="input-group my-3 px-3 w-full sm:w-1/2" key={i}>
-              <label>{label}</label>
-              <div className="w-full">{value}</div>
+      <div className="w-full py-6 max-w-screen-md flex flex-wrap">
+        <div className="w-full sm:w-1/2 h-96 odd:pr-2 even:pl-2 my-2">
+          <div className="bg-white border-none border-gray rounded-lg w-full shadow-sm h-96 p-6 overflow-auto">
+            <h1 className="font-bold text-xl mb-4">Add Team</h1>
+
+            <form
+              onSubmit={(e: React.SyntheticEvent) => {
+                e.preventDefault();
+                post("/dashboard/teams", { preserveState: false });
+              }}>
+              <div className="input-group w-full my-4">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="team@example.com"
+                  className="text-xs p-3"
+                  disabled={processing}
+                  onChange={handleChange}
+                />
+                {errors.email && <div className="error">{errors.email}</div>}
+              </div>
+              <div className="input-group w-full my-4">
+                <label htmlFor="student_1">Student 1</label>
+                <input
+                  type="text"
+                  name="student_1"
+                  id="student_1"
+                  placeholder="John Doe"
+                  className="text-xs p-3"
+                  disabled={processing}
+                  onChange={handleChange}
+                />
+                {errors.student_1 && <div className="error">{errors.student_1}</div>}
+              </div>
+              <div className="input-group w-full my-4">
+                <label htmlFor="student_2">Student 2</label>
+                <input
+                  type="text"
+                  name="student_2"
+                  id="student_2"
+                  placeholder="John Doe"
+                  className="text-xs p-3"
+                  disabled={processing}
+                  onChange={handleChange}
+                />
+                {errors.student_2 && <div className="error">{errors.student_2}</div>}
+              </div>
+
+
+              {teamAddError && <div className="input-group w-full my-4">
+                <div className="error">{teamAddError}</div>
+              </div>}
+              
+              <div className="input-group w-full flex justify-end">
+                <button
+                  type="submit"
+                  className={`cursor-pointer bg-gray-bg block rounded-lg p-3 text-center
+                              uppercase leading-none font-bold border-2 border-gray-bg
+                              hover:border-goethe text-xs text-gray-800 transition
+                              focus:outline-none focus:border-goethe focus:shadow-none`}
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        {teams.map(({user_id, student_1, student_2, email}, i) => (
+          <div className="w-full sm:w-1/2 h-96 odd:pr-2 even:pl-2 my-2" key={i}>
+            <div className="bg-white border-none border-gray rounded-lg w-full shadow-sm h-96 p-6">
+              <h1 className="font-bold text-xl mb-4">Team {i + 1}</h1>
+              <div className="input-group w-full my-4">
+                <label>Email</label>
+                <div className="text-sm py-3">{email}</div>
+              </div>
+              <div className="input-group w-full my-4">
+                <label>Student 1</label>
+                <div className="text-sm py-3">{student_1}</div>
+              </div>
+              <div className="input-group w-full my-4">
+                <label>Student 2</label>
+                <div className="text-sm py-3">{student_2}</div>
+              </div>
+
+              <div className="input-group flex justify-end">
+                <form
+                  onSubmit={(e: React.SyntheticEvent) => {
+                    e.preventDefault();
+                    post(`/dashboard/teams/del/${user_id}`);
+                  }}>
+                  <button
+                    type="submit"
+                    className={`cursor-pointer bg-gray-bg block rounded-lg p-3 text-center
+                              uppercase leading-none font-bold border-2 border-gray-bg
+                              hover:border-red-600 text-xs text-gray-800 transition: ;
+                              focus:outline-none focus:border-red-600 focus:shadow-none`}
+                  >
+                    Delete
+                  </button>
+                </form>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
-        <div className="w-full flex justify-end items-center mt-5">
-          <InertiaLink href="" className="button mr-3">Edit</InertiaLink>
-          <InertiaLink href="" className="button">Forgot Password</InertiaLink>
-        </div>
       </div>
     </div>
   </Layout>;

@@ -18,7 +18,7 @@ export interface ISchoolInfo {
   phone: string;
   teacher_incharge: string;
   address: string;
-  user_id: string;
+  user_id: number;
 }
 
 export interface IPageProps extends Page<PageProps> {
@@ -28,4 +28,15 @@ export interface IPageProps extends Page<PageProps> {
     user: IUser;
     schoolInfo?: ISchoolInfo;
   }
+}
+
+export interface ITeamInfo {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  user_id: number;
+  school_id: number;
+  student_1: string;
+  student_2: string;
+  email: string;
 }

@@ -24,14 +24,22 @@ class SchoolAuthController extends Controller
       'password' => 'required|min:8|max:24',
     ]);
 
-    $attempt = Auth::attempt($body, true);
+    $user = User::where([
+      ['type', '=', 'school'],
+      ['email', '=', $body['email']],
+    ])->first();
 
-    if ($attempt) {
-      $request->session()->regenerate();
-      return redirect('/');
+    if (!$user) {
+      return Inertia::render('auth/school_login', ['error' => 'An account with that email does not exist']);
     }
 
-    return Inertia::render('auth/school_login', ['error' => 'Could not login, an error occurred']);
+    if (!Hash::check($body['password'], $user->password)) {
+      return Inertia::render('auth/school_login', ['error' => 'Incorrect password']);
+    }
+
+    Auth::login($user, true);
+
+    return redirect('/');
   }
 
   public function registerShow()
