@@ -32,5 +32,21 @@ class DatabaseSeeder extends Seeder
       'address' => 'Delhi Public School R. K. Puram, Sector-XII, R K Puram, New Delhi 110022 India'
     ]);
     $schoolInfo->save();
+
+    // Levels
+    for ($i = 0; $i < 100; $i++) {
+      (new \App\Models\Question([
+        'text' => 'In which month does Oktoberfest start? Level ' . ($i + 1),
+        'hint' => 'Hint for level ' . ($i + 1),
+        'answer' => 'answer' . ($i + 1)
+      ]))->save();
+    }
+
+    $user = new \App\Models\User([
+      'type' => 'admin',
+      'email' => 'admin@dpsrkp.net',
+      'password' => Hash::make('wenoti')
+    ]);
+    $user->save();
   }
 }
