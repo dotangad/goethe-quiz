@@ -161,18 +161,15 @@ const DashboardSchoolCard: React.FC = () => {
         {!ended &&
           (editing ? (
             <>
-              <a onClick={() => setEditing(false)} className="button mr-3">
+              <a onClick={() => setEditing(false)} className="button">
                 Reset
               </a>
             </>
           ) : (
-            <a onClick={() => setEditing(true)} className="button mr-3">
+            <a onClick={() => setEditing(true)} className="button">
               Edit
             </a>
           ))}
-        <InertiaLink href="" className="button">
-          Change Password
-        </InertiaLink>
       </div>
     </div>
   );
