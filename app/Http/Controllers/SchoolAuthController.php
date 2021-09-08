@@ -25,7 +25,7 @@ class SchoolAuthController extends Controller
     ]);
 
     $user = User::where([
-      ['type', '=', 'school'],
+      ['type', '!=', 'team'],
       ['email', '=', $body['email']],
     ])->first();
 

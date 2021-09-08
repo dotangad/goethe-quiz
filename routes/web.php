@@ -79,6 +79,11 @@ Route::get('/play', [PlayController::class, 'index'])
   ->middleware(['auth', 'team'])
   ->name('play');
 
+Route::get('/admin', function () {
+  ddd('lmfao');
+})->middleware(['auth', 'admin'])
+  ->name('admin');
+
 if (App::environment('local')) {
   Route::get('/authn', function () {
     return dd(Auth::user());

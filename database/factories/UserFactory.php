@@ -90,7 +90,7 @@ class UserFactory extends Factory
       return [
         'type' => 'admin',
         'email' => $email ? $email : $attr['email'],
-        'password' => $password ? $password : $attr['password'],
+        'password' => $password ? Hash::make($password) : $attr['password'],
       ];
     });
   }

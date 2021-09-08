@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
       ]))->save();
     }
 
-    \App\Models\User::factory()->count(1)->admin('admin@dpsrkp.net', 'admin')->create();
+    \App\Models\User::factory()->count(1)->admin('admin@dpsrkp.net', 'adminadmin')->create();
   }
 }
