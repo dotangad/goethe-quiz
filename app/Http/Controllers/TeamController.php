@@ -56,10 +56,9 @@ class TeamController extends Controller
       'student_1' => $body['student_1'],
       'student_2' => $body['student_2'],
       'user_id' => $user->id,
-      'school_id' => User::find(Auth::user()->id)->schoolInfo->id,
+      'school_id' => User::find(Auth::user()->id)->id,
     ]);
     $teamInfo->save();
-
 
     Mail::to($user)
       ->send(new \App\Mail\TeamCreatedMail($user, $password));
