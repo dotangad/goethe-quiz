@@ -42,7 +42,10 @@ const Dashboard: React.FC<IDashboardProps> = ({
                 <form
                   onSubmit={(e: React.SyntheticEvent) => {
                     e.preventDefault();
-                    post("/dashboard/teams", { preserveState: false });
+                    post("/dashboard/teams", {
+                      preserveScroll: true,
+                      preserveState: false,
+                    });
                   }}
                 >
                   <div className="input-group w-full my-4">
@@ -138,7 +141,9 @@ const Dashboard: React.FC<IDashboardProps> = ({
                     <form
                       onSubmit={(e: React.SyntheticEvent) => {
                         e.preventDefault();
-                        post(`/dashboard/teams/del/${user_id}`);
+                        post(`/dashboard/teams/del/${user_id}`, {
+                          preserveScroll: true,
+                        });
                       }}
                     >
                       <button

@@ -42,3 +42,12 @@ export interface ITeamInfo {
   student_2: string;
   email: string;
 }
+
+export interface IQuestion {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  text: string;
+  hint: string;
+  answer: string;
+}

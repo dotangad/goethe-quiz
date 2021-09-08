@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlayController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SchoolAuthController;
 use App\Http\Controllers\TeamAuthController;
 use App\Http\Controllers\TeamController;
@@ -83,6 +85,20 @@ Route::get('/admin', function () {
   ddd('lmfao');
 })->middleware(['auth', 'admin'])
   ->name('admin');
+
+Route::prefix('/admin')
+  ->middleware(['auth', 'admin'])
+  ->name('admin.')
+  ->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+
+    Route::prefix('/questions')
+      ->name('questions.')
+      ->group(function () {
+        Route::get('/', [QuestionController::class, 'index'])->name('index');
+        Route::post('/', [QuestionController::class, 'store'])->name('store');
+      });
+  });
 
 if (App::environment('local')) {
   Route::get('/authn', function () {
