@@ -1,12 +1,14 @@
 import React from "react";
 import { InertiaLink, usePage, useForm } from "@inertiajs/inertia-react";
+import { compareAsc } from "date-fns";
 import { IPageProps } from "../lib/types";
 
 const DashboardSchoolCard: React.FC = () => {
   const [editing, setEditing] = React.useState<boolean>(false);
   const {
-    props: { user, schoolInfo },
+    props: { user, schoolInfo, endDate },
   } = usePage<IPageProps>();
+  const ended = compareAsc(new Date(), new Date(endDate)) === 1;
   const { setData, post, processing, errors, data } = useForm({
     name: schoolInfo?.name,
     principal: schoolInfo?.principal,
@@ -156,17 +158,18 @@ const DashboardSchoolCard: React.FC = () => {
       )}
 
       <div className="w-full flex justify-end items-center mt-5">
-        {editing ? (
-          <>
-            <a onClick={() => setEditing(false)} className="button mr-3">
-              Reset
+        {!ended &&
+          (editing ? (
+            <>
+              <a onClick={() => setEditing(false)} className="button mr-3">
+                Reset
+              </a>
+            </>
+          ) : (
+            <a onClick={() => setEditing(true)} className="button mr-3">
+              Edit
             </a>
-          </>
-        ) : (
-          <a onClick={() => setEditing(true)} className="button mr-3">
-            Edit
-          </a>
-        )}
+          ))}
         <InertiaLink href="" className="button">
           Change Password
         </InertiaLink>

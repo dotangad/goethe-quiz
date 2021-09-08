@@ -58,10 +58,13 @@ const Timer: React.FC = () => {
         {!ended ? (
           Object.entries(countdown).map(([label, n], i) => (
             <div key={i}>
-              <div className="text-3xl font-mono p-2 m-1 mb-1 rounded-lg bg-goethe bg-opacity-30 flex justify-center items-center font-bold">
+              <div className="text-2xl font-mono py-1 px-2 m-1 mb-1 rounded-lg bg-goethe bg-opacity-30 flex justify-center items-center font-bold">
                 {n}
               </div>
-              <div className="text-xs uppercase font-light text-center">
+              <div
+                className="uppercase font-light text-center"
+                style={{ fontSize: "0.6rem" }}
+              >
                 {label}
               </div>
             </div>
