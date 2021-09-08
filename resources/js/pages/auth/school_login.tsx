@@ -6,26 +6,28 @@ interface ISchoolLoginProps {
   error?: string;
 }
 
-const SchoolLogin: React.FC<ISchoolLoginProps> = ({error}: ISchoolLoginProps) => {
+const SchoolLogin: React.FC<ISchoolLoginProps> = ({
+  error,
+}: ISchoolLoginProps) => {
   const { setData, post, processing, errors } = useForm({
     email: "",
     password: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setData(e.target.name as never, e.target.value as never);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setData(e.target.name as never, e.target.value as never);
 
   return (
     <Layout
       links={[
-        {href: "/", label: "Home"},
-        {href: "", label: "Rules"},
-        {href: "/auth/school/register", label: "Register"}
-      ]}>
+        { href: "/", label: "Home" },
+        { href: "", label: "Rules" },
+        { href: "/auth/school/register", label: "Register" },
+      ]}
+    >
       <div className="flex w-full h-full items-center justify-center">
         <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-sm p-6 mx-2 shadow-sm">
-          <div className="text-2xl font-bold mb-5">
-            Login as School
-          </div>
+          <div className="text-2xl font-bold mb-5">Login as School</div>
 
           <form
             onSubmit={(e: React.SyntheticEvent) => {
@@ -33,7 +35,8 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({error}: ISchoolLoginProps) =>
               post("/auth/school/login", {
                 preserveState: true,
               });
-            }}>
+            }}
+          >
             <div className="input-group my-5">
               <label htmlFor="email">Email</label>
               <input
@@ -57,15 +60,21 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({error}: ISchoolLoginProps) =>
                 disabled={processing}
                 onChange={handleChange}
               />
-              {errors.password && <div className="error">{errors.password}</div>}
+              {errors.password && (
+                <div className="error">{errors.password}</div>
+              )}
             </div>
 
-            {error && <div className="input-group my-5">
-              <div className="error">{error}</div>
-            </div>}
+            {error && (
+              <div className="input-group my-5">
+                <div className="error">{error}</div>
+              </div>
+            )}
 
             <div className="input-group mt-5">
-              <button type="submit" className="button w-full">Login</button>
+              <button type="submit" className="button w-full">
+                Login
+              </button>
             </div>
           </form>
         </div>

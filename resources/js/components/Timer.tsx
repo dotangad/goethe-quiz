@@ -22,16 +22,23 @@ function countdownTo(dt: string): ICountdown {
     days,
     hours,
     minutes,
-    seconds
+    seconds,
   };
 }
 
-
 const Timer: React.FC = () => {
-  const {props: {startDate, endDate}} = usePage<IPageProps>();
-  const [started, setStarted] = React.useState<boolean>(compareAsc(new Date(), new Date(startDate)) == 1);
-  const [ended, setEnded] = React.useState<boolean>(compareAsc(new Date(), new Date(endDate)) == 1);
-  const [countdown, setCountdown] = React.useState<ICountdown>(countdownTo(started ? endDate : startDate));
+  const {
+    props: { startDate, endDate },
+  } = usePage<IPageProps>();
+  const [started, setStarted] = React.useState<boolean>(
+    compareAsc(new Date(), new Date(startDate)) == 1
+  );
+  const [ended, setEnded] = React.useState<boolean>(
+    compareAsc(new Date(), new Date(endDate)) == 1
+  );
+  const [countdown, setCountdown] = React.useState<ICountdown>(
+    countdownTo(started ? endDate : startDate)
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,25 +46,32 @@ const Timer: React.FC = () => {
       setEnded(compareAsc(new Date(), new Date(endDate)) == 1);
       setCountdown(countdownTo(started ? endDate : startDate));
 
-      if(ended) clearInterval(interval);
+      if (ended) clearInterval(interval);
     }, 500);
 
     return () => clearInterval(interval);
   }, []);
 
-
-  return <div className="w-full">
-    <div className="w-full flex justify-center items-center">
-      {!ended
-        ? Object.entries(countdown).map(([label, n], i) => (
-          <div key={i}>
-            <div className="text-3xl font-mono p-2 m-1 mb-1 rounded-lg bg-goethe bg-opacity-30 flex justify-center items-center font-bold">{n}</div>
-            <div className="text-xs uppercase font-light text-center">{label}</div>
-          </div>
-        ))
-        : <div className="text-sm font-bold">DPS Goethe Quiz has ended</div> }
+  return (
+    <div className="w-full">
+      <div className="w-full flex justify-center items-center">
+        {!ended ? (
+          Object.entries(countdown).map(([label, n], i) => (
+            <div key={i}>
+              <div className="text-3xl font-mono p-2 m-1 mb-1 rounded-lg bg-goethe bg-opacity-30 flex justify-center items-center font-bold">
+                {n}
+              </div>
+              <div className="text-xs uppercase font-light text-center">
+                {label}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="text-sm font-bold">DPS Goethe Quiz has ended</div>
+        )}
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default Timer;

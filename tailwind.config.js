@@ -12,9 +12,9 @@ module.exports = {
     extend: {
       colors: {
         "gray-bg": "#f7f8fc",
-        "gold": "#ffcc00",
-        "goethe": "#a0c814"
-      }
+        gold: "#ffcc00",
+        goethe: "#a0c814",
+      },
     },
   },
   variants: {
@@ -22,7 +22,5 @@ module.exports = {
       padding: ["odd", "even"],
     },
   },
-  plugins: [
-    require("@tailwindcss/forms")
-  ],
+  plugins: [require("@tailwindcss/forms")],
 };

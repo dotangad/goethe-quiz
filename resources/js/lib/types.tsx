@@ -29,7 +29,7 @@ export interface IPageProps extends Page<PageProps> {
     schoolInfo?: ISchoolInfo;
     startDate: string;
     endDate: string;
-  }
+  };
 }
 
 export interface ITeamInfo {

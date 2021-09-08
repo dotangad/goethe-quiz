@@ -4,13 +4,15 @@ import { IPageProps } from "../lib/types";
 
 const DashboardSchoolCard: React.FC = () => {
   const [editing, setEditing] = React.useState<boolean>(false);
-  const {props: {user, schoolInfo}} = usePage<IPageProps>();
+  const {
+    props: { user, schoolInfo },
+  } = usePage<IPageProps>();
   const { setData, post, processing, errors, data } = useForm({
     name: schoolInfo?.name,
     principal: schoolInfo?.principal,
     country: schoolInfo?.country,
     phone: schoolInfo?.phone,
-    "teacher_incharge": schoolInfo?.teacher_incharge,
+    teacher_incharge: schoolInfo?.teacher_incharge,
     address: schoolInfo?.address,
   });
   const show = {
@@ -22,14 +24,15 @@ const DashboardSchoolCard: React.FC = () => {
     "Teacher Incharge": schoolInfo?.teacher_incharge,
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setData(e.target.name as never, e.target.value as never);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setData(e.target.name as never, e.target.value as never);
 
   return (
     <div className="bg-white border-none rounded-lg w-full p-6 shadow-sm max-w-screen-md">
-      <h1 className="text-3xl font-bold mb-5">{schoolInfo?.name}</h1> 
+      <h1 className="text-3xl font-bold mb-5">{schoolInfo?.name}</h1>
 
-      {editing
-        ? <>
+      {editing ? (
+        <>
           <form
             className="flex flex-wrap"
             onSubmit={(e: React.SyntheticEvent) => {
@@ -37,7 +40,8 @@ const DashboardSchoolCard: React.FC = () => {
               post("/dashboard/school/edit", {
                 preserveState: false,
               });
-            }}>
+            }}
+          >
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
               <label htmlFor="name">School name</label>
               <input
@@ -63,7 +67,9 @@ const DashboardSchoolCard: React.FC = () => {
                 onChange={handleChange}
                 value={data.principal}
               />
-              {errors.principal && <div className="error">{errors.principal}</div>}
+              {errors.principal && (
+                <div className="error">{errors.principal}</div>
+              )}
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
@@ -78,18 +84,10 @@ const DashboardSchoolCard: React.FC = () => {
                 <option disabled value="">
                   Select a country
                 </option>
-                <option value="India">
-                  India
-                </option>
-                <option value="Nepal">
-                  Nepal
-                </option>
-                <option value="Bangladesh">
-                  Bangladesh
-                </option>
-                <option value="Pakistan">
-                  Pakistan
-                </option>
+                <option value="India">India</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Pakistan">Pakistan</option>
               </select>
               {errors.country && <div className="error">{errors.country}</div>}
             </div>
@@ -119,7 +117,9 @@ const DashboardSchoolCard: React.FC = () => {
                 onChange={handleChange}
                 value={data.teacher_incharge}
               />
-              {errors["teacher_incharge"] && <div className="error">{errors["teacher_incharge"]}</div>}
+              {errors["teacher_incharge"] && (
+                <div className="error">{errors["teacher_incharge"]}</div>
+              )}
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
@@ -137,12 +137,15 @@ const DashboardSchoolCard: React.FC = () => {
             </div>
 
             <div className="input-group mt-3 w-full flex justify-center">
-              <label style={{color: "white"}}>.</label>
-              <button type="submit" className="button w-full sm:w-1/2">Save</button>
+              <label style={{ color: "white" }}>.</label>
+              <button type="submit" className="button w-full sm:w-1/2">
+                Save
+              </button>
             </div>
           </form>
         </>
-        : <div className="flex flex-wrap items-start">
+      ) : (
+        <div className="flex flex-wrap items-start">
           {Object.entries(show).map(([label, value], i) => (
             <div className="input-group my-3 px-3 w-full sm:w-1/2" key={i}>
               <label>{label}</label>
@@ -150,16 +153,23 @@ const DashboardSchoolCard: React.FC = () => {
             </div>
           ))}
         </div>
-      }
+      )}
 
       <div className="w-full flex justify-end items-center mt-5">
-        {editing 
-          ? <>
-            <a onClick={() => setEditing(false)} className="button mr-3">Reset</a>
+        {editing ? (
+          <>
+            <a onClick={() => setEditing(false)} className="button mr-3">
+              Reset
+            </a>
           </>
-          : <a onClick={() => setEditing(true)} className="button mr-3">Edit</a>
-        }
-        <InertiaLink href="" className="button">Change Password</InertiaLink>
+        ) : (
+          <a onClick={() => setEditing(true)} className="button mr-3">
+            Edit
+          </a>
+        )}
+        <InertiaLink href="" className="button">
+          Change Password
+        </InertiaLink>
       </div>
     </div>
   );

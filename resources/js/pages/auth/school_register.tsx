@@ -8,27 +8,27 @@ const SchoolLogin: React.FC = () => {
     principal: "",
     country: "",
     phone: "",
-    "teacher_incharge": "",
+    teacher_incharge: "",
     address: "",
     email: "",
     password: "",
-    "confirm-password": ""
+    "confirm-password": "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setData(e.target.name as never, e.target.value as never);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setData(e.target.name as never, e.target.value as never);
 
   return (
     <Layout
       links={[
-        {href: "/", label: "Home"},
-        {href: "", label: "Rules"},
-        {href: "/auth/school/login", label: "Login"}
-      ]}>
+        { href: "/", label: "Home" },
+        { href: "", label: "Rules" },
+        { href: "/auth/school/login", label: "Login" },
+      ]}
+    >
       <div className="flex w-full h-full items-center justify-center">
         <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-3xl min-w-sm p-6 mx-2 shadow-sm">
-          <div className="text-2xl font-bold mb-5">
-            Register as School
-          </div>
+          <div className="text-2xl font-bold mb-5">Register as School</div>
 
           <form
             className="flex flex-wrap"
@@ -37,7 +37,8 @@ const SchoolLogin: React.FC = () => {
               post("/auth/school/register", {
                 preserveState: true,
               });
-            }}>
+            }}
+          >
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
               <label htmlFor="name">School name</label>
               <input
@@ -61,7 +62,9 @@ const SchoolLogin: React.FC = () => {
                 disabled={processing}
                 onChange={handleChange}
               />
-              {errors.principal && <div className="error">{errors.principal}</div>}
+              {errors.principal && (
+                <div className="error">{errors.principal}</div>
+              )}
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
@@ -76,18 +79,10 @@ const SchoolLogin: React.FC = () => {
                 <option disabled value="">
                   Select a country
                 </option>
-                <option value="India">
-                  India
-                </option>
-                <option value="Nepal">
-                  Nepal
-                </option>
-                <option value="Bangladesh">
-                  Bangladesh
-                </option>
-                <option value="Pakistan">
-                  Pakistan
-                </option>
+                <option value="India">India</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Pakistan">Pakistan</option>
               </select>
               {errors.country && <div className="error">{errors.country}</div>}
             </div>
@@ -115,7 +110,9 @@ const SchoolLogin: React.FC = () => {
                 disabled={processing}
                 onChange={handleChange}
               />
-              {errors["teacher_incharge"] && <div className="error">{errors["teacher_incharge"]}</div>}
+              {errors["teacher_incharge"] && (
+                <div className="error">{errors["teacher_incharge"]}</div>
+              )}
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
@@ -154,7 +151,9 @@ const SchoolLogin: React.FC = () => {
                 disabled={processing}
                 onChange={handleChange}
               />
-              {errors.password && <div className="error">{errors.password}</div>}
+              {errors.password && (
+                <div className="error">{errors.password}</div>
+              )}
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
@@ -167,12 +166,16 @@ const SchoolLogin: React.FC = () => {
                 disabled={processing}
                 onChange={handleChange}
               />
-              {errors["confirm-password"] && <div className="error">{errors["confirm-password"]}</div>}
+              {errors["confirm-password"] && (
+                <div className="error">{errors["confirm-password"]}</div>
+              )}
             </div>
 
             <div className="input-group mt-3 w-full sm:w-1/2 sm:px-2">
-              <label style={{color: "white"}}>.</label>
-              <button type="submit" className="button w-full">Register</button>
+              <label style={{ color: "white" }}>.</label>
+              <button type="submit" className="button w-full">
+                Register
+              </button>
             </div>
           </form>
         </div>
