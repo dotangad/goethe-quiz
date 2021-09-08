@@ -1,5 +1,5 @@
-import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 import React from "react";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 import { compareAsc, subDays } from "date-fns";
 import { IPageProps } from "../lib/types";
 import useTitle from "../lib/use-title";
@@ -9,7 +9,7 @@ const Index: React.FC = () => {
   const {props: { startDate }} = usePage<IPageProps>();
   useTitle("DPS Goethe Quiz");
 
-  const teamLoginOpen = compareAsc(subDays(new Date(startDate), 2), new Date()) === -1;
+       const teamLoginOpen = compareAsc(subDays(new Date(startDate), 2), new Date()) === -1;
 
   return (
     <Layout
