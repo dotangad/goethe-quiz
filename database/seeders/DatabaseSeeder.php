@@ -14,24 +14,10 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-    // \App\Models\User::factory(10)->create();
-    $user = new \App\Models\User([
-      'type' => 'school',
-      'email' => 'principal@dpsrkp.net',
-      'password' => Hash::make('password')
-    ]);
-    $user->save();
-
-    $schoolInfo = new \App\Models\SchoolInfo([
-      'user_id' => $user->id,
-      'name' => 'Delhi Public School, R.K. Puram',
-      'principal' => 'Padma Srinivasan',
-      'country' => 'India',
-      'phone' => '+91 1234567890',
-      'teacher_incharge' => 'Mukesh Kumar',
-      'address' => 'Delhi Public School R. K. Puram, Sector-XII, R K Puram, New Delhi 110022 India'
-    ]);
-    $schoolInfo->save();
+    \App\Models\User::factory()->count(50)->create();
+    $u = \App\Models\User::find(rand(1, 50));
+    $u->email = 'principal@dpsrkp.net';
+    $u->save();
 
     // Levels
     for ($i = 0; $i < 100; $i++) {
@@ -42,11 +28,6 @@ class DatabaseSeeder extends Seeder
       ]))->save();
     }
 
-    $user = new \App\Models\User([
-      'type' => 'admin',
-      'email' => 'admin@dpsrkp.net',
-      'password' => Hash::make('wenoti')
-    ]);
-    $user->save();
+    \App\Models\User::factory()->count(1)->admin('admin@dpsrkp.net', 'admin')->create();
   }
 }
