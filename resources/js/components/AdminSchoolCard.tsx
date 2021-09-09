@@ -25,7 +25,30 @@ const AdminSchoolCard: React.FC<IAdminSchoolCardProps> = ({
 
   return (
     <div className="bg-white border-none rounded-lg w-full p-6 shadow-sm max-w-screen-md">
-      <h1 className="text-3xl font-bold mb-5">{school.name}</h1>
+      <div className="w-full flex items-center justify-start">
+        <InertiaLink
+          href="/admin/schools"
+          className="flex justify-center items-center mr-3"
+        >
+          <div className="flex justify-center items-center bg-gray-bg p-3 rounded-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+          </div>
+        </InertiaLink>
+        <h1 className="font-bold text-3xl flex-1">{school.name}</h1>
+      </div>
       <div className="flex flex-wrap items-start">
         {Object.entries(show).map(([label, value], i) => (
           <div
