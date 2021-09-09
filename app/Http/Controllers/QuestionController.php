@@ -81,7 +81,20 @@ class QuestionController extends Controller
    */
   public function update(Request $request, Question $question)
   {
-    //
+    $body = $request->validate([
+      'text' => 'required',
+      'hint' => 'required',
+      'answer' => ['required', 'regex:/^[0-9 a-z]+$/']
+    ]);
+
+    Question::where('id', $question->id)
+      ->update(
+        collect($body)
+          ->only(['text', 'hint', 'answer'])
+          ->toArray()
+      );
+
+    return redirect()->back();
   }
 
   /**

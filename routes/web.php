@@ -97,6 +97,7 @@ Route::prefix('/admin')
       ->group(function () {
         Route::get('/', [QuestionController::class, 'index'])->name('index');
         Route::post('/', [QuestionController::class, 'store'])->name('store');
+        Route::post('/{question}', [QuestionController::class, 'update'])->name('update');
       });
   });
 
