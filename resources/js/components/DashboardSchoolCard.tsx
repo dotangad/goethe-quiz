@@ -39,7 +39,7 @@ const DashboardSchoolCard: React.FC = () => {
             className="flex flex-wrap"
             onSubmit={(e: React.SyntheticEvent) => {
               e.preventDefault();
-              post("/dashboard/school/edit", {
+              post("/dashboard/edit", {
                 preserveState: false,
               });
             }}

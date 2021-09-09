@@ -59,6 +59,35 @@ class TeamController extends Controller
     return redirect("/");
   }
 
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Models\User  $team
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, User $team)
+  {
+    if (
+      \Carbon\Carbon::parse(env('END_DATE'))
+      ->lt(\Carbon\Carbon::now('Asia/Kolkata'))
+    ) return redirect('/dashboard');
+
+    $body = $request->validate([
+      'student_1' => 'required',
+      'student_2' => 'required',
+    ]);
+
+    User::where('id', $team->id)
+      ->update(
+        collect($body)
+          ->only(['student_1', 'student_2'])
+          ->toArray()
+      );
+
+    return redirect()->back();
+  }
+
   public function destroy(User $team)
   {
     if (

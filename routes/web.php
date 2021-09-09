@@ -63,21 +63,27 @@ Route::get('/auth/logout', [AuthController::class, 'destroy'])
   ->middleware(['auth'])
   ->name('auth.logout');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
+Route::prefix('/dashboard')
   ->middleware(['auth', 'school'])
-  ->name('dashboard');
+  ->name('dashboard.')
+  ->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])
+      ->name('dashboard');
 
-Route::post('/dashboard/teams', [TeamController::class, 'create'])
-  ->middleware(['auth', 'school'])
-  ->name('dashboard.teams.create');
+    Route::post('/edit', [DashboardController::class, 'update'])
+      ->name('edit');
 
-Route::post('/dashboard/teams/del/{team}', [TeamController::class, 'destroy'])
-  ->middleware(['auth', 'school'])
-  ->name('dashboard.teams.delete');
-
-Route::post('/dashboard/school/edit', [DashboardController::class, 'update'])
-  ->middleware(['auth', 'school'])
-  ->name('dashboard.school.edit');
+    Route::prefix('/teams')
+      ->name('teams.')
+      ->group(function () {
+        Route::post('/', [TeamController::class, 'create'])
+          ->name('create');
+        Route::post('/{team}/del', [TeamController::class, 'destroy'])
+          ->name('delete');
+        Route::post('/{team}/', [TeamController::class, 'update'])
+          ->name('update');
+      });
+  });
 
 Route::get('/play', [PlayController::class, 'index'])
   ->middleware(['auth', 'team'])
