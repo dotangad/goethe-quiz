@@ -2,10 +2,10 @@ import { InertiaLink } from "@inertiajs/inertia-react";
 import React from "react";
 import Layout from "../../components/Layout";
 import Table from "../../components/Table";
-import { IUserWithTeams } from "../../lib/types";
+import { IUser } from "../../lib/types";
 
 interface ISchoolsProps {
-  schools: IUserWithTeams[];
+  schools: IUser[];
 }
 
 const Schools: React.FC<ISchoolsProps> = ({ schools }: ISchoolsProps) => {
@@ -45,7 +45,7 @@ const Schools: React.FC<ISchoolsProps> = ({ schools }: ISchoolsProps) => {
             name,
             email,
             country,
-            teams: String(teams.length),
+            teams: String(teams?.length || 0),
             toBtn: `/admin/schools/${id}`,
           }))}
         />

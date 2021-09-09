@@ -7,24 +7,19 @@ export interface IUser {
   email: string;
   email_verified_at?: string;
 
-  name: string;
-  principal: string;
-  country: string;
-  phone: string;
-  teacher_incharge: string;
-  address: string;
+  name?: string;
+  principal?: string;
+  country?: string;
+  phone?: string;
+  teacher_incharge?: string;
+  address?: string;
 
-  school_id: number;
-  student_1: string;
-  student_2: string;
-}
+  school_id?: number;
+  student_1?: string;
+  student_2?: string;
 
-export interface IUserWithTeams extends IUser {
-  teams: IUser[];
-}
-
-export interface IUserWithSchool extends IUser {
-  school: IUser;
+  school?: IUser;
+  teams?: IUser[];
 }
 
 export interface IPageProps extends Page<PageProps> {

@@ -1,9 +1,9 @@
-import { useForm } from "@inertiajs/inertia-react";
+import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import React from "react";
-import { IUserWithTeams } from "../lib/types";
+import { IUser } from "../lib/types";
 
 interface IAdminSchoolCardProps {
-  school: IUserWithTeams;
+  school: IUser;
 }
 
 const AdminSchoolCard: React.FC<IAdminSchoolCardProps> = ({

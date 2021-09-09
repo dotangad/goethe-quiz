@@ -2,10 +2,10 @@ import { useForm } from "@inertiajs/inertia-react";
 import React from "react";
 import Layout from "../../components/Layout";
 import AdminSchoolCard from "../../components/AdminSchoolCard";
-import { IUserWithTeams } from "../../lib/types";
+import { IUser } from "../../lib/types";
 
 interface ISchoolProps {
-  school: IUserWithTeams;
+  school: IUser;
 }
 
 const School: React.FC<ISchoolProps> = ({ school }: ISchoolProps) => {
@@ -16,7 +16,7 @@ const School: React.FC<ISchoolProps> = ({ school }: ISchoolProps) => {
       <div className="w-full sm:max-w-screen-md mx-auto">
         <AdminSchoolCard school={school} />
         <div className="w-full py-6 max-w-screen-md flex flex-wrap">
-          {school.teams.map(({ id, student_1, student_2, email }, i) => (
+          {school.teams?.map(({ id, student_1, student_2, email }, i) => (
             <div
               className="w-full sm:w-1/2 h-96 odd:pr-2 even:pl-2 my-2"
               key={i}

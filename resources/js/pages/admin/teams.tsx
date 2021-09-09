@@ -2,10 +2,10 @@ import { InertiaLink } from "@inertiajs/inertia-react";
 import React from "react";
 import Layout from "../../components/Layout";
 import Table from "../../components/Table";
-import { IUserWithSchool } from "../../lib/types";
+import { IUser } from "../../lib/types";
 
 interface ITeamsProps {
-  teams: IUserWithSchool[];
+  teams: IUser[];
 }
 
 const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
@@ -40,15 +40,14 @@ const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
 
       <div className="max-w-screen-lg min-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
         <Table
-          records={teams.map(
-            ({ id, school: { name, id: schoolId }, student_1, student_2 }) => ({
-              id: String(id),
-              "School name": `${name} (${schoolId})`,
-              student_1,
-              student_2,
-              toBtn: `/admin/teams/${id}`,
-            })
-          )}
+          records={teams.map(({ id, school, email, student_1, student_2 }) => ({
+            id: String(id),
+            email,
+            "School name": `${school?.name} (${school?.id})`,
+            student_1,
+            student_2,
+            toBtn: `/admin/schools/${school?.id}`,
+          }))}
         />
       </div>
     </Layout>

@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
   {
     $user = User::find(Auth::id());
     return array_merge(parent::share($request), [
-      'user' => Auth::user(),
+      'user' => Auth::check() ? User::with(['school', 'teams'])->find(Auth::user()->id) : null,
       'authenticated' => Auth::check(),
       'schoolInfo' => Auth::check() && $user->type == 'school' ? $user->schoolInfo : null,
       'startDate' => env('START_DATE'),
