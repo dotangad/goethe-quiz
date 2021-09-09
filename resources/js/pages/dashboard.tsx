@@ -16,8 +16,9 @@ const Dashboard: React.FC<IDashboardProps> = ({
   teams,
 }: IDashboardProps) => {
   const {
-    props: { endDate },
+    props: { endDate, startDate },
   } = usePage<IPageProps>();
+  const started = compareAsc(new Date(), new Date(startDate)) === 1;
   const ended = compareAsc(new Date(), new Date(endDate)) === 1;
   const { setData, post, processing, errors } = useForm({
     student_1: "",
@@ -136,7 +137,7 @@ const Dashboard: React.FC<IDashboardProps> = ({
                   <div className="text-sm py-3">{student_2}</div>
                 </div>
 
-                {!ended && (
+                {!started && (
                   <div className="input-group flex justify-end">
                     <form
                       onSubmit={(e: React.SyntheticEvent) => {
