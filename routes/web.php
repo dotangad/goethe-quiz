@@ -107,13 +107,15 @@ Route::prefix('/admin')
       ->group(function () {
         Route::get('/', [SchoolController::class, 'index'])->name('index');
         Route::get('/{user}', [SchoolController::class, 'show'])->name('show');
+        Route::post('/{user}/changepwd', [SchoolController::class, 'changePwd'])->name('changepwd');
+        Route::post('/{user}/login', [SchoolController::class, 'login'])->name('login');
       });
 
     Route::prefix('/teams')
       ->name('teams.')
       ->group(function () {
         Route::get('/', [AdminTeamController::class, 'index'])->name('index');
-        Route::get('/{user}', [AdminTeamController::class, 'show'])->name('show');
+        Route::post('/{user}/resetpwd', [AdminTeamController::class, 'resetPwd'])->name('resetpwd');
       });
   });
 

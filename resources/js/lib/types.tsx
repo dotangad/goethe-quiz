@@ -19,6 +19,14 @@ export interface IUser {
   student_2: string;
 }
 
+export interface IUserWithTeams extends IUser {
+  teams: IUser[];
+}
+
+export interface IUserWithSchool extends IUser {
+  school: IUser;
+}
+
 export interface IPageProps extends Page<PageProps> {
   props: {
     errors: Errors & ErrorBag;

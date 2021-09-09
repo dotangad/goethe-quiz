@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class AdminTeamController extends Controller
@@ -16,6 +18,28 @@ class AdminTeamController extends Controller
   public function index()
   {
     return Inertia::render('admin/teams', ['teams' => User::with('school')->where('type', 'team')->get()]);
+  }
+
+  /**
+   * Reset password for $user
+   *
+   * @param  \App\Models\User  $user
+   * @return \Illuminate\Http\Response
+   */
+  public function resetPwd(User $user)
+  {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $password = '';
+    for ($i = 0; $i < 15; $i++) {
+      $password = $password . $characters[rand(0, strlen($characters) - 1)];
+    }
+    $user->password = Hash::make($password);
+    $user->save();
+
+    Mail::to($user)
+      ->send(new \App\Mail\TeamPasswordReset($user, $password));
+
+    return redirect()->back();
   }
 
   /**

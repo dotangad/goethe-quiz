@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class SchoolController extends Controller
@@ -16,6 +18,35 @@ class SchoolController extends Controller
   public function index()
   {
     return Inertia::render('admin/schools', ['schools' => User::with('teams')->where('type', 'school')->get()]);
+  }
+
+  /**
+   * Change password
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Models\User  $user
+   * @return \Illuminate\Http\Response
+   */
+  public function changePwd(Request $request, User $user)
+  {
+    $body = $request->validate(['password' => 'required|min:8|max:24']);
+
+    $user->password = Hash::make($body['password']);
+    $user->save();
+
+    return redirect()->back();
+  }
+
+  /**
+   * Login as $user
+   *
+   * @param  \App\Models\User  $user
+   * @return \Illuminate\Http\Response
+   */
+  public function login(User $user)
+  {
+    Auth::login($user, true);
+    return redirect('/');
   }
 
   /**
@@ -47,7 +78,7 @@ class SchoolController extends Controller
    */
   public function show(User $user)
   {
-    ddd($user);
+    return Inertia::render('admin/school', ['school' => User::with('teams')->where('id', $user->id)->first()]);
   }
 
   /**

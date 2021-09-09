@@ -37,9 +37,10 @@ body, html, #app {
 .input-group input {
   @apply border-2 border-gray-bg focus:border-goethe focus:outline-none rounded-lg p-3 w-full;
 }
-.input-group input:focus,
-.input-group select:focus {
-  box-shadow: none;
+
+input:focus,
+select:focus {
+  box-shadow: none !important;
 }
 
 .input-group .error {

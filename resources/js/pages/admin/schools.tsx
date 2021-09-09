@@ -2,11 +2,7 @@ import { InertiaLink } from "@inertiajs/inertia-react";
 import React from "react";
 import Layout from "../../components/Layout";
 import Table from "../../components/Table";
-import { IUser } from "../../lib/types";
-
-interface IUserWithTeams extends IUser {
-  teams: IUser[];
-}
+import { IUserWithTeams } from "../../lib/types";
 
 interface ISchoolsProps {
   schools: IUserWithTeams[];
