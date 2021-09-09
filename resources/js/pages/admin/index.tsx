@@ -27,16 +27,19 @@ const Admin: React.FC<IAdminProps> = ({ stats }: IAdminProps) => {
 
   return (
     <Layout links={[{ href: "", label: "Leaderboard" }]}>
-      <div className="w-full sm:max-w-screen-sm mx-auto h-full">
-        <div className="w-full p-6 bg-white rounded-lg shadow-sm">
-          <h1 className="font-bold text-2xl text-center">
+      <div className="w-full sm:max-w-screen-sm mx-auto h-full flex flex-col justify-center">
+        <div className="w-full p-6 bg-white rounded-lg shadow-sm my-2">
+          <h1 className="font-bold text-xl sm:text-2xl text-center">
             DPS Goethe Quiz Control Center
           </h1>
         </div>
 
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap my-2">
           {Object.entries(stats).map(([label, n], i) => (
-            <div className="w-full sm:w-1/2 odd:pr-3 even:pl-3 my-4" key={i}>
+            <div
+              className="w-full sm:w-1/2 sm:odd:pr-2 sm:even:pl-2 mb-2 sm:my-0"
+              key={i}
+            >
               <div className="w-full bg-white rounded-lg shadow-sm p-6">
                 <div className="text-center text-4xl font-bold">
                   {String(n)}
@@ -51,7 +54,7 @@ const Admin: React.FC<IAdminProps> = ({ stats }: IAdminProps) => {
 
         {links.map(({ href, title, description }, i) => (
           <InertiaLink
-            className="block w-full p-6 bg-white rounded-lg shadow-sm flex my-3"
+            className="block w-full p-6 bg-white rounded-lg shadow-sm flex my-2"
             href={href}
             key={i}
           >

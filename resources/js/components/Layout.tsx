@@ -52,7 +52,7 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
           ))}
         </div>
       </nav>
-      <main className="flex-1 py-10">{children}</main>
+      <main className="flex-1 py-10 px-2 sm:px-0">{children}</main>
       <footer className="flex items-center justify-center py-4 text-gray-500 flex-col text-sm sm:text-xs text-center px-2">
         <div className="text-lg font-bold text-gray-300">
           &bull;&bull;&bull;
