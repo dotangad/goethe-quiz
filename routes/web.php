@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminTeamController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlayController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SchoolAuthController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\TeamAuthController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\App;
@@ -98,6 +100,20 @@ Route::prefix('/admin')
         Route::get('/', [QuestionController::class, 'index'])->name('index');
         Route::post('/', [QuestionController::class, 'store'])->name('store');
         Route::post('/{question}', [QuestionController::class, 'update'])->name('update');
+      });
+
+    Route::prefix('/schools')
+      ->name('schools.')
+      ->group(function () {
+        Route::get('/', [SchoolController::class, 'index'])->name('index');
+        Route::get('/{user}', [SchoolController::class, 'show'])->name('show');
+      });
+
+    Route::prefix('/teams')
+      ->name('teams.')
+      ->group(function () {
+        Route::get('/', [AdminTeamController::class, 'index'])->name('index');
+        Route::get('/{user}', [AdminTeamController::class, 'show'])->name('show');
       });
   });
 

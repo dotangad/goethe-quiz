@@ -25,6 +25,7 @@ module.exports = {
   variants: {
     extend: {
       padding: ["odd", "even"],
+      backgroundColor: ["odd", "even"],
     },
   },
   plugins: [require("@tailwindcss/forms")],
