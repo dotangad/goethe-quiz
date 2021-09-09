@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SchoolInfo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +33,7 @@ class DashboardController extends Controller
       'address' => 'required',
     ]);
 
-    SchoolInfo::where('user_id', Auth::user()->id)
+    User::where('id', Auth::user()->id)
       ->update(
         collect($body)
           ->only([

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SchoolInfo;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -49,7 +48,7 @@ class SchoolAuthController extends Controller
 
   public function register(Request $request)
   {
-    $body = collect($request->validate([
+    $body = $request->validate([
       'email' => 'required|email',
       'password' => 'required|min:8|max:24',
       'confirm-password' => 'required|same:password',
@@ -60,28 +59,11 @@ class SchoolAuthController extends Controller
       'phone' => ['required', 'regex:/^\+(91|977|92|880)(\d|\s)+$/'],
       'teacher_incharge' => 'required',
       'address' => 'required',
-    ]));
-
-    $user = new User([
-      'email' => $body['email'],
-      'password' => Hash::make($body['password']),
     ]);
-    $user->save();
 
-    $schoolInfo = new SchoolInfo(
-      $body
-        ->only([
-          'name',
-          'principal',
-          'country',
-          'phone',
-          'teacher_incharge',
-          'address'
-        ])
-        ->toArray()
-    );
-    $schoolInfo->user_id = $user->id;
-    $schoolInfo->save();
+    $user = new User($body);
+    $user->password = Hash::make($user->password);
+    $user->save();
 
     Auth::login($user, true);
     return redirect("/");

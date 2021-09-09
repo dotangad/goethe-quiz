@@ -16,7 +16,7 @@ const Question: React.FC<IQuestionProps> = ({
   question: { id, text, hint, answer },
 }: IQuestionProps) => {
   const [editing, setEditing] = useState<boolean>(false);
-  const { setData, data, post, processing, errors, reset } = useForm({
+  const { setData, data, post, processing, errors } = useForm({
     text,
     hint,
     answer,
@@ -27,7 +27,12 @@ const Question: React.FC<IQuestionProps> = ({
 
   return (
     <div className="w-full p-6 bg-white rounded-lg shadow-sm my-4">
-      <h1 className="font-bold text-lg">Question {id}</h1>
+      <div className="input-group flex items-center justify-end mb-2">
+        <h1 className="font-bold text-xl flex-1">Question {id}</h1>
+        <a className="button" onClick={() => setEditing(!editing)}>
+          {editing ? "Reset" : "Edit"}
+        </a>
+      </div>
       {editing ? (
         <form
           onSubmit={(e: React.SyntheticEvent) => {
@@ -97,12 +102,6 @@ const Question: React.FC<IQuestionProps> = ({
           </div>
         </>
       )}
-
-      <div className="input-group flex justify-end my-2">
-        <a className="button" onClick={() => setEditing(!editing)}>
-          {editing ? "Reset" : "Edit"}
-        </a>
-      </div>
     </div>
   );
 };

@@ -41,6 +41,13 @@ class UserFactory extends Factory
       'email_verified_at' => now(),
       'password' => Hash::make('password'), // password
       'remember_token' => Str::random(10),
+
+      'name' => $this->faker->company(),
+      'principal' => $this->faker->name(),
+      'country' => 'India',
+      'phone' => '+91 1234567890',
+      'teacher_incharge' => $this->faker->name(),
+      'address' => $this->faker->address()
     ];
   }
 
@@ -48,33 +55,43 @@ class UserFactory extends Factory
   {
     return $this->afterCreating(function (User $user) {
       if ($user->type == 'school') {
-        (new \App\Models\SchoolInfo([
-          'user_id' => $user->id,
-          'name' => $this->faker->company(),
-          'principal' => $this->faker->name(),
-          'country' => 'India',
-          'phone' => '+91 1234567890',
-          'teacher_incharge' => $this->faker->name(),
-          'address' => $this->faker->address()
-        ]))->save();
-
         for ($i = 0; $i < $this->teams; $i++) {
           $u = new User([
             'type' => 'team',
             'email' => $this->faker->unique()->safeEmail(),
             'password' => Hash::make('password'), // password
-          ]);
-          $u->save();
-
-          (new \App\Models\TeamInfo([
-            'email' => $u->email,
             'student_1' => $this->faker->name(),
             'student_2' => $this->faker->name(),
-            'user_id' => $u->id,
             'school_id' => $user->id,
-          ]))->save();
+          ]);
+          $u->save();
         }
       }
+    });
+  }
+
+  /**
+   * Set type of user to team
+   * 
+   * @var $school_id int
+   */
+  public function team($school_id)
+  {
+    return $this->state(function () use ($school_id) {
+      return [
+        'type' => 'team',
+        'password' => Hash::make('password'), // password
+        'student_1' => $this->faker->name(),
+        'student_2' => $this->faker->name(),
+        'school_id' => $school_id,
+
+        'name' => null,
+        'principal' => null,
+        'country' => null,
+        'phone' => null,
+        'teacher_incharge' => null,
+        'address' => null
+      ];
     });
   }
 
@@ -91,6 +108,13 @@ class UserFactory extends Factory
         'type' => 'admin',
         'email' => $email ? $email : $attr['email'],
         'password' => $password ? Hash::make($password) : $attr['password'],
+
+        'name' => null,
+        'principal' => null,
+        'country' => null,
+        'phone' => null,
+        'teacher_incharge' => null,
+        'address' => null
       ];
     });
   }

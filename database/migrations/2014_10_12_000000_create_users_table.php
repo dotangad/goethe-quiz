@@ -19,6 +19,25 @@ class CreateUsersTable extends Migration
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password')->nullable();
       $table->string('type')->default('school');
+
+      // School details
+      $table->string('name')->nullable();
+      $table->string('principal')->nullable();
+      $table->string('country')->nullable();
+      $table->string('phone')->nullable();
+      $table->string('teacher_incharge')->nullable();
+      $table->longText('address')->nullable();
+
+      // Team info
+      $table->string('student_1')->nullable();
+      $table->string('student_2')->nullable();
+      $table
+        ->foreignId('school_id')
+        ->nullable()
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade');
+
       $table->rememberToken();
       $table->timestamps();
     });

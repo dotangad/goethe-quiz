@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\SchoolInfo;
 
 class User extends Authenticatable
 {
@@ -20,7 +19,16 @@ class User extends Authenticatable
   protected $fillable = [
     'email',
     'password',
-    'type'
+    'type',
+    'name',
+    'principal',
+    'country',
+    'phone',
+    'teacher_incharge',
+    'address',
+    'student_1',
+    'student_2',
+    'school_id'
   ];
 
   /**
@@ -42,18 +50,13 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
   ];
 
-  public function schoolInfo()
-  {
-    return $this->hasOne(SchoolInfo::class, 'user_id');
-  }
-
-  public function teamInfo()
-  {
-    return $this->hasOne(TeamInfo::class, 'user_id');
-  }
-
   public function teams()
   {
-    return $this->hasMany(TeamInfo::class, 'school_id');
+    return $this->hasMany(User::class, 'school_id');
+  }
+
+  public function school()
+  {
+    return $this->belongsTo(User::class, 'school_id');
   }
 }

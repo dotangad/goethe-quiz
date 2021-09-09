@@ -6,24 +6,24 @@ import { IPageProps } from "../lib/types";
 const DashboardSchoolCard: React.FC = () => {
   const [editing, setEditing] = React.useState<boolean>(false);
   const {
-    props: { user, schoolInfo, endDate },
+    props: { user, endDate },
   } = usePage<IPageProps>();
   const ended = compareAsc(new Date(), new Date(endDate)) === 1;
   const { setData, post, processing, errors, data } = useForm({
-    name: schoolInfo?.name,
-    principal: schoolInfo?.principal,
-    country: schoolInfo?.country,
-    phone: schoolInfo?.phone,
-    teacher_incharge: schoolInfo?.teacher_incharge,
-    address: schoolInfo?.address,
+    name: user.name,
+    principal: user.principal,
+    country: user.country,
+    phone: user.phone,
+    teacher_incharge: user.teacher_incharge,
+    address: user.address,
   });
   const show = {
     Email: user.email,
-    Address: schoolInfo?.address,
-    Country: schoolInfo?.country,
-    Phone: schoolInfo?.phone,
-    Principal: schoolInfo?.principal,
-    "Teacher Incharge": schoolInfo?.teacher_incharge,
+    Address: user.address,
+    Country: user.country,
+    Phone: user.phone,
+    Principal: user.principal,
+    "Teacher Incharge": user.teacher_incharge,
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -31,7 +31,7 @@ const DashboardSchoolCard: React.FC = () => {
 
   return (
     <div className="bg-white border-none rounded-lg w-full p-6 shadow-sm max-w-screen-md">
-      <h1 className="text-3xl font-bold mb-5">{schoolInfo?.name}</h1>
+      <h1 className="text-3xl font-bold mb-5">{user.name}</h1>
 
       {editing ? (
         <>
@@ -149,7 +149,10 @@ const DashboardSchoolCard: React.FC = () => {
       ) : (
         <div className="flex flex-wrap items-start">
           {Object.entries(show).map(([label, value], i) => (
-            <div className="input-group my-3 px-3 w-full sm:w-1/2" key={i}>
+            <div
+              className="input-group my-3 odd:pr-3 even:pl-3 w-full sm:w-1/2"
+              key={i}
+            >
               <label>{label}</label>
               <div className="w-full">{value}</div>
             </div>

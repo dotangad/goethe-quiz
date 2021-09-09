@@ -44,7 +44,6 @@ class TeamCreatedMail extends Mailable
       ->view('mail.team_created')
       ->with([
         'user' => $this->user,
-        'teamInfo' => $this->user->teamInfo,
         'password' => $this->password,
       ]);
   }

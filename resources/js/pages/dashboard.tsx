@@ -3,12 +3,12 @@ import { useForm, usePage } from "@inertiajs/inertia-react";
 import { compareAsc } from "date-fns";
 
 import Layout from "../components/Layout";
-import { IPageProps, ITeamInfo } from "../lib/types";
+import { IPageProps, IUser } from "../lib/types";
 import DashboardSchoolCard from "../components/DashboardSchoolCard";
 
 interface IDashboardProps {
   teamAddError?: string;
-  teams: ITeamInfo[];
+  teams: IUser[];
 }
 
 const Dashboard: React.FC<IDashboardProps> = ({
@@ -116,7 +116,7 @@ const Dashboard: React.FC<IDashboardProps> = ({
             </div>
           )}
 
-          {teams.map(({ user_id, student_1, student_2, email }, i) => (
+          {teams.map(({ id, student_1, student_2, email }, i) => (
             <div
               className="w-full sm:w-1/2 h-96 odd:pr-2 even:pl-2 my-2"
               key={i}
@@ -141,7 +141,7 @@ const Dashboard: React.FC<IDashboardProps> = ({
                     <form
                       onSubmit={(e: React.SyntheticEvent) => {
                         e.preventDefault();
-                        post(`/dashboard/teams/del/${user_id}`, {
+                        post(`/dashboard/teams/del/${id}`, {
                           preserveScroll: true,
                         });
                       }}

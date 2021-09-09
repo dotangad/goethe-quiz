@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TeamInfo;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -38,27 +37,21 @@ class TeamController extends Controller
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $password = '';
     for ($i = 0; $i < 15; $i++) {
-      $password = $password . $characters[rand(0, strlen($characters))];
+      $password = $password . $characters[rand(0, strlen($characters) - 1)];
     }
     $user = new User([
       'type' => 'team',
       'email' => $body['email'],
       'password' => Hash::make($password),
+      'student_1' => $body['student_1'],
+      'student_2' => $body['student_2'],
+      'school_id' => User::find(Auth::user()->id)->id,
     ]);
     try {
       $user->save();
     } catch (QueryException $e) {
       return redirect('/');
     }
-
-    $teamInfo = new TeamInfo([
-      'email' => $body['email'],
-      'student_1' => $body['student_1'],
-      'student_2' => $body['student_2'],
-      'user_id' => $user->id,
-      'school_id' => User::find(Auth::user()->id)->id,
-    ]);
-    $teamInfo->save();
 
     Mail::to($user)
       ->send(new \App\Mail\TeamCreatedMail($user, $password));
