@@ -10,7 +10,7 @@
     "production": "mix --production",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json}\""
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",

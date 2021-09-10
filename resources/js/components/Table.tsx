@@ -20,8 +20,8 @@ const Table: React.FC<ITableProps> = ({ records }: ITableProps) => {
                 (i === 0
                   ? " rounded-tl-lg"
                   : i === headers.length - 1
-                    ? " rounded-tr-lg"
-                    : "")
+                  ? " rounded-tr-lg"
+                  : "")
               }
             >
               {header === "toBtn" ? "" : header}

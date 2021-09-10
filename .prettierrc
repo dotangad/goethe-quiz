@@ -10,5 +10,4 @@
   "jsxSingleQuote": false,
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
-  "parser": "typescript"
 }

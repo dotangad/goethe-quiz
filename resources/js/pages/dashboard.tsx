@@ -17,7 +17,9 @@ const Dashboard: React.FC<IDashboardProps> = ({
   teamAddError,
   teams,
 }: IDashboardProps) => {
-  const { props: { endDate } } = usePage<IPageProps>();
+  const {
+    props: { endDate },
+  } = usePage<IPageProps>();
   const ended = compareAsc(new Date(), new Date(endDate)) === 1;
   return (
     <Layout links={[{ href: "", label: "Rules" }]}>
@@ -26,7 +28,9 @@ const Dashboard: React.FC<IDashboardProps> = ({
 
         <div className="w-full py-6 max-w-screen-md flex flex-wrap">
           {!ended && <DashboardTeamAddForm teamAddError={teamAddError} />}
-          {teams.map((team, i) => <DashboardTeam team={team} i={i} key={i} />)}
+          {teams.map((team, i) => (
+            <DashboardTeam team={team} i={i} key={i} />
+          ))}
         </div>
       </div>
     </Layout>
