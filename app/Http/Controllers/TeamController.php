@@ -12,12 +12,17 @@ use Inertia\Inertia;
 
 class TeamController extends Controller
 {
-  public function create(Request $request)
+  public function checkTime()
   {
     if (
       \Carbon\Carbon::parse(env('END_DATE'))
       ->lt(\Carbon\Carbon::now('Asia/Kolkata'))
     ) return redirect('/dashboard');
+  }
+
+  public function create(Request $request)
+  {
+    $this->checkTime();
 
     $body = $request->validate([
       'email' => 'required|email',
@@ -34,11 +39,7 @@ class TeamController extends Controller
       return redirect('/');
     }
 
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $password = '';
-    for ($i = 0; $i < 15; $i++) {
-      $password = $password . $characters[rand(0, strlen($characters) - 1)];
-    }
+    $password = User::randomPwd();
     $user = new User([
       'type' => 'team',
       'email' => $body['email'],
@@ -68,10 +69,7 @@ class TeamController extends Controller
    */
   public function update(Request $request, User $team)
   {
-    if (
-      \Carbon\Carbon::parse(env('END_DATE'))
-      ->lt(\Carbon\Carbon::now('Asia/Kolkata'))
-    ) return redirect('/dashboard');
+    $this->checkTime();
 
     $body = $request->validate([
       'student_1' => 'required',
@@ -90,10 +88,7 @@ class TeamController extends Controller
 
   public function destroy(User $team)
   {
-    if (
-      \Carbon\Carbon::parse(env('START_DATE'))
-      ->lt(\Carbon\Carbon::now('Asia/Kolkata'))
-    ) return redirect('/dashboard');
+    $this->checkTime();
 
     $team->delete();
 

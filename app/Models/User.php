@@ -59,4 +59,20 @@ class User extends Authenticatable
   {
     return $this->belongsTo(User::class, 'school_id');
   }
+
+  /**
+   * Generate a random password, meant for team accounts
+   * 
+   * @return string $password
+   */
+  public static function randomPwd()
+  {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $password = '';
+    for ($i = 0; $i < 15; $i++) {
+      $password = $password . $characters[rand(0, strlen($characters) - 1)];
+    }
+
+    return $password;
+  }
 }

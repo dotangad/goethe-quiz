@@ -28,11 +28,7 @@ class AdminTeamController extends Controller
    */
   public function resetPwd(User $user)
   {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $password = '';
-    for ($i = 0; $i < 15; $i++) {
-      $password = $password . $characters[rand(0, strlen($characters) - 1)];
-    }
+    $password = User::randomPwd();
     $user->password = Hash::make($password);
     $user->save();
 
@@ -71,7 +67,7 @@ class AdminTeamController extends Controller
    */
   public function show(User $user)
   {
-    ddd($user);
+    //
   }
 
   /**

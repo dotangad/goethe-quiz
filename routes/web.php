@@ -89,11 +89,6 @@ Route::get('/play', [PlayController::class, 'index'])
   ->middleware(['auth', 'team'])
   ->name('play');
 
-Route::get('/admin', function () {
-  ddd('lmfao');
-})->middleware(['auth', 'admin'])
-  ->name('admin');
-
 Route::prefix('/admin')
   ->middleware(['auth', 'admin'])
   ->name('admin.')
