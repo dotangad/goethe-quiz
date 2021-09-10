@@ -47,6 +47,7 @@ class TeamController extends Controller
       'student_1' => $body['student_1'],
       'student_2' => $body['student_2'],
       'school_id' => User::find(Auth::user()->id)->id,
+      'question_id' => 1
     ]);
     try {
       $user->save();

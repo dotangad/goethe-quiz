@@ -14,4 +14,14 @@ class Question extends Model
     'hint',
     'answer',
   ];
+
+  public function users()
+  {
+    return $this->hasMany(User::class, 'question_id');
+  }
+
+  public function attempts()
+  {
+    return $this->hasMany(UserAttempt::class);
+  }
 }

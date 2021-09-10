@@ -63,6 +63,7 @@ class UserFactory extends Factory
             'student_1' => $this->faker->name(),
             'student_2' => $this->faker->name(),
             'school_id' => $user->id,
+            'question_id' => 1
           ]);
           $u->save();
         }
@@ -84,6 +85,7 @@ class UserFactory extends Factory
         'student_1' => $this->faker->name(),
         'student_2' => $this->faker->name(),
         'school_id' => $school_id,
+        'question_id' => 1,
 
         'name' => null,
         'principal' => null,

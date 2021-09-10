@@ -60,6 +60,16 @@ class User extends Authenticatable
     return $this->belongsTo(User::class, 'school_id');
   }
 
+  public function question()
+  {
+    return $this->belongsTo(Question::class, 'question_id');
+  }
+
+  public function attempts()
+  {
+    return $this->hasMany(UserAttempt::class);
+  }
+
   /**
    * Generate a random password, meant for team accounts
    * 
