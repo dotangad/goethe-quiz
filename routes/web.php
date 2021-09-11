@@ -77,11 +77,11 @@ Route::prefix('/dashboard')
       ->name('teams.')
       ->group(function () {
         Route::post('/', [TeamController::class, 'create'])
-          ->name('create');
+          ->name('create')->middleware('not_ended');
         Route::post('/{team}/del', [TeamController::class, 'destroy'])
-          ->name('delete');
+          ->name('delete')->middleware(['not_started']);
         Route::post('/{team}/', [TeamController::class, 'update'])
-          ->name('update');
+          ->name('update')->middleware(['not_ended']);
       });
   });
 

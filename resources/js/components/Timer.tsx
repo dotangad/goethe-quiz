@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/inertia-react";
 import { IPageProps } from "../lib/types";
 import { compareAsc } from "date-fns";
@@ -42,12 +43,22 @@ const Timer: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setStarted(compareAsc(new Date(), new Date(startDate)) == 1);
-      setEnded(compareAsc(new Date(), new Date(endDate)) == 1);
+      setStarted((started_) => {
+        const r = compareAsc(new Date(), new Date(startDate)) == 1;
+        if (started_ !== r) window.location.reload();
+        return r;
+      });
+      setEnded((ended_) => {
+        const r = compareAsc(new Date(), new Date(endDate)) == 1;
+        if (ended_ !== r) window.location.reload();
+        return r;
+      });
       setCountdown(countdownTo(started ? endDate : startDate));
 
-      if (ended) clearInterval(interval);
-    }, 500);
+      if (ended) {
+        clearInterval(interval);
+      }
+    }, 100);
 
     return () => clearInterval(interval);
   }, []);

@@ -8,22 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use \Carbon\Carbon as Carbon;
 use Inertia\Inertia;
 
 class TeamController extends Controller
 {
-  public function checkTime()
-  {
-    if (
-      \Carbon\Carbon::parse(env('END_DATE'))
-      ->lt(\Carbon\Carbon::now('Asia/Kolkata'))
-    ) return redirect('/dashboard');
-  }
-
   public function create(Request $request)
   {
-    $this->checkTime();
-
     $body = $request->validate([
       'email' => 'required|email',
       'student_1' => 'required',
@@ -70,8 +61,6 @@ class TeamController extends Controller
    */
   public function update(Request $request, User $team)
   {
-    $this->checkTime();
-
     $body = $request->validate([
       'student_1' => 'required',
       'student_2' => 'required',
@@ -89,8 +78,6 @@ class TeamController extends Controller
 
   public function destroy(User $team)
   {
-    $this->checkTime();
-
     $team->delete();
 
     return redirect('/');
