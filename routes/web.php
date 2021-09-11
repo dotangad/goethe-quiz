@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminTeamController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\PlayController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SchoolAuthController;
@@ -63,6 +64,9 @@ Route::prefix('/auth')
 Route::get('/auth/logout', [AuthController::class, 'destroy'])
   ->middleware(['auth'])
   ->name('auth.logout');
+
+Route::get('/leaderboard', [LeaderboardController::class, 'index'])
+  ->name('leaderboard');
 
 Route::prefix('/dashboard')
   ->middleware(['auth', 'school'])
