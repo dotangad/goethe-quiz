@@ -37,6 +37,6 @@ export interface IQuestion {
   created_at: string;
   updated_at: string;
   text: string;
-  hint: string;
-  answer: string;
+  hint?: string;
+  answer?: string;
 }

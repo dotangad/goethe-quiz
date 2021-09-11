@@ -9,6 +9,12 @@ class UserAttempt extends Model
 {
   use HasFactory;
 
+  public $fillable = [
+    'user_id',
+    'question_id',
+    'attempt',
+  ];
+
   /**
    * User that owns this attempt
    */

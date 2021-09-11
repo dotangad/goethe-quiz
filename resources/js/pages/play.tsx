@@ -3,14 +3,26 @@ import { Inertia, Method } from "@inertiajs/inertia";
 import { compareAsc } from "date-fns";
 import React from "react";
 import Layout from "../components/Layout";
-import { IPageProps } from "../lib/types";
+import PlayComponent from "../components/Play";
+import { IPageProps, IQuestion } from "../lib/types";
 
-const Play: React.FC = () => {
+interface IPlayPageProps {
+  question?: IQuestion;
+  showHint: boolean;
+}
+
+const Play: React.FC<IPlayPageProps> = ({
+  question,
+  showHint,
+}: IPlayPageProps) => {
   const {
     props: { user, endDate, startDate },
   } = usePage<IPageProps>();
   const [started, setStarted] = React.useState<boolean>(
     compareAsc(new Date(), new Date(startDate)) === 1
+  );
+  const [ended, setEnded] = React.useState<boolean>(
+    compareAsc(new Date(), new Date(endDate)) === 1
   );
 
   React.useEffect(() => {
@@ -18,7 +30,8 @@ const Play: React.FC = () => {
       setStarted(compareAsc(new Date(), new Date(startDate)) == 1);
       if (compareAsc(new Date(), new Date(endDate)) == 1) {
         clearInterval(interval);
-        Inertia.visit("/auth/logout", { method: "get" as Method });
+        // Auto logout
+        // Inertia.visit("/auth/logout", { method: "get" as Method });
       }
     }, 500);
 
@@ -33,8 +46,12 @@ const Play: React.FC = () => {
             <div className="font-bold text-center text-md">
               DPS Goethe Quiz has not started yet
             </div>
+          ) : !ended ? (
+            <PlayComponent question={question} showHint={showHint} />
           ) : (
-            <div>play component</div>
+            <div className="font-bold text-center text-md">
+              DPS Goethe Quiz has ended
+            </div>
           )}
 
           <div className="mt-4">

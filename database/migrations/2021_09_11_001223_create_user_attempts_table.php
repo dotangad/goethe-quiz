@@ -17,6 +17,7 @@ class CreateUserAttemptsTable extends Migration
       $table->id();
       $table->timestamps();
 
+      $table->string('attempt');
       $table
         ->foreignId('question_id')
         ->references('id')

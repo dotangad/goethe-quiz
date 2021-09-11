@@ -15,7 +15,6 @@ class GameLogic extends Migration
   {
     Schema::table('users', function (Blueprint $table) {
       $table->timestamp('last_solved')->useCurrent();
-      $table->integer('points')->default(0);
       $table
         ->foreignId('question_id')
         ->nullable()

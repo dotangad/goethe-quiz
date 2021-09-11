@@ -26,6 +26,7 @@ module.exports = {
     extend: {
       padding: ["odd", "even"],
       backgroundColor: ["odd", "even"],
+      borderColor: ["focus-within"],
     },
   },
   plugins: [require("@tailwindcss/forms")],

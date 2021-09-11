@@ -59,6 +59,7 @@ Route::prefix('/auth')
           ->name('handleLogin');
       });
   });
+
 Route::get('/auth/logout', [AuthController::class, 'destroy'])
   ->middleware(['auth'])
   ->name('auth.logout');
@@ -85,9 +86,16 @@ Route::prefix('/dashboard')
       });
   });
 
-Route::get('/play', [PlayController::class, 'index'])
+Route::prefix('/play')
   ->middleware(['auth', 'team'])
-  ->name('play');
+  ->name('play.')
+  ->group(function () {
+    Route::get('/', [PlayController::class, 'index'])
+      ->name('index');
+
+    Route::post('/', [PlayController::class, 'attempt'])
+      ->name('attempt');
+  });
 
 Route::prefix('/admin')
   ->middleware(['auth', 'admin'])
