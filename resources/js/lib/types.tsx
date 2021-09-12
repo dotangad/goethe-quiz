@@ -5,6 +5,7 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   email: string;
+  type: string;
   email_verified_at?: string;
 
   name?: string;
@@ -17,9 +18,11 @@ export interface IUser {
   school_id?: number;
   student_1?: string;
   student_2?: string;
+  question_id?: number;
 
   school?: IUser;
   teams?: IUser[];
+  attempts?: IUserAttempt[];
 }
 
 export interface IPageProps extends Page<PageProps> {
@@ -39,4 +42,15 @@ export interface IQuestion {
   text: string;
   hint?: string;
   answer?: string;
+}
+
+export interface IUserAttempt {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  attempt: string;
+  user_id: number;
+  question_id: number;
+  user?: IUser;
+  question?: IQuestion;
 }

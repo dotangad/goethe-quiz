@@ -67,7 +67,11 @@ class AdminTeamController extends Controller
    */
   public function show(User $user)
   {
-    //
+    $user->school;
+    return Inertia::render('admin/team', [
+      'team' => $user,
+      'attempts' => $user->attempts
+    ]);
   }
 
   /**

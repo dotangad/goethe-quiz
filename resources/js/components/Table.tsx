@@ -6,6 +6,7 @@ interface ITableProps {
 }
 
 const Table: React.FC<ITableProps> = ({ records }: ITableProps) => {
+  if (records.length === 0) return <></>;
   const headers = Object.keys(records[0]);
 
   return (

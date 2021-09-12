@@ -46,7 +46,7 @@ const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
             "School name": `${school?.name} (${school?.id})`,
             student_1,
             student_2,
-            toBtn: `/admin/schools/${school?.id}`,
+            toBtn: `/admin/teams/${id}`,
           }))}
         />
       </div>
