@@ -1,4 +1,4 @@
-import { useForm } from "@inertiajs/inertia-react";
+import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import React from "react";
 import Layout from "../../components/Layout";
 import AdminSchoolCard from "../../components/AdminSchoolCard";
@@ -22,7 +22,9 @@ const School: React.FC<ISchoolProps> = ({ school }: ISchoolProps) => {
               key={i}
             >
               <div className="bg-white border-none border-gray rounded-lg w-full shadow-sm h-96 p-6">
-                <h1 className="font-bold text-xl mb-4">Team {i + 1}</h1>
+                <InertiaLink href={`/admin/teams/${id}`}>
+                  <h1 className="font-bold text-xl mb-4">Team {i + 1}</h1>
+                </InertiaLink>
                 <div className="input-group w-full my-4">
                   <label>Email</label>
                   <div className="text-sm py-3">{email}</div>

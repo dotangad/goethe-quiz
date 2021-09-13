@@ -1,5 +1,5 @@
 import { usePage } from "@inertiajs/inertia-react";
-import { Inertia, Method } from "@inertiajs/inertia";
+// import { Inertia, Method } from "@inertiajs/inertia";
 import { compareAsc } from "date-fns";
 import React from "react";
 import Layout from "../components/Layout";
@@ -28,6 +28,7 @@ const Play: React.FC<IPlayPageProps> = ({
   React.useEffect(() => {
     const interval = setInterval(() => {
       setStarted(compareAsc(new Date(), new Date(startDate)) == 1);
+      setEnded(compareAsc(new Date(), new Date(endDate)) == 1);
       if (compareAsc(new Date(), new Date(endDate)) == 1) {
         clearInterval(interval);
         // Auto logout
