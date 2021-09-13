@@ -17,7 +17,11 @@ class SchoolController extends Controller
    */
   public function index()
   {
-    return Inertia::render('admin/schools', ['schools' => User::with('teams')->where('type', 'school')->get()]);
+    return Inertia::render('admin/schools', [
+      'schools' => User::withCount('teams')
+        ->where('type', 'school')
+        ->get()
+    ]);
   }
 
   /**

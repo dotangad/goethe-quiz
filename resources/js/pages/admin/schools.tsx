@@ -5,7 +5,7 @@ import Table from "../../components/Table";
 import { IUser } from "../../lib/types";
 
 interface ISchoolsProps {
-  schools: IUser[];
+  schools: (IUser & { teams_count: number })[];
 }
 
 const Schools: React.FC<ISchoolsProps> = ({ schools }: ISchoolsProps) => {
@@ -40,12 +40,12 @@ const Schools: React.FC<ISchoolsProps> = ({ schools }: ISchoolsProps) => {
 
       <div className="max-w-screen-lg min-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
         <Table
-          records={schools.map(({ id, name, email, country, teams }) => ({
+          records={schools.map(({ id, name, email, country, teams_count }) => ({
             id: String(id),
             name,
             email,
             country,
-            teams: String(teams?.length || 0),
+            teams: String(teams_count),
             toBtn: `/admin/schools/${id}`,
           }))}
         />
