@@ -38,11 +38,18 @@ class TeamAuthController extends Controller
       return Inertia::render('auth/team_login', ['error' => 'A team with that email does not exist']);
     }
 
+    if ($user->logged_in) {
+      return Inertia::render('auth/team_login', ['error' => 'This account is logged in from another device']);
+    }
+
     if (!Hash::check($body['password'], $user->password)) {
       return Inertia::render('auth/team_login', ['error' => 'Incorrect password']);
     }
 
     Auth::login($user, true);
+
+    $user->logged_in = true;
+    $user->save();
 
     return redirect('/');
   }

@@ -38,8 +38,10 @@ class HandleInertiaRequests extends Middleware
    */
   public function share(Request $request)
   {
-    request()->user()->school;
-    request()->user()->teams;
+    if (Auth::check()) {
+      request()->user()->school;
+      request()->user()->teams;
+    }
     return array_merge(parent::share($request), [
       'user' => Auth::check() ? request()->user() : null,
       'authenticated' => Auth::check(),

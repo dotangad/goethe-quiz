@@ -7,7 +7,7 @@ import { IUser, IUserAttempt } from "../../lib/types";
 
 interface ITeamProps {
   team: IUser;
-  attempts: IUserAttempt;
+  attempts: IUserAttempt[];
 }
 
 const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
@@ -46,6 +46,7 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
               student_1: team.student_1,
               student_2: team.student_1,
               last_solved: team.last_solved,
+              logged_in: team.logged_in ? "Yes" : "No",
             }).map(([label, value], i) => (
               <div
                 className="input-group my-3 odd:pr-3 even:pl-3 w-full sm:w-1/2"

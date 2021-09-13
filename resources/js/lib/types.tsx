@@ -19,6 +19,8 @@ export interface IUser {
   student_1?: string;
   student_2?: string;
   question_id?: number;
+  last_solved?: string;
+  logged_in?: boolean;
 
   school?: IUser;
   teams?: IUser[];
