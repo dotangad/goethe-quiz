@@ -70,13 +70,19 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
           </div>
         </div>
 
-        <Table
-          records={attempts.map(({ attempt, question_id, created_at }) => ({
-            question: String(question_id),
-            attempt,
-            created_at,
-          }))}
-        />
+        {attempts.length === 0 ? (
+          <div className="my-20 font-extrabold text-gray-200 text-4xl uppercase text-center">
+            No attempts yet
+          </div>
+        ) : (
+          <Table
+            records={attempts.map(({ attempt, question_id, created_at }) => ({
+              question: String(question_id),
+              attempt,
+              created_at,
+            }))}
+          />
+        )}
       </div>
     </Layout>
   );
