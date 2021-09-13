@@ -18,7 +18,7 @@ const Leaderboard: React.FC<ILeaderboardProps> = ({
   users,
 }: ILeaderboardProps) => {
   const {
-    props: { user },
+    props: { authenticated, user },
   } = usePage<IPageProps>();
 
   return (
@@ -28,7 +28,11 @@ const Leaderboard: React.FC<ILeaderboardProps> = ({
           team: [{ href: "/play", label: "Play" }],
           school: [{ href: "/dashboard", label: "Dashboard" }],
           admin: [{ href: "/admin", label: "Admin" }],
-        }[user.type as never] as { href: string; label: string }[]
+          default: [],
+        }[(user?.type as never) || "default"] as {
+          href: string;
+          label: string;
+        }[]
       ).concat([{ href: "", label: "Rules" }])}
     >
       <div className="flex w-full h-full items-center justify-start flex-col">
@@ -43,7 +47,9 @@ const Leaderboard: React.FC<ILeaderboardProps> = ({
               school: school,
               "student 1": student_1,
               "student 2": student_2,
-              ...(user.type === "admin" ? { toBtn: `/admin/teams/${id}` } : {}),
+              ...(authenticated && user?.type === "admin"
+                ? { toBtn: `/admin/teams/${id}` }
+                : {}),
             }))}
           />
         </div>
