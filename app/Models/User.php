@@ -28,7 +28,11 @@ class User extends Authenticatable
     'address',
     'student_1',
     'student_2',
-    'school_id'
+    'school_id',
+    'question_id',
+    'last_solved',
+    'question_id',
+    'logged_in'
   ];
 
   /**

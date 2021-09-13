@@ -12,6 +12,7 @@ class PlayController extends Controller
 {
   public function index(Request $request)
   {
+    $request->user()->school;
     $question = $request->user()->question;
     return Inertia::render('play', [
       'question' => $question ? $question->only(['id', 'text', 'hint']) : null,

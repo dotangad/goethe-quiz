@@ -39,6 +39,8 @@ const Play: React.FC<IPlayPageProps> = ({
     return () => clearInterval(interval);
   }, []);
 
+  console.log({ user });
+
   return (
     <Layout links={[{ href: "/leaderboard", label: "Leaderboard" }]}>
       <div className="flex w-full h-full items-center justify-center">
