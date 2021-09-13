@@ -28,7 +28,7 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
     setData(e.target.name as never, e.target.value as never);
 
   return (
-    <div className="w-full sm:w-1/2 h-96 odd:pr-2 even:pl-2 my-2" key={i}>
+    <div className="w-full sm:w-1/2 h-96 sm:odd:pr-2 sm:even:pl-2 my-2" key={i}>
       <div className="bg-white border-none border-gray rounded-lg w-full shadow-sm h-96 p-6 overflow-y-auto">
         {!editing ? (
           <>

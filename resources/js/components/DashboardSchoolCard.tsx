@@ -1,5 +1,5 @@
 import React from "react";
-import { InertiaLink, usePage, useForm } from "@inertiajs/inertia-react";
+import { usePage, useForm } from "@inertiajs/inertia-react";
 import { compareAsc } from "date-fns";
 import { IPageProps } from "../lib/types";
 
@@ -150,7 +150,7 @@ const DashboardSchoolCard: React.FC = () => {
         <div className="flex flex-wrap items-start">
           {Object.entries(show).map(([label, value], i) => (
             <div
-              className="input-group my-3 odd:pr-3 even:pl-3 w-full sm:w-1/2"
+              className="input-group my-3 sm:odd:pr-3 sm:even:pl-3 w-full sm:w-1/2"
               key={i}
             >
               <label>{label}</label>
