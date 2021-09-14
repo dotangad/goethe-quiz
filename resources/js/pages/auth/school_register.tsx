@@ -21,8 +21,7 @@ const SchoolLogin: React.FC = () => {
   return (
     <Layout
       links={[
-        { href: "/", label: "Home" },
-        { href: "", label: "Rules" },
+        { href: "/", label: "Rules" },
         { href: "/auth/school/login", label: "Login" },
       ]}
     >

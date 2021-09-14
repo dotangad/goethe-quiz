@@ -22,7 +22,7 @@ const Dashboard: React.FC<IDashboardProps> = ({
   } = usePage<IPageProps>();
   const ended = compareAsc(new Date(), new Date(endDate)) === 1;
   return (
-    <Layout links={[{ href: "", label: "Rules" }]}>
+    <Layout links={[{ href: "/", label: "Rules" }]}>
       <div className="flex w-full h-full items-center justify-start flex-col px-2 sm:px-20">
         <DashboardSchoolCard />
 

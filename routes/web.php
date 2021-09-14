@@ -29,8 +29,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
   return Inertia::render('index');
-})->middleware(['guest'])
-  ->name('home');
+})->name('home');
 
 // ----- Authentication -----
 Route::prefix('/auth')

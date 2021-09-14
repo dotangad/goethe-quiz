@@ -33,7 +33,7 @@ const Leaderboard: React.FC<ILeaderboardProps> = ({
           href: string;
           label: string;
         }[]
-      ).concat([{ href: "", label: "Rules" }])}
+      ).concat([{ href: "/", label: "Rules" }])}
     >
       <div className="flex w-full h-full items-center justify-start flex-col">
         {/*<div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-screen-lg p-6 mx-2 shadow-sm">

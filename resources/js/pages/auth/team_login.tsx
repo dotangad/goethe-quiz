@@ -18,12 +18,7 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({
     setData(e.target.name as never, e.target.value as never);
 
   return (
-    <Layout
-      links={[
-        { href: "/", label: "Home" },
-        { href: "", label: "Rules" },
-      ]}
-    >
+    <Layout links={[{ href: "/", label: "Rules" }]}>
       <div className="flex w-full h-full items-center justify-center">
         <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-sm p-6 mx-2 shadow-sm">
           <div className="text-2xl font-bold mb-5">Login as Team</div>
