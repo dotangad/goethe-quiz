@@ -29,7 +29,7 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
 
   return (
     <div className="w-full sm:w-1/2 h-96 sm:odd:pr-2 sm:even:pl-2 my-2" key={i}>
-      <div className="bg-white border-none border-gray rounded-lg w-full shadow-sm h-96 p-6 overflow-y-auto">
+      <div className="bg-white rounded-lg w-full shadow-sm h-96 p-6 overflow-y-auto">
         {!editing ? (
           <>
             <h1 className="font-bold text-xl mb-4">Team {i + 1}</h1>
@@ -98,8 +98,8 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
             <div className="input-group w-full my-2">
               <button
                 type="submit"
-                className={`cursor-pointer bg-gray-bg block rounded-lg p-3 text-center
-                            uppercase leading-none font-bold border-2 border-gray-bg
+                className={`cursor-pointer bg-gray-100 block rounded-lg p-3 text-center
+                            uppercase leading-none font-bold border-2 border-gray-100
                             hover:border-goethe text-xs text-gray-800 transition w-full
                             focus:outline-none focus:border-goethe focus:shadow-none`}
               >
@@ -113,8 +113,8 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
           <div className="input-group flex justify-end">
             <a
               onClick={() => setEditing((x) => !x)}
-              className={`cursor-pointer bg-gray-bg block rounded-lg p-3 text-center
-                          uppercase leading-none font-bold border-2 border-gray-bg
+              className={`cursor-pointer bg-gray-100 block rounded-lg p-3 text-center
+                          uppercase leading-none font-bold border-2 border-gray-100
                           hover:border-goethe text-xs text-gray-800 transition ml-2
                           focus:outline-none focus:border-goethe focus:shadow-none`}
             >
@@ -131,8 +131,8 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
               >
                 <button
                   type="submit"
-                  className={`cursor-pointer bg-gray-bg block rounded-lg p-3 text-center
-                              uppercase leading-none font-bold border-2 border-gray-bg
+                  className={`cursor-pointer bg-gray-100 block rounded-lg p-3 text-center
+                              uppercase leading-none font-bold border-2 border-gray-100
                               hover:border-red-600 text-xs text-gray-800 transition ml-2
                               focus:outline-none focus:border-red-600 focus:shadow-none`}
                 >

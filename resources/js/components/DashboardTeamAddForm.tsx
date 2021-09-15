@@ -84,8 +84,8 @@ const DashboardTeamAddForm: React.FC<IDashboardTeamAddFormProps> = ({
           <div className="input-group w-full flex justify-end">
             <button
               type="submit"
-              className={`cursor-pointer bg-gray-bg block rounded-lg p-3 text-center
-                              uppercase leading-none font-bold border-2 border-gray-bg
+              className={`cursor-pointer bg-gray-100 block rounded-lg p-3 text-center
+                              uppercase leading-none font-bold border-2 border-gray-100
                               hover:border-goethe text-xs text-gray-800 transition
                               focus:outline-none focus:border-goethe focus:shadow-none`}
             >

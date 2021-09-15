@@ -29,7 +29,7 @@ const Index: React.FC = () => {
       }
     >
       <div className="flex w-full h-full items-center justify-center">
-        <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-screen-md p-6 mx-2 shadow-sm">
+        <div className="bg-white rounded-lg w-full max-w-screen-md p-6 mx-2 shadow-sm">
           <div>
             <h1 className="font-bold text-xl text-center my-3">
               DPS Goethe Quiz
@@ -39,7 +39,7 @@ const Index: React.FC = () => {
                 <li className="my-3">
                   For schools:
                   <div className="flex flex-wrap justify-around">
-                    <div className="w-full sm:w-1/2 odd:pr-3 even:pl-3 mt-2">
+                    <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
                       <InertiaLink
                         href="/auth/school/login"
                         className="w-full button"
@@ -47,7 +47,7 @@ const Index: React.FC = () => {
                         School Login
                       </InertiaLink>
                     </div>
-                    <div className="w-full sm:w-1/2 odd:pr-3 even:pl-3 mt-2">
+                    <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
                       <InertiaLink
                         href="/auth/school/register"
                         className="w-full button"
@@ -63,7 +63,7 @@ const Index: React.FC = () => {
                 <li className="my-3">
                   For teams:
                   <div className="flex flex-wrap justify-start">
-                    <div className="w-full sm:w-1/2 odd:pr-3 even:pl-3 mt-2">
+                    <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
                       <InertiaLink
                         href="/auth/team/login"
                         className="w-full button"
