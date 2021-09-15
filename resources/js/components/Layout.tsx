@@ -19,7 +19,7 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
 
   return (
     <div className="flex flex-col w-full h-full">
-      <nav className="flex p-5 justify-between items-center flex-col sm:flex-row">
+      <nav className="flex p-5 justify-between items-center flex-col sm:flex-row sm:fixed relative top-0 left-0 w-full bg-gray-bg">
         <div className="flex sm:w-1/3 w-full justify-center sm:justify-start">
           <img
             className="h-20 sm:h-12 w-auto mr-2"
@@ -52,80 +52,84 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
           ))}
         </div>
       </nav>
-      <main className="flex-1 py-10 px-2 sm:px-0">{children}</main>
-      <footer className="flex items-center justify-center py-4 text-gray-500 flex-col text-sm sm:text-xs text-center px-2">
-        <div className="text-lg font-bold text-gray-300">
-          &bull;&bull;&bull;
-        </div>
-        <div className="mb-3">
-          <a
-            className="mx-3 font-semibold"
-            target="_blank"
-            rel="noreferrer"
-            href="#"
-          >
-            DPS Society
-          </a>{" "}
-          |
-          <a
-            className="mx-3 font-semibold"
-            target="_blank"
-            rel="noreferrer"
-            href="https://goethe.de"
-          >
-            Goethe Institut
-          </a>{" "}
-          |
-          <a
-            className="mx-3 font-semibold"
-            target="_blank"
-            rel="noreferrer"
-            href="https://dpsrkp.net"
-          >
-            DPS RK Puram
-          </a>
-        </div>
-        <div>&copy; 2021 DPS Society and DPS RK Puram, New Delhi, India</div>
-        <div>
-          All rights reserved. Online quiz tool developed by{" "}
-          <a
-            href="//angad.dev"
-            className="font-bold"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Angad Singh
-          </a>
-          ,{" "}
-          <a
-            href="//kavin.me"
-            className="font-bold"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Kavin Valli
-          </a>{" "}
-          and{" "}
-          <a
-            href="//someshkar.com"
-            className="font-bold"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Somesh Kar
-          </a>{" "}
-          of{" "}
-          <a
-            href="//exunclan.com"
-            className="font-bold"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Exun Clan
-          </a>
-          .
-        </div>
-      </footer>
+
+      <div className="sm:mt-20 mt-0 flex-1 flex flex-col">
+        <main className="flex-1 py-10 px-2 sm:px-0 flex-1">{children}</main>
+
+        <footer className="flex items-center justify-center py-4 text-gray-500 flex-col text-sm sm:text-xs text-center px-2">
+          <div className="text-lg font-bold text-gray-300">
+            &bull;&bull;&bull;
+          </div>
+          <div className="mb-3">
+            <a
+              className="mx-3 font-semibold"
+              target="_blank"
+              rel="noreferrer"
+              href="#"
+            >
+              DPS Society
+            </a>{" "}
+            |
+            <a
+              className="mx-3 font-semibold"
+              target="_blank"
+              rel="noreferrer"
+              href="https://goethe.de"
+            >
+              Goethe Institut
+            </a>{" "}
+            |
+            <a
+              className="mx-3 font-semibold"
+              target="_blank"
+              rel="noreferrer"
+              href="https://dpsrkp.net"
+            >
+              DPS RK Puram
+            </a>
+          </div>
+          <div>&copy; 2021 DPS Society and DPS RK Puram, New Delhi, India</div>
+          <div>
+            All rights reserved. Online quiz tool developed by{" "}
+            <a
+              href="//angad.dev"
+              className="font-bold"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Angad Singh
+            </a>
+            ,{" "}
+            <a
+              href="//kavin.me"
+              className="font-bold"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Kavin Valli
+            </a>{" "}
+            and{" "}
+            <a
+              href="//someshkar.com"
+              className="font-bold"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Somesh Kar
+            </a>{" "}
+            of{" "}
+            <a
+              href="//exunclan.com"
+              className="font-bold"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Exun Clan
+            </a>
+            .
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };
