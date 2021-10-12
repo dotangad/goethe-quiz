@@ -49,14 +49,14 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
               logged_in: team.logged_in ? "Yes" : "No",
             }).map(([label, value], i) => (
               <div
-                className="input-group my-3 odd:pr-3 even:pl-3 w-full sm:w-1/2"
+                className="input-group my-3 px-0 sm:odd:pr-3 sm:even:pl-3 w-full sm:w-1/2"
                 key={i}
               >
                 <label>{label}</label>
                 <div className="w-full">{value || ""}</div>
               </div>
             ))}
-            <div className="input-group my-3 odd:pr-3 even:pl-3 w-full sm:w-1/2">
+            <div className="input-group my-3 sm:odd:pr-3 sm:even:pl-3 w-full sm:w-1/2">
               <label>School</label>
               <div className="w-full">
                 <InertiaLink

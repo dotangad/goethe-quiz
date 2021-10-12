@@ -7,12 +7,13 @@ import Layout from "../components/Layout";
 
 const Index: React.FC = () => {
   const {
-    props: { authenticated, user, startDate, endDate },
+    props: { authenticated, user, regDate, startDate, endDate },
   } = usePage<IPageProps>();
   useTitle("DPS Goethe Quiz");
 
   const teamLoginOpen =
     compareAsc(subDays(new Date(startDate), 2), new Date()) === -1;
+  const schoolRegOpen = compareAsc(new Date(regDate), new Date()) === -1;
 
   return (
     <Layout
@@ -35,7 +36,7 @@ const Index: React.FC = () => {
               DPS Goethe Quiz
             </h1>
             <ul className="list-disc pl-5">
-              {!authenticated && (
+              {!authenticated && schoolRegOpen && (
                 <li className="my-3">
                   For schools:
                   <div className="flex flex-wrap justify-around">
@@ -74,11 +75,18 @@ const Index: React.FC = () => {
                   </div>
                 </li>
               )}
+
+              <li className="my-3">
+                School coordinators can start registering on{" "}
+                {new Date(regDate).toLocaleString()} IST.
+              </li>
+
               <li className="my-3">
                 The quiz begins on {new Date(startDate).toLocaleString()} IST
                 and ends on {new Date(endDate).toLocaleString()} IST. Teams will
                 be allowed to login 2 days before the start date.
               </li>
+
               <li className="my-3">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy

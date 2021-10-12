@@ -11,6 +11,12 @@ use Inertia\Inertia;
 
 class SchoolAuthController extends Controller
 {
+  private function timeCheck()
+  {
+    return (\Carbon\Carbon::now('Asia/Kolkata'))
+      ->gt(\Carbon\Carbon::parse(env('REG_DATE')));
+  }
+
   public function loginShow()
   {
     return Inertia::render('auth/school_login');
@@ -43,6 +49,7 @@ class SchoolAuthController extends Controller
 
   public function registerShow()
   {
+    if (!$this->timeCheck()) return redirect('/');
     return Inertia::render('auth/school_register');
   }
 

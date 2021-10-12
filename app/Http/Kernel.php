@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
     'team' => \App\Http\Middleware\TeamAccount::class,
     'admin' => \App\Http\Middleware\AdminAccount::class,
     'in_progress' => \App\Http\Middleware\InProgress::class,
+    'reg_open' => \App\Http\Middleware\RegOpen::class,
     'started' => \App\Http\Middleware\Started::class,
     'ended' => \App\Http\Middleware\Ended::class,
     'not_started' => \App\Http\Middleware\NotStarted::class,

@@ -52,7 +52,7 @@ const AdminSchoolCard: React.FC<IAdminSchoolCardProps> = ({
       <div className="flex flex-wrap items-start">
         {Object.entries(show).map(([label, value], i) => (
           <div
-            className="input-group my-3 odd:pr-3 even:pl-3 w-full sm:w-1/2"
+            className="input-group my-3 px-0 sm:odd:pr-3 sm:even:pl-3 w-full sm:w-1/2"
             key={i}
           >
             <label>{label}</label>
@@ -60,7 +60,7 @@ const AdminSchoolCard: React.FC<IAdminSchoolCardProps> = ({
           </div>
         ))}
       </div>
-      <div className="w-full flex justify-end items-center mt-5">
+      <div className="w-full flex flex-col sm:flex-row justify-end items-center mt-5">
         {showChangePasswordForm ? (
           <form
             className="flex flex-1 items-center"

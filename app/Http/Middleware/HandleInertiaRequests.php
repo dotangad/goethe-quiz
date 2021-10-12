@@ -41,6 +41,7 @@ class HandleInertiaRequests extends Middleware
     return array_merge(parent::share($request), [
       'user' => fn () => Auth::check() ? request()->user() : null,
       'authenticated' => fn () => Auth::check(),
+      'regDate' => env('REG_DATE'),
       'startDate' => env('START_DATE'),
       'endDate' => env('END_DATE'),
     ]);

@@ -18,7 +18,7 @@ const School: React.FC<ISchoolProps> = ({ school }: ISchoolProps) => {
         <div className="w-full py-6 max-w-screen-md flex flex-wrap">
           {school.teams?.map(({ id, student_1, student_2, email }, i) => (
             <div
-              className="w-full sm:w-1/2 h-96 odd:pr-2 even:pl-2 my-2"
+              className="w-full sm:w-1/2 h-96 px-0 sm:odd:pr-2 sm:even:pl-2 my-2"
               key={i}
             >
               <div className="bg-white border-none border-gray rounded-lg w-full shadow-sm h-96 p-6">

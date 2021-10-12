@@ -32,6 +32,7 @@ export interface IPageProps extends Page<PageProps> {
     errors: Errors & ErrorBag;
     authenticated: boolean;
     user: IUser;
+    regDate: string;
     startDate: string;
     endDate: string;
   };
