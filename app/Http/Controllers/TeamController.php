@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -27,30 +28,31 @@ class TeamController extends Controller
     ])->first();
 
     if ($user) {
-      return redirect('/');
+      return redirect()->back();
     }
 
-    $password = User::randomPwd();
-    $user = new User([
-      'type' => 'team',
-      'email' => $body['email'],
-      'password' => Hash::make($password),
-      'student_1' => $body['student_1'],
-      'student_2' => $body['student_2'],
-      'school_id' => User::find(Auth::user()->id)->id,
-      'question_id' => 1,
-      'logged_in' => false
-    ]);
     try {
+      $password = User::randomPwd();
+      $user = new User([
+        'type' => 'team',
+        'email' => $body['email'],
+        'password' => Hash::make($password),
+        'student_1' => $body['student_1'],
+        'student_2' => $body['student_2'],
+        'school_id' => User::find(Auth::user()->id)->id,
+        'question_id' => Question::count() > 0 ? 1 : null,
+        'logged_in' => false
+      ]);
+
       $user->save();
     } catch (QueryException $e) {
-      return redirect('/');
+      return redirect()->back();
     }
 
     Mail::to($user)
       ->send(new \App\Mail\TeamCreatedMail($user, $password));
 
-    return redirect("/");
+    return redirect()->back();
   }
 
   /**
@@ -81,6 +83,6 @@ class TeamController extends Controller
   {
     $team->delete();
 
-    return redirect('/');
+    return redirect()->back();
   }
 }

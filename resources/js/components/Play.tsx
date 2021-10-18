@@ -18,7 +18,7 @@ const Play: React.FC<IPlayProps> = ({ question, showHint }: IPlayProps) => {
   }, [inputRef]);
 
   return (
-    <div className="w-full mb-8">
+    <div className="w-full mb-8 select-none">
       {question ? (
         <>
           <div className="text-sm font-bold">Question {question?.id}</div>
@@ -44,11 +44,11 @@ const Play: React.FC<IPlayProps> = ({ question, showHint }: IPlayProps) => {
             }}
           >
             <div>
-              <div className="flex border-2 border-gray-100 rounded-lg h-12 focus-within:border-goethe">
+              <div className="flex ring-2 ring-gray-100 rounded-lg h-12 focus-within:ring-goethe overflow-none">
                 <input
                   type="text"
                   name="answer"
-                  placeholder="Answer"
+                  placeholder="answer"
                   className="focus:outline-none p-3 w-full flex-1 h-full flex items-center border-none rounded-lg"
                   autoComplete="off"
                   ref={inputRef}
@@ -66,7 +66,7 @@ const Play: React.FC<IPlayProps> = ({ question, showHint }: IPlayProps) => {
                 />
                 <button
                   type="submit"
-                  className="block font-bold uppercase text-sm h-full px-3 py-3 bg-gray-100 border-2 border-gray-100 rounded-tr-lg rounded-br-lg focus:outline-none focus:bg-gray-200 focus:border-gray-200"
+                  className="block font-bold uppercase text-sm h-full px-3 py-3 bg-gray-100 border-2 border-gray-100 focus:outline-none focus:bg-gray-200 focus:border-gray-200 rounded-r-lg text-gray-700"
                 >
                   Check
                 </button>
@@ -80,9 +80,19 @@ const Play: React.FC<IPlayProps> = ({ question, showHint }: IPlayProps) => {
           </form>
         </>
       ) : (
-        <div className="text-center">
-          Congralutations, you&apos;ve finished the game!
-        </div>
+        <>
+          <div className="text-center font-bold text-lg">
+            <img
+              src="https://abs.twimg.com/emoji/v2/svg/1f389.svg"
+              alt=""
+              className="h-6 w-6 mr-3 inline"
+            />
+            <span>Congralutations, you&apos;ve finished the game!</span>
+          </div>
+          <div className="text-center mt-2">
+            Please refresh the page to check for new questions.
+          </div>
+        </>
       )}
     </div>
   );

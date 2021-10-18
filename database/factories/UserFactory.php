@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -63,7 +64,7 @@ class UserFactory extends Factory
             'student_1' => $this->faker->name(),
             'student_2' => $this->faker->name(),
             'school_id' => $user->id,
-            'question_id' => 1,
+            'question_id' => Question::count() > 0 ? 1 : null,
             'logged_in' => false
           ]);
           $u->save();

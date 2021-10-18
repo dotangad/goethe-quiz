@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Question;
 use App\Rules\CheckAnswer;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,15 +13,22 @@ class PlayController extends Controller
   {
     $request->user()->school;
     $question = $request->user()->question;
+    $showHint = $question
+      ? $request->user()->attempts()->where('question_id', $question->id)->count() >= 10
+      : false;
     return Inertia::render('play', [
-      'question' => $question ? $question->only(['id', 'text', 'hint']) : null,
-      'showHint' => $request->user()->attempts()->where('question_id', $question->id)->count() >= 10
+      'question' => $question
+        ? ($showHint
+          ? $question->only(['id', 'text', 'hint'])
+          : $question->only(['id', 'text']))
+        : null,
+      'showHint' => $showHint
     ]);
   }
 
   public function attempt(Request $request)
   {
-    $body = $request->validate([
+    $request->validate([
       'answer' => [
         'required',
         'regex:/^[a-z0-9_-]+$/',
@@ -33,14 +39,14 @@ class PlayController extends Controller
 
     $u = request()->user();
     $u->last_solved = \Carbon\Carbon::now();
-    $u->question_id = $u->question_id + 1;
-    try {
-      $u->save();
-    } catch (QueryException $e) {
+    $q = Question::find($u->question_id + 1);
+    if ($q) {
+      $u->question_id = $q->id;
+    } else {
       $u->question_id = null;
-      $u->save();
     }
 
+    $u->save();
     return redirect()->back();
   }
 }

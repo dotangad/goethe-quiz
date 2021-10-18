@@ -76,11 +76,13 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
           </div>
         ) : (
           <Table
-            records={attempts.map(({ attempt, question_id, created_at }) => ({
-              question: String(question_id),
-              attempt,
-              created_at,
-            }))}
+            records={attempts
+              .map(({ attempt, question_id, created_at }) => ({
+                question: String(question_id),
+                attempt,
+                created_at,
+              }))
+              .reverse()}
           />
         )}
       </div>

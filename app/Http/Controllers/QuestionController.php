@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -45,7 +46,14 @@ class QuestionController extends Controller
       'answer' => ['required', 'regex:/^[0-9 a-z]+$/']
     ]);
 
-    (new Question($body))->save();
+    $question = new Question($body);
+    $question->save();
+
+    User::where('type', 'team')
+      ->where('question_id', null)
+      ->update([
+        'question_id' => $question->id
+      ]);
 
     return redirect()->back();
   }

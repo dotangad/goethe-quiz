@@ -47,7 +47,7 @@ const Play: React.FC<IPlayPageProps> = ({
       ]}
     >
       <div className="flex w-full h-full items-center justify-center">
-        <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-md p-6 mx-2 shadow-sm">
+        <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-[600px] p-6 mx-2 shadow-sm">
           {!started ? (
             <div className="font-bold text-center text-md">
               DPS Goethe Quiz has not started yet
