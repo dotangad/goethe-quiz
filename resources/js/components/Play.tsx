@@ -24,11 +24,20 @@ const Play: React.FC<IPlayProps> = ({ question, showHint }: IPlayProps) => {
           <div className="text-sm font-bold">Question {question?.id}</div>
           {showHint ? (
             <>
-              <div className="text-md">{question?.text}</div>
-              <div className="text-md mb-4">Hint: {question?.hint}</div>
+              <div
+                className="text-md"
+                dangerouslySetInnerHTML={{ __html: question?.text }}
+              />
+              <div
+                className="text-md mb-4"
+                dangerouslySetInnerHTML={{ __html: "Hint: " + question?.hint }}
+              />
             </>
           ) : (
-            <div className="text-md mb-4">{question?.text}</div>
+            <div
+              className="text-md mb-4"
+              dangerouslySetInnerHTML={{ __html: question?.text }}
+            />
           )}
 
           <form
