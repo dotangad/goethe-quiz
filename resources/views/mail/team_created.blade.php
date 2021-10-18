@@ -83,7 +83,7 @@
             <div class="signoff">
                 Best Regards,<br />
                 DPS Society and Goethe-Institut<br />
-                Please <a href="mailto:goethequiz@dpsrkp.net">reach out to us</a> if you have any problems
+                Please <a href="mailto:dpsgoethequiz@dpsrkp.net">reach out to us</a> if you have any problems
             </div>
         </div>
 
