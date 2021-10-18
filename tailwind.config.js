@@ -1,6 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+  mode: "jit",
   purge: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
@@ -20,13 +21,6 @@ module.exports = {
         gold: "#ffcc00",
         goethe: "#a0c814",
       },
-    },
-  },
-  variants: {
-    extend: {
-      padding: ["odd", "even"],
-      backgroundColor: ["odd", "even"],
-      borderColor: ["focus-within"],
     },
   },
   plugins: [require("@tailwindcss/forms")],
