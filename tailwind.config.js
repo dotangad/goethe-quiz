@@ -20,6 +20,7 @@ module.exports = {
         "gray-bg": "#f7f8fc",
         gold: "#ffcc00",
         goethe: "#a0c814",
+        "goethe-dark": "#a1ba3d",
       },
     },
   },
