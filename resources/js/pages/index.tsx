@@ -4,6 +4,8 @@ import { compareAsc, subDays } from "date-fns";
 import { IPageProps } from "../lib/types";
 import useTitle from "../lib/use-title";
 import Layout from "../components/Layout";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Index: React.FC = () => {
   const {
@@ -14,6 +16,31 @@ const Index: React.FC = () => {
   const teamLoginOpen =
     compareAsc(subDays(new Date(startDate), 2), new Date()) === -1;
   const schoolRegOpen = compareAsc(new Date(regDate), new Date()) === -1;
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
+  const images = Array.from(Array(18).keys()).map(
+    (i) => `/img/carousel/${i + 1}.jpg`
+  );
+  console.log(images);
 
   return (
     <Layout
@@ -63,6 +90,20 @@ const Index: React.FC = () => {
                   className="hidden sm:block h-24 w-auto"
                 />
               </div>
+            </div>
+
+            <div className="my-5">
+              <Carousel responsive={responsive} autoPlay={true} infinite={true}>
+                {images.map((img, index) => (
+                  <div key={index} className="m-4">
+                    <img
+                      src={img}
+                      alt={img}
+                      style={{ height: "180px", objectFit: "cover" }}
+                    />
+                  </div>
+                ))}
+              </Carousel>
             </div>
 
             <div className="my-5">
