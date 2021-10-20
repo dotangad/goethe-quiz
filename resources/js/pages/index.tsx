@@ -43,10 +43,17 @@ const Index: React.FC = () => {
                 <div className="font-bold text-gray-600 text-sm sm:text-base">
                   DPS Society in association with
                 </div>
-                <div className="font-bold text-gray-600 text-sm sm:text-base">
+                <div className="font-bold text-gray-600 text-sm sm:text-base mb-3">
                   Goethe Institut / Max Mueller Bhavan New Delhi
                 </div>
-                <div className="text-xl sm:text-3xl text-goethe-dark mt-3 font-bold">
+                <div className="flex justify-center w-full">
+                  <img
+                    src="/img/Wunderkind.png"
+                    alt="Wunderkind"
+                    className="w-full max-w-[500px]"
+                  />
+                </div>
+                <div className="text-xl sm:text-3xl text-goethe-dark font-bold">
                   School Quiz on Germany 2021
                 </div>
               </div>
@@ -263,8 +270,15 @@ const Index: React.FC = () => {
                 <div className="">
                   <ul className="list-disc pl-5">
                     <li>
-                      Top one hundred (100) meritorious performers of the online
-                      Quiz will be awarded attractive prizes.
+                      Top hundred (100) scorers will get attractive goodie bags
+                      from Goethe-Institut, Max Mueller Bhavan New Delhi
+                    </li>
+                    <li>
+                      10 lucky participants amongst the top 100 get a Kindle,
+                      sponsored by Goethe-Institut, Max Mueller Bhavan New
+                      Delhi. The selection would be through a lucky draw
+                      conducted by Goethe-Institut, Max Mueller Bhavan New Delhi
+                      and the decision would be final and cannot be contested.
                     </li>
                     <li>
                       Top 10% of the participants in the online Quiz will be
@@ -325,6 +339,24 @@ const Index: React.FC = () => {
                 </li>
               )}
             </ul>
+
+            <div className="text-center text-sm mt-5">
+              For technical queries regarding registrations, please contact{" "}
+              <a
+                href="mailto:dpsgoethequiz@dpsrkp.net"
+                className="text-goethe-dark font-bold"
+              >
+                dpsgoethequiz@dpsrkp.net
+              </a>{" "}
+              or{" "}
+              <a
+                href="mailto:jagriti.budhiraja@goethe.de"
+                className="text-goethe-dark font-bold"
+              >
+                jagriti.budhiraja@goethe.de
+              </a>{" "}
+              for any other information.
+            </div>
           </div>
         </div>
       </div>

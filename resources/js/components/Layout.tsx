@@ -73,7 +73,7 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
               className="mx-3 font-semibold"
               target="_blank"
               rel="noreferrer"
-              href="https://goethe.de"
+              href="https://www.goethe.de/ins/in/en/m/sta/new.html?wt_sc=newdelhi"
             >
               Goethe Institut
             </a>{" "}
