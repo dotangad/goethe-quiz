@@ -10,7 +10,7 @@ interface IDashboardTeamProps {
 }
 
 const DashboardTeam: React.FC<IDashboardTeamProps> = ({
-  team: { id, email, student_1, student_2 },
+  team: { id, email, student_name, student_mobile },
   i,
 }: IDashboardTeamProps) => {
   const [editing, setEditing] = React.useState<boolean>(false);
@@ -20,8 +20,8 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
   const started = compareAsc(new Date(), new Date(startDate)) === 1;
   const ended = compareAsc(new Date(), new Date(endDate)) === 1;
   const { setData, data, post, processing, errors } = useForm({
-    student_1,
-    student_2,
+    student_name,
+    student_mobile,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -38,12 +38,12 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
               <div className="text-sm py-3">{email}</div>
             </div>
             <div className="input-group w-full my-4">
-              <label>Student 1</label>
-              <div className="text-sm py-3">{data.student_1}</div>
+              <label>Student Name</label>
+              <div className="text-sm py-3">{data.student_name}</div>
             </div>
             <div className="input-group w-full my-4">
-              <label>Student 2</label>
-              <div className="text-sm py-3">{data.student_2}</div>
+              <label>Student Mobile</label>
+              <div className="text-sm py-3">{data.student_mobile}</div>
             </div>
           </>
         ) : (
@@ -62,36 +62,38 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
               <label>Email</label>
               <div className="text-sm pt-2">{email}</div>
             </div>
+
             <div className="input-group w-full my-2">
-              <label htmlFor="student_1">Student 1</label>
+              <label htmlFor="student_name">Student Name</label>
               <input
                 type="text"
-                name="student_1"
-                id="student_1"
+                name="student_name"
+                id="student_name"
                 placeholder="John Doe"
                 className="text-xs p-3"
-                value={data.student_1}
                 disabled={processing}
                 onChange={handleChange}
+                value={data.student_name}
               />
-              {errors.student_1 && (
-                <div className="error">{errors.student_1}</div>
+              {errors.student_name && (
+                <div className="error">{errors.student_name}</div>
               )}
             </div>
-            <div className="input-group w-full my-2">
-              <label htmlFor="student_2">Student 2</label>
+
+            <div className="input-group w-full my-4">
+              <label htmlFor="student_mobile">Student Mobile</label>
               <input
                 type="text"
-                name="student_2"
-                id="student_2"
-                placeholder="John Doe"
+                name="student_mobile"
+                id="student_mobile"
+                placeholder="1231231231"
                 className="text-xs p-3"
-                value={data.student_2}
                 disabled={processing}
                 onChange={handleChange}
+                value={data.student_mobile}
               />
-              {errors.student_2 && (
-                <div className="error">{errors.student_2}</div>
+              {errors.student_mobile && (
+                <div className="error">{errors.student_mobile}</div>
               )}
             </div>
 
@@ -125,6 +127,7 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
                 onSubmit={(e: React.SyntheticEvent) => {
                   e.preventDefault();
                   post(`/dashboard/teams/${id}/del`, {
+                    preserveState: true,
                     preserveScroll: true,
                   });
                 }}

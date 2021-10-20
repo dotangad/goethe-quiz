@@ -140,7 +140,7 @@ const Index: React.FC = () => {
                       </td>
                     </tr>
                     <tr className="border border-gray-800">
-                      <td className="sm:px-3 py-3">
+                      <td className="flex items-start justify-start sm:px-3 py-3">
                         <div className="font-bold">Online Quiz</div>
                       </td>
                       <td className="border border-gray-800 sm:px-3 py-3">

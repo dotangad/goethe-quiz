@@ -10,14 +10,16 @@ export interface IUser {
 
   name?: string;
   principal?: string;
-  country?: string;
-  phone?: string;
+  principal_mobile?: string;
   teacher_incharge?: string;
+  teacher_incharge_email?: string;
+  teacher_incharge_mobile?: string;
   address?: string;
+  postal_code?: string;
 
   school_id?: number;
-  student_1?: string;
-  student_2?: string;
+  student_name?: string;
+  student_mobile?: string;
   question_id?: number;
   last_solved?: string;
   logged_in?: boolean;

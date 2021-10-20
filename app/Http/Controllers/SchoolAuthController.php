@@ -62,9 +62,11 @@ class SchoolAuthController extends Controller
 
       'name' => 'required',
       'principal' => 'required',
-      'country' => ['required', Rule::in(['India', 'Nepal', 'Bangladesh', 'Pakistan'])],
-      'phone' => ['required', 'regex:/^\+(91|977|92|880)(\d|\s)+$/'],
+      'principal_mobile' => ['required', 'digits:10'],
       'teacher_incharge' => 'required',
+      'teacher_incharge_email' => ['required', 'email'],
+      'teacher_incharge_mobile' => ['required', 'digits:10'],
+      'postal_code' => ['required', 'digits:6'],
       'address' => 'required',
     ]);
 

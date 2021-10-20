@@ -18,8 +18,8 @@ class TeamController extends Controller
   {
     $body = $request->validate([
       'email' => 'required|email',
-      'student_1' => 'required',
-      'student_2' => 'required',
+      'student_name' => 'required',
+      'student_mobile' => 'required|digits:10',
     ]);
 
     $user = User::where([
@@ -37,8 +37,8 @@ class TeamController extends Controller
         'type' => 'team',
         'email' => $body['email'],
         'password' => Hash::make($password),
-        'student_1' => $body['student_1'],
-        'student_2' => $body['student_2'],
+        'student_name' => $body['student_name'],
+        'student_mobile' => $body['student_mobile'],
         'school_id' => User::find(Auth::user()->id)->id,
         'question_id' => Question::count() > 0 ? 1 : null,
         'logged_in' => false
@@ -65,14 +65,14 @@ class TeamController extends Controller
   public function update(Request $request, User $team)
   {
     $body = $request->validate([
-      'student_1' => 'required',
-      'student_2' => 'required',
+      'student_name' => 'required',
+      'student_mobile' => 'required|digits:10',
     ]);
 
     User::where('id', $team->id)
       ->update(
         collect($body)
-          ->only(['student_1', 'student_2'])
+          ->only(['student_name', 'student_mobile'])
           ->toArray()
       );
 

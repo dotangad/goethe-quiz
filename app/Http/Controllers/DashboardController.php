@@ -27,9 +27,11 @@ class DashboardController extends Controller
     $body = $request->validate([
       'name' => 'required',
       'principal' => 'required',
-      'country' => ['required', Rule::in(['India', 'Nepal', 'Bangladesh', 'Pakistan'])],
-      'phone' => ['required', 'regex:/^\+(91|977|92|880)(\d|\s)+$/'],
+      'principal_mobile' => ['required', 'digits:10'],
       'teacher_incharge' => 'required',
+      'teacher_incharge_email' => ['required', 'email'],
+      'teacher_incharge_mobile' => ['required', 'digits:10'],
+      'postal_code' => ['required', 'digits:6'],
       'address' => 'required',
     ]);
 
@@ -39,14 +41,16 @@ class DashboardController extends Controller
           ->only([
             'name',
             'principal',
-            'country',
-            'phone',
+            'principal_mobile',
             'teacher_incharge',
+            'teacher_incharge_email',
+            'teacher_incharge_mobile',
+            'postal_code',
             'address'
           ])
           ->toArray()
       );
 
-    return redirect('/');
+    return redirect('/dashboard');
   }
 }

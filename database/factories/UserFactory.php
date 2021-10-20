@@ -45,9 +45,11 @@ class UserFactory extends Factory
 
       'name' => $this->faker->company(),
       'principal' => $this->faker->name(),
-      'country' => 'India',
-      'phone' => '+91 1234567890',
+      'principal_mobile' => '1234567890',
+      'postal_code' => '110022',
       'teacher_incharge' => $this->faker->name(),
+      'teacher_incharge_email' => $this->faker->unique()->safeEmail(),
+      'teacher_incharge_mobile' => '1234567890',
       'address' => $this->faker->address()
     ];
   }
@@ -61,8 +63,8 @@ class UserFactory extends Factory
             'type' => 'team',
             'email' => $this->faker->unique()->safeEmail(),
             'password' => Hash::make('password'), // password
-            'student_1' => $this->faker->name(),
-            'student_2' => $this->faker->name(),
+            'student_name' => $this->faker->name(),
+            'student_mobile' => '1234567890',
             'school_id' => $user->id,
             'question_id' => Question::count() > 0 ? 1 : null,
             'logged_in' => false
@@ -84,17 +86,19 @@ class UserFactory extends Factory
       return [
         'type' => 'team',
         'password' => Hash::make('password'), // password
-        'student_1' => $this->faker->name(),
-        'student_2' => $this->faker->name(),
+        'student_name' => $this->faker->name(),
+        'student_mobile' => '1234567890',
         'school_id' => $school_id,
-        'question_id' => 1,
+        'question_id' => Question::count() > 0 ? 1 : null,
         'logged_in' => false,
 
         'name' => null,
         'principal' => null,
-        'country' => null,
-        'phone' => null,
+        'principal_mobile' => null,
+        'postal_code' => null,
         'teacher_incharge' => null,
+        'teacher_incharge_email' => null,
+        'teacher_incharge_mobile' => null,
         'address' => null
       ];
     });
@@ -116,9 +120,11 @@ class UserFactory extends Factory
 
         'name' => null,
         'principal' => null,
-        'country' => null,
-        'phone' => null,
+        'principal_mobile' => null,
+        'postal_code' => null,
         'teacher_incharge' => null,
+        'teacher_incharge_email' => null,
+        'teacher_incharge_mobile' => null,
         'address' => null
       ];
     });

@@ -64,6 +64,7 @@ Route::get('/auth/logout', [AuthController::class, 'destroy'])
   ->middleware(['auth'])
   ->name('auth.logout');
 
+// Don't show rank, password protect
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])
   ->name('leaderboard');
 

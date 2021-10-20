@@ -6,9 +6,11 @@ const SchoolLogin: React.FC = () => {
   const { setData, post, processing, errors, data } = useForm({
     name: "",
     principal: "",
-    country: "",
-    phone: "",
+    principal_mobile: "",
     teacher_incharge: "",
+    teacher_incharge_email: "",
+    teacher_incharge_mobile: "",
+    postal_code: "",
     address: "",
     email: "",
     password: "",
@@ -67,36 +69,18 @@ const SchoolLogin: React.FC = () => {
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
-              <label htmlFor="country">Country</label>
-              <select
-                name="country"
-                disabled={processing}
-                onChange={(e) => setData("country", e.target.value)}
-                defaultValue={data.country}
-                className="block w-full p-3 border-2 border-gray-bg bg-white rounded-lg focus:outline-none focus:border-goethe transition"
-              >
-                <option disabled value="">
-                  Select a country
-                </option>
-                <option value="India">India</option>
-                <option value="Nepal">Nepal</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Pakistan">Pakistan</option>
-              </select>
-              {errors.country && <div className="error">{errors.country}</div>}
-            </div>
-
-            <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
-              <label htmlFor="phone">Phone</label>
+              <label htmlFor="principal_mobile">Principal Mobile</label>
               <input
                 type="text"
-                name="phone"
-                id="phone"
-                placeholder="+91 123456789"
+                name="principal_mobile"
+                id="principal_mobile"
+                placeholder="123456789"
                 disabled={processing}
                 onChange={handleChange}
               />
-              {errors.phone && <div className="error">{errors.phone}</div>}
+              {errors.principal_mobile && (
+                <div className="error">{errors.principal_mobile}</div>
+              )}
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
@@ -115,6 +99,55 @@ const SchoolLogin: React.FC = () => {
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
+              <label htmlFor="teacher_incharge_mobile">
+                Teacher Incharge Mobile
+              </label>
+              <input
+                type="text"
+                name="teacher_incharge_mobile"
+                id="teacher_incharge_mobile"
+                placeholder="123456789"
+                disabled={processing}
+                onChange={handleChange}
+              />
+              {errors.teacher_incharge_mobile && (
+                <div className="error">{errors.teacher_incharge_mobile}</div>
+              )}
+            </div>
+
+            <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
+              <label htmlFor="teacher_incharge_email">
+                Teacher Incharge Email
+              </label>
+              <input
+                type="email"
+                name="teacher_incharge_email"
+                id="teacher_incharge_email"
+                placeholder="teacherincharge@example.com"
+                disabled={processing}
+                onChange={handleChange}
+              />
+              {errors.teacher_incharge_email && (
+                <div className="error">{errors.teacher_incharge_email}</div>
+              )}
+            </div>
+
+            <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
+              <label htmlFor="postal_code">Postal Code</label>
+              <input
+                type="text"
+                name="postal_code"
+                id="postal_code"
+                placeholder="110022"
+                disabled={processing}
+                onChange={handleChange}
+              />
+              {errors.postal_code && (
+                <div className="error">{errors.postal_code}</div>
+              )}
+            </div>
+
+            <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
               <label htmlFor="address">Address</label>
               <input
                 type="text"
@@ -128,7 +161,7 @@ const SchoolLogin: React.FC = () => {
             </div>
 
             <div className="input-group my-3 w-full sm:w-1/2 sm:px-2">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email (Login)</label>
               <input
                 type="email"
                 name="email"

@@ -8,9 +8,9 @@ interface IDashboardTeamAddFormProps {
 const DashboardTeamAddForm: React.FC<IDashboardTeamAddFormProps> = ({
   teamAddError,
 }: IDashboardTeamAddFormProps) => {
-  const { setData, post, processing, errors } = useForm({
-    student_1: "",
-    student_2: "",
+  const { setData, post, processing, errors, data, reset } = useForm({
+    student_name: "",
+    student_mobile: "",
     email: "",
   });
 
@@ -27,7 +27,12 @@ const DashboardTeamAddForm: React.FC<IDashboardTeamAddFormProps> = ({
             e.preventDefault();
             post("/dashboard/teams", {
               preserveScroll: true,
-              preserveState: false,
+              preserveState: true,
+              onSuccess: () => {
+                reset("email");
+                reset("student_name");
+                reset("student_mobile");
+              },
             });
           }}
         >
@@ -41,37 +46,42 @@ const DashboardTeamAddForm: React.FC<IDashboardTeamAddFormProps> = ({
               className="text-xs p-3"
               disabled={processing}
               onChange={handleChange}
+              value={data.email}
             />
             {errors.email && <div className="error">{errors.email}</div>}
           </div>
+
           <div className="input-group w-full my-4">
-            <label htmlFor="student_1">Student 1</label>
+            <label htmlFor="student_name">Student Name</label>
             <input
               type="text"
-              name="student_1"
-              id="student_1"
+              name="student_name"
+              id="student_name"
               placeholder="John Doe"
               className="text-xs p-3"
               disabled={processing}
               onChange={handleChange}
+              value={data.student_name}
             />
-            {errors.student_1 && (
-              <div className="error">{errors.student_1}</div>
+            {errors.student_name && (
+              <div className="error">{errors.student_name}</div>
             )}
           </div>
+
           <div className="input-group w-full my-4">
-            <label htmlFor="student_2">Student 2</label>
+            <label htmlFor="student_mobile">Student Mobile</label>
             <input
               type="text"
-              name="student_2"
-              id="student_2"
-              placeholder="John Doe"
+              name="student_mobile"
+              id="student_mobile"
+              placeholder="1231231231"
               className="text-xs p-3"
               disabled={processing}
               onChange={handleChange}
+              value={data.student_mobile}
             />
-            {errors.student_2 && (
-              <div className="error">{errors.student_2}</div>
+            {errors.student_mobile && (
+              <div className="error">{errors.student_mobile}</div>
             )}
           </div>
 
