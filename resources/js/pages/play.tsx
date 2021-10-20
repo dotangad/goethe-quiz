@@ -62,7 +62,7 @@ const Play: React.FC<IPlayPageProps> = ({
 
           <div className="mt-4">
             <div className="text-xs text-center">
-              {user.school?.name} - {user.student_1} and {user.student_2}
+              {user.student_name}, {user.school?.name}
             </div>
           </div>
         </div>

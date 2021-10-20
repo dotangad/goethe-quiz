@@ -43,8 +43,8 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
           <div className="flex flex-wrap items-start">
             {Object.entries({
               email: team.email,
-              student_1: team.student_1,
-              student_2: team.student_1,
+              student_name: team.student_name,
+              student_mobile: team.student_mobile,
               last_solved: team.last_solved,
               logged_in: team.logged_in ? "Yes" : "No",
             }).map(([label, value], i) => (

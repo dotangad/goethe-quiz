@@ -40,11 +40,10 @@ const Schools: React.FC<ISchoolsProps> = ({ schools }: ISchoolsProps) => {
 
       <div className="max-w-screen-lg min-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
         <Table
-          records={schools.map(({ id, name, email, country, teams_count }) => ({
+          records={schools.map(({ id, name, email, teams_count }) => ({
             id: String(id),
             name,
             email,
-            country,
             teams: String(teams_count),
             toBtn: `/admin/schools/${id}`,
           }))}

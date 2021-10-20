@@ -40,14 +40,22 @@ const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
 
       <div className="max-w-screen-lg min-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
         <Table
-          records={teams.map(({ id, school, email, student_1, student_2 }) => ({
-            id: String(id),
-            email,
-            "School name": `${school?.name} (${school?.id})`,
-            student_1,
-            student_2,
-            toBtn: `/admin/teams/${id}`,
-          }))}
+          records={teams.map(
+            ({
+              id,
+              school,
+              email,
+              student_name: name,
+              student_mobile: mobile,
+            }) => ({
+              id: String(id),
+              email,
+              "School name": `${school?.name} (${school?.id})`,
+              name,
+              mobile,
+              toBtn: `/admin/teams/${id}`,
+            })
+          )}
         />
       </div>
     </Layout>

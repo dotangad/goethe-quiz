@@ -16,11 +16,13 @@ const AdminSchoolCard: React.FC<IAdminSchoolCardProps> = ({
   });
   const show = {
     Email: school.email,
-    Address: school.address,
-    Country: school.country,
-    Phone: school.phone,
     Principal: school.principal,
+    "Principal Mobile": school.principal_mobile,
     "Teacher Incharge": school.teacher_incharge,
+    "Teacher Incharge Email": school.teacher_incharge_email,
+    "Teacher Incharge Mobile": school.teacher_incharge_mobile,
+    "Postal Code": school.postal_code,
+    Address: school.address,
   };
 
   return (
