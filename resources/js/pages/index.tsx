@@ -95,7 +95,10 @@ const Index: React.FC = () => {
 
             <div className="my-5">
               <Carousel responsive={responsive} autoPlay={true} infinite={true}>
-                {images.map((img, index) => (
+                {Array.from(
+                  Array(17),
+                  (_, i) => `/img/carousel/${i + 1}.webp`
+                ).map((img, index) => (
                   <div key={index} className="m-4">
                     <img
                       src={img}
