@@ -18,16 +18,16 @@ const Dashboard: React.FC<IDashboardProps> = ({
   teams,
 }: IDashboardProps) => {
   const {
-    props: { endDate },
+    props: { regEndDate },
   } = usePage<IPageProps>();
-  const ended = compareAsc(new Date(), new Date(endDate)) === 1;
+  const regClosed = compareAsc(new Date(), new Date(regEndDate)) === 1;
   return (
     <Layout links={[{ href: "/", label: "Rules" }]}>
       <div className="flex w-full h-full items-center justify-start flex-col px-2 sm:px-20">
         <DashboardSchoolCard />
 
         <div className="w-full py-6 max-w-screen-md flex flex-wrap">
-          {!ended && <DashboardTeamAddForm teamAddError={teamAddError} />}
+          {!regClosed && <DashboardTeamAddForm teamAddError={teamAddError} />}
           {teams.map((team, i) => (
             <DashboardTeam team={team} i={i} key={i} />
           ))}

@@ -42,6 +42,7 @@ class HandleInertiaRequests extends Middleware
       'user' => fn () => Auth::check() ? request()->user() : null,
       'authenticated' => fn () => Auth::check(),
       'regDate' => env('REG_DATE'),
+      'regEndDate' => env('REG_END_DATE'),
       'startDate' => env('START_DATE'),
       'endDate' => env('END_DATE'),
     ]);

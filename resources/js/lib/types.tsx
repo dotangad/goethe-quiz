@@ -35,6 +35,7 @@ export interface IPageProps extends Page<PageProps> {
     authenticated: boolean;
     user: IUser;
     regDate: string;
+    regEndDate: string;
     startDate: string;
     endDate: string;
   };

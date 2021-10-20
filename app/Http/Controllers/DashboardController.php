@@ -10,6 +10,16 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
+  private function regOpen()
+  {
+    return (\Carbon\Carbon::now('Asia/Kolkata'))->gt(\Carbon\Carbon::parse(env('REG_DATE')));
+  }
+
+  private function regClosed()
+  {
+    return (\Carbon\Carbon::now('Asia/Kolkata'))->gt(\Carbon\Carbon::parse(env('REG_END_DATE')));
+  }
+
   public function index()
   {
     if (!Auth::check()) {
@@ -24,6 +34,8 @@ class DashboardController extends Controller
 
   public function update(Request $request)
   {
+    if ($this->regClosed()) return redirect()->back();
+
     $body = $request->validate([
       'name' => 'required',
       'principal' => 'required',

@@ -12,8 +12,10 @@ class TeamAuthController extends Controller
 {
   private function timeCheck()
   {
-    return \Carbon\Carbon::parse(env('START_DATE'))->subDays(2)
-      ->lt(\Carbon\Carbon::now('Asia/Kolkata'));
+    return \Carbon\Carbon::parse(env('START_DATE'))
+      ->lt(\Carbon\Carbon::now('Asia/Kolkata')) &&
+      \Carbon\Carbon::parse(env('END_DATE'))
+      ->gt(\Carbon\Carbon::now('Asia/Kolkata'));
   }
 
   public function loginShow()
@@ -24,6 +26,7 @@ class TeamAuthController extends Controller
 
   public function login(Request $request)
   {
+    if (!$this->timeCheck()) return redirect('/');
     $body = $request->validate([
       'email' => 'required|email',
       'password' => 'required|min:8|max:24',

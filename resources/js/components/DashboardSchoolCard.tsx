@@ -6,9 +6,9 @@ import { IPageProps } from "../lib/types";
 const DashboardSchoolCard: React.FC = () => {
   const [editing, setEditing] = React.useState<boolean>(false);
   const {
-    props: { user, endDate },
+    props: { user, regEndDate },
   } = usePage<IPageProps>();
-  const ended = compareAsc(new Date(), new Date(endDate)) === 1;
+  const regClosed = compareAsc(new Date(), new Date(regEndDate)) === 1;
   const { setData, post, processing, errors, data } = useForm({
     name: user.name,
     principal: user.principal,
@@ -202,7 +202,7 @@ const DashboardSchoolCard: React.FC = () => {
       )}
 
       <div className="w-full flex justify-end items-center mt-5">
-        {!ended &&
+        {!regClosed &&
           (editing ? (
             <>
               <a onClick={() => setEditing(false)} className="button">

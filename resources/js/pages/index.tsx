@@ -9,13 +9,15 @@ import "react-multi-carousel/lib/styles.css";
 
 const Index: React.FC = () => {
   const {
-    props: { authenticated, user, regDate, startDate, endDate },
+    props: { authenticated, user, regDate, startDate, regEndDate, endDate },
   } = usePage<IPageProps>();
   useTitle("DPS Goethe Quiz");
 
   const teamLoginOpen =
-    compareAsc(subDays(new Date(startDate), 2), new Date()) === -1;
+    compareAsc(new Date(startDate), new Date()) === -1 &&
+    compareAsc(new Date(), new Date(endDate)) === -1;
   const schoolRegOpen = compareAsc(new Date(regDate), new Date()) === -1;
+  const schoolRegClosed = compareAsc(new Date(), new Date(regEndDate)) === 1;
 
   const responsive = {
     superLargeDesktop: {
@@ -40,7 +42,6 @@ const Index: React.FC = () => {
   const images = Array.from(Array(18).keys()).map(
     (i) => `/img/carousel/${i + 1}.jpg`
   );
-  console.log(images);
 
   return (
     <Layout
@@ -104,6 +105,10 @@ const Index: React.FC = () => {
                   </div>
                 ))}
               </Carousel>
+            </div>
+
+            <div className="my-5 text-center text-red-500 font-bold">
+              [Registration and login links are at the bottom]
             </div>
 
             <div className="my-5">
@@ -234,8 +239,8 @@ const Index: React.FC = () => {
                     </li>
                     <li>No student is allowed to register directly.</li>
                     <li>
-                      Individual students' registration can be done online by
-                      the School Coordinator through the school account till
+                      Individual students&apos; registration can be done online
+                      by the School Coordinator through the school account till
                       31st October, 2021 only.
                     </li>
                     <li>
@@ -339,47 +344,51 @@ const Index: React.FC = () => {
               </div>
             </div>
 
-            <ul className="list-disc pl-5 mt-5">
-              {!authenticated && schoolRegOpen && (
-                <li className="my-3">
-                  For schools:
-                  <div className="flex flex-wrap justify-around">
-                    <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
-                      <InertiaLink
-                        href="/auth/school/login"
-                        className="w-full button"
-                      >
-                        School Login
-                      </InertiaLink>
+            {!authenticated && (
+              <ul className="list-disc pl-5 mt-5">
+                {schoolRegOpen && (
+                  <li className="my-3">
+                    For schools:
+                    <div className="flex flex-wrap justify-start">
+                      <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
+                        <InertiaLink
+                          href="/auth/school/login"
+                          className="w-full button"
+                        >
+                          School Login
+                        </InertiaLink>
+                      </div>
+                      {!schoolRegClosed && (
+                        <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
+                          <InertiaLink
+                            href="/auth/school/register"
+                            className="w-full button"
+                          >
+                            School Registration
+                          </InertiaLink>
+                        </div>
+                      )}
                     </div>
-                    <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
-                      <InertiaLink
-                        href="/auth/school/register"
-                        className="w-full button"
-                      >
-                        School Registration
-                      </InertiaLink>
-                    </div>
-                  </div>
-                </li>
-              )}
+                  </li>
+                )}
 
-              {!authenticated && teamLoginOpen && (
-                <li className="my-3">
-                  For teams:
-                  <div className="flex flex-wrap justify-start">
-                    <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
-                      <InertiaLink
-                        href="/auth/team/login"
-                        className="w-full button"
-                      >
-                        Team Login
-                      </InertiaLink>
+                {teamLoginOpen && (
+                  <li className="my-3">
+                    For teams:
+                    <div className="flex flex-wrap justify-start">
+                      <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
+                        <InertiaLink
+                          href="/auth/team/login"
+                          className="w-full button"
+                        >
+                          Team Login
+                        </InertiaLink>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              )}
-            </ul>
+                  </li>
+                )}
+              </ul>
+            )}
 
             <div className="text-center text-sm mt-5">
               For technical queries regarding registrations, please contact{" "}

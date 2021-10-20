@@ -15,10 +15,9 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
 }: IDashboardTeamProps) => {
   const [editing, setEditing] = React.useState<boolean>(false);
   const {
-    props: { endDate, startDate },
+    props: { regEndDate },
   } = usePage<IPageProps>();
-  const started = compareAsc(new Date(), new Date(startDate)) === 1;
-  const ended = compareAsc(new Date(), new Date(endDate)) === 1;
+  const regClosed = compareAsc(new Date(), new Date(regEndDate)) === 1;
   const { setData, data, post, processing, errors } = useForm({
     student_name,
     student_mobile,
@@ -32,7 +31,7 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
       <div className="bg-white rounded-lg w-full shadow-sm h-96 p-6 overflow-y-auto">
         {!editing ? (
           <>
-            <h1 className="font-bold text-xl mb-4">Team {i + 1}</h1>
+            <h1 className="font-bold text-xl mb-4">{student_name}</h1>
             <div className="input-group w-full my-4">
               <label>Email</label>
               <div className="text-sm py-3">{email}</div>
@@ -57,7 +56,7 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
               });
             }}
           >
-            <h1 className="font-bold text-xl mb-2">Team {i + 1}</h1>
+            <h1 className="font-bold text-xl mb-2">{student_name}</h1>
             <div className="input-group w-full my-2">
               <label>Email</label>
               <div className="text-sm pt-2">{email}</div>
@@ -111,7 +110,7 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
           </form>
         )}
 
-        {!ended && (
+        {!regClosed && (
           <div className="input-group flex justify-end">
             <a
               onClick={() => setEditing((x) => !x)}
@@ -122,27 +121,25 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
             >
               {editing ? "Reset" : "Edit"}
             </a>
-            {!started && (
-              <form
-                onSubmit={(e: React.SyntheticEvent) => {
-                  e.preventDefault();
-                  post(`/dashboard/teams/${id}/del`, {
-                    preserveState: true,
-                    preserveScroll: true,
-                  });
-                }}
-              >
-                <button
-                  type="submit"
-                  className={`cursor-pointer bg-gray-100 block rounded-lg p-3 text-center
+            <form
+              onSubmit={(e: React.SyntheticEvent) => {
+                e.preventDefault();
+                post(`/dashboard/teams/${id}/del`, {
+                  preserveState: true,
+                  preserveScroll: true,
+                });
+              }}
+            >
+              <button
+                type="submit"
+                className={`cursor-pointer bg-gray-100 block rounded-lg p-3 text-center
                               uppercase leading-none font-bold border-2 border-gray-100
                               hover:border-red-600 text-xs text-gray-800 transition ml-2
                               focus:outline-none focus:border-red-600 focus:shadow-none`}
-                >
-                  Delete
-                </button>
-              </form>
-            )}
+              >
+                Delete
+              </button>
+            </form>
           </div>
         )}
       </div>

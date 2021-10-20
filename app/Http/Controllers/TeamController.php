@@ -14,8 +14,14 @@ use Inertia\Inertia;
 
 class TeamController extends Controller
 {
+  private function regClosed()
+  {
+    return (\Carbon\Carbon::now('Asia/Kolkata'))->gt(\Carbon\Carbon::parse(env('REG_END_DATE')));
+  }
+
   public function create(Request $request)
   {
+    if ($this->regClosed()) return redirect()->back();
     $body = $request->validate([
       'email' => 'required|email',
       'student_name' => 'required',
@@ -64,6 +70,7 @@ class TeamController extends Controller
    */
   public function update(Request $request, User $team)
   {
+    if ($this->regClosed()) return redirect()->back();
     $body = $request->validate([
       'student_name' => 'required',
       'student_mobile' => 'required|digits:10',
@@ -81,6 +88,7 @@ class TeamController extends Controller
 
   public function destroy(User $team)
   {
+    if ($this->regClosed()) return redirect()->back();
     $team->delete();
 
     return redirect()->back();

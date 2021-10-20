@@ -13,8 +13,12 @@ class SchoolAuthController extends Controller
 {
   private function timeCheck()
   {
-    return (\Carbon\Carbon::now('Asia/Kolkata'))
-      ->gt(\Carbon\Carbon::parse(env('REG_DATE')));
+    return (\Carbon\Carbon::now('Asia/Kolkata'))->gt(\Carbon\Carbon::parse(env('REG_DATE')));
+  }
+
+  private function regClosed()
+  {
+    return (\Carbon\Carbon::now('Asia/Kolkata'))->gt(\Carbon\Carbon::parse(env('REG_END_DATE')));
   }
 
   public function loginShow()
@@ -49,12 +53,14 @@ class SchoolAuthController extends Controller
 
   public function registerShow()
   {
-    if (!$this->timeCheck()) return redirect('/');
+    if (!$this->timeCheck() || $this->regClosed()) return redirect('/');
     return Inertia::render('auth/school_register');
   }
 
   public function register(Request $request)
   {
+    if (!$this->timeCheck() || $this->regClosed()) return redirect('/');
+
     $body = $request->validate([
       'email' => 'required|email',
       'password' => 'required|min:8|max:24',
@@ -75,6 +81,6 @@ class SchoolAuthController extends Controller
     $user->save();
 
     Auth::login($user, true);
-    return redirect("/");
+    return redirect("/dashboard");
   }
 }

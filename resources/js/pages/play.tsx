@@ -40,12 +40,7 @@ const Play: React.FC<IPlayPageProps> = ({
   }, []);
 
   return (
-    <Layout
-      links={[
-        { href: "/", label: "Rules" },
-        { href: "/leaderboard", label: "Leaderboard" },
-      ]}
-    >
+    <Layout links={[{ href: "/", label: "Rules" }]}>
       <div className="flex w-full h-full items-center justify-center">
         <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-[600px] p-6 mx-2 shadow-sm">
           {!started ? (

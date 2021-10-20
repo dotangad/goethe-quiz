@@ -18,7 +18,10 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
 
   return (
     <div className="flex flex-col w-full h-full">
-      <nav className="flex p-5 justify-between items-center flex-col sm:flex-row sm:fixed relative top-0 left-0 w-full bg-gray-bg">
+      <nav
+        className="flex p-5 justify-between items-center flex-col sm:flex-row sm:fixed relative top-0 left-0 w-full bg-gray-bg z-50"
+        style={{ zIndex: 100000 }}
+      >
         <div className="flex sm:w-1/3 w-full justify-center sm:justify-start">
           <img
             className="h-20 sm:h-12 w-auto mr-2"
