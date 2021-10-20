@@ -21,8 +21,7 @@ class LeaderboardController extends Controller
           return [
             'id' => $record->id,
             'question_id' => $record->question_id,
-            'student_1' => $record->student_1,
-            'student_2' => $record->student_2,
+            'student_name' => $record->student_name,
             'school' => $record->school->name
           ];
         })

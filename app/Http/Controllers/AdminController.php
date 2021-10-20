@@ -13,7 +13,7 @@ class AdminController extends Controller
     return Inertia::render('admin/index', [
       'stats' => [
         'Schools Registered' => User::where('type', 'school')->count(),
-        'Teams Registered' => User::where('type', 'team')->count(),
+        'Students Registered' => User::where('type', 'team')->count(),
       ]
     ]);
   }

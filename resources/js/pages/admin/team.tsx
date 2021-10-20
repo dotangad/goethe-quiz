@@ -38,7 +38,7 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
                 </svg>
               </div>
             </InertiaLink>
-            <h1 className="font-bold text-3xl flex-1">Team {team.id}</h1>
+            <h1 className="font-bold text-3xl flex-1">{team.student_name}</h1>
           </div>
           <div className="flex flex-wrap items-start">
             {Object.entries({

@@ -8,8 +8,7 @@ interface ILeaderboardProps {
   users: {
     id: number;
     question_id: number;
-    student_1: string;
-    student_2: string;
+    student_name: string;
     school: string;
   }[];
 }
@@ -42,11 +41,10 @@ const Leaderboard: React.FC<ILeaderboardProps> = ({
 
         <div className="w-full max-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
           <Table
-            records={users.map(({ id, school, student_1, student_2 }, i) => ({
+            records={users.map(({ id, school, student_name }, i) => ({
               "#": String(i + 1),
+              student: student_name,
               school: school,
-              "student 1": student_1,
-              "student 2": student_2,
               ...(authenticated && user?.type === "admin"
                 ? { toBtn: `/admin/teams/${id}` }
                 : {}),
