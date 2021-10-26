@@ -1,14 +1,13 @@
-import React from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/inertia-react";
 import { compareAsc } from "date-fns";
-
-import Layout from "../components/Layout";
-import { IPageProps, IUser } from "../lib/types";
+import React from "react";
 import DashboardSchoolCard from "../components/DashboardSchoolCard";
 import DashboardTeamAddForm from "../components/DashboardTeamAddForm";
-import DashboardTeam from "../components/DashboardTeam";
+import Layout from "../components/Layout";
 import Table from "../components/Table";
+import { IPageProps, IUser } from "../lib/types";
+
 
 interface IDashboardProps {
   teamAddError?: string;
@@ -38,8 +37,7 @@ const Dashboard: React.FC<IDashboardProps> = ({
           <div className="w-full mt-10">
             <Table
               records={teams.map(
-                ({ id, email, student_name, student_mobile }) => ({
-                  id: String(id),
+                ({ email, student_name, student_mobile }) => ({
                   name: student_name,
                   email,
                   mobile: student_mobile,
