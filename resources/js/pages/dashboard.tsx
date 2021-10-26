@@ -37,7 +37,7 @@ const Dashboard: React.FC<IDashboardProps> = ({
           <div className="w-full mt-10">
             <Table
               records={teams.map(
-                ({ email, student_name, student_mobile }) => ({
+                ({ id, email, student_name, student_mobile }) => ({
                   name: student_name,
                   email,
                   mobile: student_mobile,
