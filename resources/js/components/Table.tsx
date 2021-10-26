@@ -2,7 +2,14 @@ import React from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
 
 interface ITableProps {
-  records: { [key: string]: string | undefined }[];
+  records: {
+    [key: string]:
+      | string
+      | React.ReactNode
+      // | React.FC
+      | React.Component
+      | undefined;
+  }[];
 }
 
 const Table: React.FC<ITableProps> = ({ records }: ITableProps) => {
@@ -37,7 +44,7 @@ const Table: React.FC<ITableProps> = ({ records }: ITableProps) => {
               key === "toBtn" ? (
                 <td className="cursor-pointer p-4 text-right min-w-12" key={i}>
                   <InertiaLink
-                    href={val || "/"}
+                    href={(val as string) || "/"}
                     className="bg-gray-200 h-8 w-8 flex justify-center items-center font-xs rounded-lg"
                   >
                     -&gt;

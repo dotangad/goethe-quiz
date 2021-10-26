@@ -1,4 +1,5 @@
 import React from "react";
+import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/inertia-react";
 import { compareAsc } from "date-fns";
 
@@ -7,6 +8,7 @@ import { IPageProps, IUser } from "../lib/types";
 import DashboardSchoolCard from "../components/DashboardSchoolCard";
 import DashboardTeamAddForm from "../components/DashboardTeamAddForm";
 import DashboardTeam from "../components/DashboardTeam";
+import Table from "../components/Table";
 
 interface IDashboardProps {
   teamAddError?: string;
@@ -21,16 +23,47 @@ const Dashboard: React.FC<IDashboardProps> = ({
     props: { regEndDate },
   } = usePage<IPageProps>();
   const regClosed = compareAsc(new Date(), new Date(regEndDate)) === 1;
+
   return (
     <Layout links={[{ href: "/", label: "Rules" }]}>
       <div className="flex w-full h-full items-center justify-start flex-col px-2 sm:px-20">
         <DashboardSchoolCard />
 
-        <div className="w-full py-6 max-w-screen-md flex flex-wrap">
-          {!regClosed && <DashboardTeamAddForm teamAddError={teamAddError} />}
-          {teams.map((team, i) => (
-            <DashboardTeam team={team} i={i} key={i} />
-          ))}
+        <div className="w-full py-6 max-w-screen-lg">
+          {!regClosed && (
+            <div className="flex justify-center">
+              <DashboardTeamAddForm teamAddError={teamAddError} />
+            </div>
+          )}
+          <div className="w-full mt-10">
+            <Table
+              records={teams.map(
+                ({ id, email, student_name, student_mobile }) => ({
+                  id: String(id),
+                  name: student_name,
+                  email,
+                  mobile: student_mobile,
+                  "": !regClosed && (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        Inertia.post(`/dashboard/teams/${id}/del`, {
+                          preserveState: true,
+                          preserveScroll: true,
+                        });
+                      }}
+                      className={`cursor-pointer bg-red-500 text-white block rounded-lg p-3 text-center
+                              uppercase leading-none font-bold ring-0 ring-red-300
+                              hover:ring-4 text-xs transition ml-2
+                              focus:outline-none focus:ring-4`}
+                    >
+                      Delete
+                    </button>
+                  ),
+                })
+              )}
+            />
+          </div>
         </div>
       </div>
     </Layout>
