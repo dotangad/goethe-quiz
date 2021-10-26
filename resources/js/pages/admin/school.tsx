@@ -39,7 +39,7 @@ const School: React.FC<ISchoolProps> = ({ school }: ISchoolProps) => {
                     <div className="text-sm py-3">{student_mobile}</div>
                   </div>
 
-                  <div className="input-group flex justify-end">
+                  {/*<div className="input-group flex justify-end">
                     <form
                       onSubmit={(e: React.SyntheticEvent) => {
                         e.preventDefault();
@@ -58,7 +58,7 @@ const School: React.FC<ISchoolProps> = ({ school }: ISchoolProps) => {
                         Reset Password
                       </button>
                     </form>
-                  </div>
+                    </div>*/}
                 </div>
               </div>
             )

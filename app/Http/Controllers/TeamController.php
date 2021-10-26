@@ -55,8 +55,8 @@ class TeamController extends Controller
       return redirect()->back();
     }
 
-    Mail::to($user)
-      ->send(new \App\Mail\TeamCreatedMail($user, $password));
+    // Mail::to($user)
+    //   ->send(new \App\Mail\TeamCreatedMail($user, $password));
 
     return redirect()->back();
   }
