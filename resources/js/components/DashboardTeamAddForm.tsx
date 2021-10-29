@@ -20,7 +20,7 @@ const DashboardTeamAddForm: React.FC<IDashboardTeamAddFormProps> = ({
   return (
     <div className="w-full sm:w-1/2 h-96 odd:pr-2 even:pl-2 my-2">
       <div className="bg-white border-none border-gray rounded-lg w-full shadow-sm h-96 p-6 overflow-auto">
-        <h1 className="font-bold text-xl mb-4">Add Team</h1>
+        <h1 className="font-bold text-xl mb-4">Add Student</h1>
 
         <form
           onSubmit={(e: React.SyntheticEvent) => {
