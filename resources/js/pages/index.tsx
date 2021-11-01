@@ -149,7 +149,7 @@ const Index: React.FC = () => {
                     </div>
                     <div>(9 am onwards)</div>
                     <div className="font-bold">
-                      Till Sunday, 31st October 2021
+                      Till Sunday, 1st November 2021
                     </div>
                     <div>(5 pm - registration closes)</div>
                   </div>
@@ -190,7 +190,7 @@ const Index: React.FC = () => {
                         <div>(9 am onwards)</div>
 
                         <div className="font-bold mt-5">
-                          Till Sunday, 31st October 2021
+                          Till Sunday, 1st November 2021
                         </div>
                         <div>(5 pm - registration closes)</div>
                       </td>
@@ -238,13 +238,13 @@ const Index: React.FC = () => {
                       >
                         dpsgoethequiz.com
                       </a>{" "}
-                      from <strong>21st October to 31st October 2021</strong>.
+                      from <strong>21st October to 1st November 2021</strong>.
                     </li>
                     <li>No student is allowed to register directly.</li>
                     <li>
                       Individual students&apos; registration can be done online
                       by the School Coordinator through the school account till
-                      31st October, 2021 only.
+                      1st November, 2021 only.
                     </li>
                     <li>
                       There is no restriction on the number of students
