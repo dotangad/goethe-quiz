@@ -43,7 +43,7 @@ class QuestionController extends Controller
     $body = $request->validate([
       'text' => 'required',
       'hint' => 'required',
-      'answer' => ['required', 'regex:/^[0-9 a-z]+$/']
+      'answer' => ['required'] //, 'regex:/^[0-9 a-z]+$/']
     ]);
 
     $question = new Question($body);
@@ -92,7 +92,7 @@ class QuestionController extends Controller
     $body = $request->validate([
       'text' => 'required',
       'hint' => 'required',
-      'answer' => ['required', 'regex:/^[0-9 a-z]+$/']
+      'answer' => ['required'] //, 'regex:/^[0-9 a-z]+$/']
     ]);
 
     Question::where('id', $question->id)

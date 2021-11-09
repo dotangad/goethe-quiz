@@ -27,7 +27,7 @@ class CheckAnswer implements Rule
   public function passes($attribute, $value)
   {
     $q = request()->user()->question;
-    $answer = $q->answer;
+    $answers = explode("//", $q->answer);
 
     (new UserAttempt([
       'user_id' => request()->user()->id,
@@ -35,7 +35,7 @@ class CheckAnswer implements Rule
       'attempt' => $value
     ]))->save();
 
-    return $answer === $value;
+    return in_array($value, $answers);
   }
 
   /**
