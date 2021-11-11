@@ -1,5 +1,6 @@
 import { InertiaLink } from "@inertiajs/inertia-react";
 import React from "react";
+import { useTable } from "react-table";
 import Layout from "../../components/Layout";
 import Table from "../../components/Table";
 import { IUser } from "../../lib/types";
@@ -9,7 +10,21 @@ interface ITeamsProps {
 }
 
 const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
-  console.log(teams[0]);
+  const data = React.useMemo(() => teams);
+  const columns = React.useMemo(() => [
+    { Header: "ID", accessor: "id" },
+    {
+      Header: "School",
+      accessor: (row) => `${row.school.name}(${row.school.id})`,
+    },
+    { Header: "Email", accessor: "email" },
+    { Header: "Name", accessor: "student_name" },
+  ]);
+
+  const table = useTable({ data, columns });
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    table;
+
   return (
     <Layout links={[{ href: "/admin", label: "Home" }]}>
       <div className="w-full sm:max-w-screen-lg mx-auto">
@@ -40,15 +55,62 @@ const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
       </div>
 
       <div className="max-w-screen-lg min-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
-        <Table
-          records={teams.map(({ id, school, email, student_name: name }) => ({
-            id: String(id),
-            email,
-            "School name": `${school?.name} (${school?.id})`,
-            name,
-            toBtn: `/admin/teams/${id}`,
-          }))}
-        />
+        <table
+          className="w-full border-collapse border-1 border-gray-300 divide-y divide-gray-100"
+          {...getTableProps()}
+        >
+          <thead>
+            {
+              // Loop over the header rows
+              headerGroups.map((headerGroup) => (
+                // Apply the header row props
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {
+                    // Loop over the headers in each row
+                    headerGroup.headers.map((column) => (
+                      // Apply the header cell props
+                      <th {...column.getHeaderProps()} className="p-4">
+                        {
+                          // Render the header
+                          column.render("Header")
+                        }
+                      </th>
+                    ))
+                  }
+                </tr>
+              ))
+            }
+          </thead>
+          {/* Apply the table body props */}
+          <tbody {...getTableBodyProps()}>
+            {
+              // Loop over the table rows
+              rows.map((row) => {
+                // Prepare the row for display
+                prepareRow(row);
+                return (
+                  // Apply the row props
+                  <tr className="even:bg-gray-100" {...row.getRowProps()}>
+                    {
+                      // Loop over the rows cells
+                      row.cells.map((cell) => {
+                        // Apply the cell props
+                        return (
+                          <td className="p-4" {...cell.getCellProps()}>
+                            {
+                              // Render the cell contents
+                              cell.render("Cell")
+                            }
+                          </td>
+                        );
+                      })
+                    }
+                  </tr>
+                );
+              })
+            }
+          </tbody>
+        </table>
       </div>
     </Layout>
   );
