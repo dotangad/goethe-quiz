@@ -16,7 +16,6 @@ class LeaderboardController extends Controller
         ->orderBy('question_id', 'DESC')
         ->orderBy('last_solved', 'ASC')
         // ->get(['id', 'question_id', 'student_name'])
-        ->take(100)
         ->get()
         ->map(function ($record) {
           return [
