@@ -12,6 +12,7 @@ use App\Http\Controllers\SchoolAuthController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\TeamAuthController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TeamResetPassword;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -30,6 +31,9 @@ use Inertia\Inertia;
 Route::get('/', function () {
   return Inertia::render('index');
 })->name('home');
+
+Route::get('/reset/password/{rand_string}', [TeamResetPassword::class, 'show']);
+Route::post('/reset/password', [TeamResetPassword::class, 'reset_password']);
 
 // ----- Authentication -----
 Route::prefix('/auth')

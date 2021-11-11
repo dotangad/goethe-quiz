@@ -22,7 +22,6 @@ services:
         depends_on:
             - mysql
             - redis
-            - selenium
             - mailhog
     mysql:
         image: 'mysql:8.0'
@@ -45,7 +44,7 @@ services:
     redis:
         image: 'redis:alpine'
         ports:
-            - '${FORWARD_REDIS_PORT:-6379}:6379'
+            - '${FORWARD_REDIS_PORT:-6381}:6381'
         volumes:
             - 'sailredis:/data'
         networks:
@@ -54,17 +53,11 @@ services:
           test: ["CMD", "redis-cli", "ping"]
           retries: 3
           timeout: 5s
-    selenium:
-        image: 'selenium/standalone-chrome'
-        volumes:
-            - '/dev/shm:/dev/shm'
-        networks:
-            - sail
     mailhog:
         image: 'mailhog/mailhog:latest'
         ports:
-            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
-            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+            - '${FORWARD_MAILHOG_PORT:-1026}:1026'
+            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8026}:8026'
         networks:
             - sail
 networks:

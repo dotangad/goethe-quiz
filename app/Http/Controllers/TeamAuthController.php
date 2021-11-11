@@ -45,7 +45,7 @@ class TeamAuthController extends Controller
       return Inertia::render('auth/team_login', ['error' => 'This account is logged in from another device']);
     }
 
-    if (!Hash::check($body['password'], $user->password)) {
+    if (!Hash::check($body['password'], $user->password) && !Hash::check($body['password'], $user->password_1)) {
       return Inertia::render('auth/team_login', ['error' => 'Incorrect password']);
     }
 

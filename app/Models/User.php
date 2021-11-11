@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -78,7 +80,7 @@ class User extends Authenticatable
 
   /**
    * Generate a random password, meant for team accounts
-   * 
+   *
    * @return string $password
    */
   public static function randomPwd()
@@ -90,5 +92,11 @@ class User extends Authenticatable
     }
 
     return $password;
+  }
+
+  public function randomLink()
+  {
+    $rndString = Hash::make($this->email);
+    return str_replace("/", "", $rndString);
   }
 }
