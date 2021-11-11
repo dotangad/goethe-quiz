@@ -36,11 +36,13 @@ html,
   @apply text-xs font-bold uppercase text-gray-500 mb-3 transition;
 }
 
-.input-group input {
+.input-group input,
+.input-group textarea {
   @apply border-2 border-gray-100 focus:border-goethe focus:outline-none rounded-lg p-3 w-full;
 }
 
 input:focus,
+textarea:focus,
 select:focus {
   box-shadow: none !important;
 }

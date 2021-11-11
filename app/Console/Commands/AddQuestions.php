@@ -47,7 +47,7 @@ class AddQuestions extends Command
                 'id' => $line_csv[0],
                 'text' => $line_csv[1],
                 'answer' => $line_csv[2],
-                'hint' => $line_csv[3],
+                'hint' => count($line_csv) > 3 ? $line_csv[3] : "",
             ]);
             $q->save();
         }

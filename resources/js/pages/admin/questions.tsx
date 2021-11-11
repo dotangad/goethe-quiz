@@ -46,14 +46,13 @@ const Question: React.FC<IQuestionProps> = ({
         >
           <div className="input-group my-4">
             <label>Text</label>
-            <input
-              type="text"
+            <textarea
               placeholder="When is German Unity Day?"
               name="text"
               value={data.text}
-              onChange={handleChange}
+              onChange={(e) => setData("text", e.target.value as never)}
               disabled={processing}
-            />
+            ></textarea>
             {errors.text && <div className="error">{errors.text}</div>}
           </div>
           <div className="input-group my-4">
@@ -90,13 +89,13 @@ const Question: React.FC<IQuestionProps> = ({
         <>
           <div className="input-group my-2">
             <label>Text</label>
-            <div>{data.text}</div>
+            <div dangerouslySetInnerHTML={{ __html: data.text }} />
           </div>
           <div className="input-group my-2">
             <label>Hint</label>
             <div>{data.hint}</div>
           </div>
-          <div className="input-group my-2">
+          <div className="input-group my-2 break-words">
             <label>Answer</label>
             <div>{data.answer}</div>
           </div>
