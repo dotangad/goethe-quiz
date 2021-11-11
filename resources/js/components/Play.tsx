@@ -66,10 +66,11 @@ const Play: React.FC<IPlayProps> = ({ question, showHint }: IPlayProps) => {
                   onChange={(e) =>
                     setData(
                       "answer",
-                      String(e.target.value)
-                        .split("")
-                        .filter((x) => /^([a-z0-9_-]){1}$/.test(x))
-                        .join("") as never
+                      String(e.target.value) as never
+                      // String(e.target.value)
+                      //   .split("")
+                      //   .filter((x) => /^([a-z0-9_-]){1}$/.test(x))
+                      //   .join("") as never
                     )
                   }
                 />
