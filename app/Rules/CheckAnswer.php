@@ -35,7 +35,13 @@ class CheckAnswer implements Rule
       'attempt' => $value
     ]))->save();
 
-    return in_array($value, $answers);
+    $correct = false;
+
+    foreach ($answers as $answer) {
+      $correct = $correct || (strtolower($value) == strtolower($answer));
+    }
+
+    return $correct;
   }
 
   /**
