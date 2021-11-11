@@ -18,11 +18,11 @@ const Admin: React.FC<IAdminProps> = ({ stats }: IAdminProps) => {
       title: "Schools",
       description: "List schools and teams, change passwords, login as schools",
     },
-    {
-      href: "/admin/teams",
-      title: "Students",
-      description: "List students, change passwords",
-    },
+    // {
+    //   href: "/admin/teams",
+    //   title: "Students",
+    //   description: "List students, change passwords",
+    // },
   ];
 
   return (

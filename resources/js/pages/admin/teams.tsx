@@ -1,3 +1,4 @@
+// @ts-ignore
 import { InertiaLink } from "@inertiajs/inertia-react";
 import React from "react";
 import { useTable } from "react-table";
@@ -10,16 +11,24 @@ interface ITeamsProps {
 }
 
 const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
-  const data = React.useMemo(() => teams);
-  const columns = React.useMemo(() => [
-    { Header: "ID", accessor: "id" },
-    {
-      Header: "School",
-      accessor: (row) => `${row.school.name}(${row.school.id})`,
-    },
-    { Header: "Email", accessor: "email" },
-    { Header: "Name", accessor: "student_name" },
-  ]);
+  const data = React.useMemo(() => teams, []);
+  const columns = React.useMemo(
+    () => [
+      { Header: "Email", accessor: "email" },
+      { Header: "Name", accessor: "student_name" },
+      {
+        id: "school.name",
+        Header: "School",
+        accessor: (row) => `${row.school.name}(${row.school.id})`,
+      },
+      {
+        Header: "",
+        id: "id",
+        Cell: ({value}) => <InertiaLink href={`/admin/teams/${value}`}>-></InertiaLink>,
+      }
+    ],
+    []
+  );
 
   const table = useTable({ data, columns });
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -96,7 +105,7 @@ const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
                       row.cells.map((cell) => {
                         // Apply the cell props
                         return (
-                          <td className="p-4" {...cell.getCellProps()}>
+                          <td className="p-4 text-center" {...cell.getCellProps()}>
                             {
                               // Render the cell contents
                               cell.render("Cell")

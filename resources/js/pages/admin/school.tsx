@@ -18,14 +18,14 @@ const School: React.FC<ISchoolProps> = ({ school }: ISchoolProps) => {
             records={
               school.teams
                 ? school.teams.map(
-                    ({ id, email, student_name, student_mobile }) => ({
-                      id: String(id),
-                      name: student_name || "",
-                      email: email || "",
-                      mobile: student_mobile || "",
-                      toBtn: `/admin/teams/${id}`,
-                    })
-                  )
+                  ({ id, email, student_name, student_mobile }) => ({
+                    id: String(id),
+                    name: student_name || "",
+                    email: email || "",
+                    mobile: student_mobile || "",
+                    toBtn: `/admin/teams/${id}`,
+                  })
+                )
                 : []
             }
           />

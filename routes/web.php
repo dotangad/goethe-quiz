@@ -128,8 +128,8 @@ Route::prefix('/admin')
     Route::prefix('/teams')
       ->name('teams.')
       ->group(function () {
-        Route::get('/', [AdminTeamController::class, 'index'])->name('index');
-        Route::post('/{user}/resetpwd', [AdminTeamController::class, 'resetPwd'])->name('resetpwd');
+        // Route::get('/', [AdminTeamController::class, 'index'])->name('index');
+        // Route::post('/{user}/resetpwd', [AdminTeamController::class, 'resetPwd'])->name('resetpwd');
         Route::get('/{user}', [AdminTeamController::class, 'show'])->name('show');
       });
   });
