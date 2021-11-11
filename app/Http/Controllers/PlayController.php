@@ -31,7 +31,7 @@ class PlayController extends Controller
     $request->validate([
       'answer' => [
         'required',
-        'regex:/^[a-z0-9_-]+$/',
+        // 'regex:/^[a-z0-9_-]+$/',
         'max:255',
         new CheckAnswer
       ],

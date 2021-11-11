@@ -17,7 +17,11 @@ class AdminTeamController extends Controller
    */
   public function index()
   {
-    return Inertia::render('admin/teams', ['teams' => User::with('school')->where('type', 'team')->get()]);
+    return Inertia::render('admin/teams', [
+      'teams' => User::with('school')
+        ->where('type', 'team')
+        ->get(['id', 'student_name', 'email'])
+    ]);
   }
 
   /**

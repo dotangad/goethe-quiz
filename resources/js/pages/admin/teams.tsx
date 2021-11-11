@@ -9,6 +9,7 @@ interface ITeamsProps {
 }
 
 const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
+  console.log(teams[0]);
   return (
     <Layout links={[{ href: "/admin", label: "Home" }]}>
       <div className="w-full sm:max-w-screen-lg mx-auto">
