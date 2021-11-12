@@ -36,7 +36,16 @@ const Play: React.FC<IPlayPageProps> = ({
       }
     }, 500);
 
-    return () => clearInterval(interval);
+    // Disable right click
+    // @ts-ignore
+    const contextMenuHandler = (event: unknown) => event.preventDefault();
+    document.addEventListener('contextmenu', contextMenuHandler);
+
+
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('contextmenu', contextMenuHandler);
+    }
   }, []);
 
   return (
