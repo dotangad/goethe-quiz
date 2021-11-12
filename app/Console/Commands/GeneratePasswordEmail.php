@@ -13,14 +13,14 @@ class GeneratePasswordEmail extends Command
    *
    * @var string
    */
-  protected $signature = 'generate_password_email';
+  protected $signature = 'generate_password_email {school_id}';
 
   /**
    * The console command description.
    *
    * @var string
    */
-  protected $description = 'Generates Password for email';
+  protected $description = 'Generates Password for all emails of school';
 
   /**
    * Create a new command instance.
@@ -39,14 +39,11 @@ class GeneratePasswordEmail extends Command
    */
   public function handle()
   {
-    $users = User::where('school_id', 1)->get();
-    /* if (!$user) { */
-    /*   $this->info("User doesn't exist"); */
-    /*   return 1; */
-    /* } */
+    $users = User::where('school_id', $this->argument('school_id'))->get();
+
     foreach ($users as $user) {
       $password = User::randomPwd();
-      $user->password = Hash::make($password);
+      $user->password_1 = Hash::make($password);
       $user->auth_details_sent = true;
       $user->save();
       $email = $user->email;
