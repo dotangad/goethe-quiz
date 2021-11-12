@@ -27,7 +27,7 @@ class UserFactory extends Factory
    * Number of teams to create per school
    * @var int
    */
-  public $teams = 50;
+  public $teams = 5;
 
   /**
    * Define the model's default state.
