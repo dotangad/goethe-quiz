@@ -10,7 +10,7 @@ interface IDashboardTeamProps {
 }
 
 const DashboardTeam: React.FC<IDashboardTeamProps> = ({
-  team: { id, email, student_name, student_mobile },
+  team: { id, email, student_name, student_mobile, reset_link },
   i,
 }: IDashboardTeamProps) => {
   const [editing, setEditing] = React.useState<boolean>(false);
@@ -107,6 +107,7 @@ const DashboardTeam: React.FC<IDashboardTeamProps> = ({
                 Save
               </button>
             </div>
+            <p>Reset Password Link: {reset_link}</p>
           </form>
         )}
 

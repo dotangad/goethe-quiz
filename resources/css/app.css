@@ -28,6 +28,10 @@ html,
          focus:outline-none focus:border-goethe focus:shadow-none;
 }
 
+.danger {
+  @apply bg-red-500 text-white border-red-500 hover:border-red-500;
+}
+
 .input-group:focus-within label {
   @apply text-gray-700;
 }
