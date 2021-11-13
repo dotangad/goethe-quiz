@@ -73,6 +73,10 @@ Route::get('/leaderboard', [LeaderboardController::class, 'index'])
   ->middleware(['auth', 'admin'])
   ->name('leaderboard');
 
+Route::get('/leaderboard2', [LeaderboardController::class, 'leaderboard2'])
+  ->middleware(['auth', 'admin'])
+  ->name('leaderboard2');
+
 Route::prefix('/dashboard')
   ->middleware(['auth', 'school'])
   ->name('dashboard.')

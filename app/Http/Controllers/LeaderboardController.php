@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -24,6 +25,19 @@ class LeaderboardController extends Controller
             'question_id' => $record->question_id,
             'student_name' => $record->student_name,
             'school' => $record->school->name
+          ];
+        })
+    ]);
+  }
+  public function leaderboard2()
+  {
+    return Inertia::render('leaderboard2', [
+      'question' => Question::all()
+        ->map(function ($record) {
+          return [
+            'id' => $record->id,
+            'text' => $record->text,
+            'number_of_people' => User::where('type', 'team')->where('question_id', $record->id)->count(),
           ];
         })
     ]);

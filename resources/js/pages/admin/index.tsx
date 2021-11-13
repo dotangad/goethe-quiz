@@ -26,7 +26,12 @@ const Admin: React.FC<IAdminProps> = ({ stats }: IAdminProps) => {
   ];
 
   return (
-    <Layout links={[{ href: "/leaderboard", label: "Leaderboard" }]}>
+    <Layout
+      links={[
+        { href: "/leaderboard", label: "Leaderboard" },
+        { href: "/leaderboard2", label: "Leaderboard 2" },
+      ]}
+    >
       <div className="w-full sm:max-w-screen-sm mx-auto h-full flex flex-col justify-center">
         <div className="w-full p-6 bg-white rounded-lg shadow-sm my-2">
           <h1 className="font-bold text-xl sm:text-2xl text-center">
