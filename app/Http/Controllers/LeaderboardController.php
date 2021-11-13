@@ -49,14 +49,22 @@ class LeaderboardController extends Controller
   public function leaderboard2()
   {
     return Inertia::render('leaderboard2', [
-      'questions' => Question::all()
-        ->map(function ($record) {
-          return [
-            'id' => $record->id,
-            'text' => $record->text,
-            'number_of_people' => User::where('type', 'team')->where('question_id', $record->id)->count(),
-          ];
-        })
+      // 'questions' => Question::all()
+      //   ->map(function ($record) {
+      //     return [
+      //       'id' => $record->id,
+      //       'text' => $record->text,
+      //       'users_count' => User::where('type', 'team')->where('question_id', $record->id)->count(),
+      //     ];
+      //   })
+      'questions' => array_merge(
+        [[
+          'id' => '-',
+          'text' => 'Finished quiz',
+          'users_count' => User::where('type', 'team')->whereNull('question_id')->count()
+        ]],
+        Question::withCount(['users'])->get()->toArray()
+      )
     ]);
   }
 }
