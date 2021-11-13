@@ -32,7 +32,7 @@ class LeaderboardController extends Controller
   public function leaderboard2()
   {
     return Inertia::render('leaderboard2', [
-      'question' => Question::all()
+      'questions' => Question::all()
         ->map(function ($record) {
           return [
             'id' => $record->id,
