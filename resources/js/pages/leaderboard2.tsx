@@ -8,7 +8,7 @@ interface ILeaderboard2Props {
   questions: {
     id: number;
     text: string;
-    number_of_people: number;
+    users_count: number;
   }[];
 }
 
@@ -40,11 +40,10 @@ const Leaderboard2: React.FC<ILeaderboard2Props> = ({
 
         <div className="w-full max-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
           <Table
-            records={questions.map(({ id, text, number_of_people }, i) => ({
-              "#": String(i + 1),
-              id,
+            records={questions.map(({ id, text, users_count }, i) => ({
+              question: id,
               text,
-              number: number_of_people,
+              students: users_count,
             }))}
           />
         </div>

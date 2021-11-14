@@ -42,7 +42,7 @@ class QuestionController extends Controller
   {
     $body = $request->validate([
       'text' => 'required',
-      'hint' => '',
+      'hint' => 'nullable',
       'answer' => ['required'] //, 'regex:/^[0-9 a-z]+$/']
     ]);
 
@@ -91,7 +91,7 @@ class QuestionController extends Controller
   {
     $body = $request->validate([
       'text' => 'required',
-      'hint' => '',
+      'hint' => 'nullable',
       'answer' => ['required'] //, 'regex:/^[0-9 a-z]+$/']
     ]);
 

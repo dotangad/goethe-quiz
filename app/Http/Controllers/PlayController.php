@@ -14,7 +14,7 @@ class PlayController extends Controller
     $request->user()->school;
     $question = $request->user()->question;
     $showHint = $question
-      ? $request->user()->attempts()->where('question_id', $question->id)->count() >= 10
+      ? $request->user()->attempts()->where('question_id', $question->id)->count() >= 7
       : false;
     return Inertia::render('play', [
       'question' => $question
