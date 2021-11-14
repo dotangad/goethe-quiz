@@ -14,10 +14,11 @@ class LeaderboardController extends Controller
     return Inertia::render('leaderboard', [
       'users' => User::with('school')
         ->where('type', 'team')
+        ->where('question_id', '>', 1)
         ->orderBy('question_id', 'DESC')
         ->orderBy('last_solved', 'ASC')
         // ->get(['id', 'question_id', 'student_name'])
-        ->take(100)
+        /* ->take(100) */
         ->get()
         ->map(function ($record) {
           return [
