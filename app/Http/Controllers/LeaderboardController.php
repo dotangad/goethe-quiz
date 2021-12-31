@@ -23,7 +23,6 @@ class LeaderboardController extends Controller
               'id' => $record->id,
               'question_id' => '-',
               'student_name' => $record->student_name,
-              'school' => $record->school->name
             ];
           })
           ->toArray(),
@@ -40,7 +39,6 @@ class LeaderboardController extends Controller
               'id' => $record->id,
               'question_id' => $record->question_id,
               'student_name' => $record->student_name,
-              'school' => $record->school->name
             ];
           })
           ->toArray()
@@ -50,14 +48,6 @@ class LeaderboardController extends Controller
   public function leaderboard2()
   {
     return Inertia::render('leaderboard2', [
-      // 'questions' => Question::all()
-      //   ->map(function ($record) {
-      //     return [
-      //       'id' => $record->id,
-      //       'text' => $record->text,
-      //       'users_count' => User::where('type', 'team')->where('question_id', $record->id)->count(),
-      //     ];
-      //   })
       'questions' => array_merge(
         [[
           'id' => '-',

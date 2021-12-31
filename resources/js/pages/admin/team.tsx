@@ -11,14 +11,13 @@ interface ITeamProps {
 }
 
 const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
-  console.log({ team, attempts });
   return (
     <Layout links={[{ href: "/admin", label: "Home" }]}>
       <div className="w-full sm:max-w-screen-md mx-auto">
         <div className="bg-white border-none rounded-lg w-full p-6 shadow-sm max-w-screen-md mb-5">
           <div className="w-full flex items-center justify-start">
             <InertiaLink
-              href="/admin/schools"
+              href="/admin/teams"
               className="flex justify-center items-center mr-3"
             >
               <div className="flex justify-center items-center bg-gray-bg p-3 rounded-lg">

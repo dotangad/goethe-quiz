@@ -23,12 +23,8 @@ class AdminTeamController extends Controller
         ->get()
         ->map(fn ($item) => [
           'id' => $item->id,
-          'student_name' => $item->student_name,
+          'name' => $item->name,
           'email' => $item->email,
-          'school' => [
-            'id' => $item->school->id,
-            'name' => $item->school->name,
-          ],
         ])
     ]);
   }

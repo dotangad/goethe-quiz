@@ -39,6 +39,7 @@ export interface IPageProps extends Page<PageProps> {
     regEndDate: string;
     startDate: string;
     endDate: string;
+    flash: { message: string };
   };
 }
 

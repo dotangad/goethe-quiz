@@ -9,15 +9,23 @@ import "react-multi-carousel/lib/styles.css";
 
 const Index: React.FC = () => {
   const {
-    props: { authenticated, user, regDate, startDate, regEndDate, endDate },
+    props: {
+      authenticated,
+      user,
+      regDate,
+      startDate,
+      regEndDate,
+      endDate,
+      flash,
+    },
   } = usePage<IPageProps>();
   useTitle("DPS Goethe Quiz");
 
   const teamLoginOpen =
     compareAsc(new Date(startDate), new Date()) === -1 &&
     compareAsc(new Date(), new Date(endDate)) === -1;
-  const schoolRegOpen = compareAsc(new Date(regDate), new Date()) === -1;
-  const schoolRegClosed = compareAsc(new Date(), new Date(regEndDate)) === 1;
+  const teamRegOpen = compareAsc(new Date(regDate), new Date()) === -1;
+  const teamRegClosed = compareAsc(new Date(), new Date(regEndDate)) === 1;
 
   const responsive = {
     superLargeDesktop: {
@@ -82,7 +90,7 @@ const Index: React.FC = () => {
                   />
                 </div>
                 <div className="text-xl sm:text-3xl text-goethe-dark font-bold">
-                  School Quiz on Germany 2021
+                  Quiz on Germany 2021
                 </div>
               </div>
               <div className="order-3">
@@ -92,6 +100,14 @@ const Index: React.FC = () => {
                 />
               </div>
             </div>
+
+            {flash.message && (
+              <div className="w-full border-red-500 border-2 p-6 rounded text-center">
+                <h3 className="text-md text-red-500 uppercase font-bold">
+                  {flash.message}
+                </h3>
+              </div>
+            )}
 
             <div className="my-5">
               <Carousel responsive={responsive} autoPlay={true} infinite={true}>
@@ -129,10 +145,7 @@ const Index: React.FC = () => {
               <div className="text-red-500 uppercase font-bold text-sm">
                 Participation Eligibility
               </div>
-              <div className="">
-                The Quiz is open to all school students of Classes 6 to 12 in
-                India.
-              </div>
+              <div className="">The Quiz is open to everyone in India.</div>
             </div>
 
             <div className="my-5">
@@ -142,14 +155,13 @@ const Index: React.FC = () => {
               <div className="sm:hidden">
                 <div className="my-5 mt-0">
                   <div className="font-bold">Online Registration</div>
-                  <div>(only through school)</div>
                   <div className="text-sm">
                     <div className="font-bold">
-                      From Thursday, 21st October 2021
+                      From Monday, 3rd January 2022
                     </div>
                     <div>(9 am onwards)</div>
                     <div className="font-bold">
-                      Till Sunday, 1st November 2021
+                      Till Tuesday, 11th January 2022
                     </div>
                     <div>(5 pm - registration closes)</div>
                   </div>
@@ -159,11 +171,11 @@ const Index: React.FC = () => {
                   <div className="font-bold">Online Quiz</div>
                   <div className="text-sm">
                     <div className="font-bold">
-                      From Saturday, 13th November 2021
+                      From Friday, 28th January 2022
                     </div>
                     <div>(9 am onwards)</div>
                     <div className="font-bold">
-                      Till Sunday, 14th November 2021
+                      Till Saturday, 29th January 2022
                     </div>
                     <div>(9 am - quiz will be closed)</div>
                   </div>
@@ -238,26 +250,27 @@ const Index: React.FC = () => {
                       >
                         dpsgoethequiz.com
                       </a>{" "}
-                      from <strong>21st October to 1st November 2021</strong>.
-                    </li>
-                    <li>No student is allowed to register directly.</li>
-                    <li>
-                      Individual students&apos; registration can be done online
-                      by the School Coordinator through the school account till
-                      1st November, 2021 only.
+                      from <strong>3rd January to 11th January 2022</strong>.
                     </li>
                     <li>
-                      There is no restriction on the number of students
-                      registering per school.
+                      Please register only once. Candidates can use the Email
+                      and the password they used while registering for the quiz
+                      to login again.
                     </li>
                     <li>
-                      School accounts will be available to the school after
-                      successful completion of the school registration process
-                      for registration of students.
+                      Wunderkind 2021 candidates are requested not to register.
                     </li>
                     <li>
-                      All students should be encouraged to participate in the
-                      Quiz.
+                      There is no restriction on the age of candidates
+                      registering for the Quiz
+                    </li>
+                    <li>
+                      The quiz is meant to motivate participants to research and
+                      read about Germany.
+                    </li>
+                    <li>
+                      The speed of finishing the quiz is not a criteria for
+                      better ranking.
                     </li>
                   </ul>
                 </div>
@@ -269,17 +282,16 @@ const Index: React.FC = () => {
                 </div>
                 <div className="">
                   <ul className="list-disc pl-5">
-                    <li className="font-bold">
-                      The Quiz is open to all students from Classes VI to XII.
+                    <li>
+                      The Online quiz is not a team event. Registered candidates
+                      should participate as individuals only.{" "}
                     </li>
                     <li>
-                      The Online quiz is not a team event. Students should
-                      participate as individuals only.
-                    </li>
-                    <li>
-                      The Quiz is to be attempted within 24 hours. It will be
-                      open from Saturday, 13th November 2021 (9 am onwards) till
-                      Sunday, 14th November 2021 (9 am - Quiz will be closed)
+                      There are in total 140 Questions in the Quiz, to be
+                      attempted within 24 hours. In case a candidate is unable
+                      to answer a question even after five attempts, they will
+                      be prompted with a SKIP button to roll over to the next
+                      question.
                     </li>
                     <li>
                       Content (syllabus) for online Quiz - It is a general
@@ -291,22 +303,18 @@ const Index: React.FC = () => {
                       </div>
                     </li>
                     <li>
-                      Online Quiz is an independent event for each participating
-                      student.
+                      Each participant will come online to access quiz questions
+                      online through her/his personal LOGIN-PASSWORD entered
+                      during registration.
                     </li>
                     <li>
-                      Each student will come online to access the quiz through
-                      her/his personal LOGIN-PASSWORD issued at the time of
-                      registration by respective school Quiz coordinators. The
-                      students can attempt the quiz from home or from school and
-                      each student should sit separately.{" "}
-                    </li>
-                    <li>
-                      Students are not allowed to discuss or disclose any
+                      Participants are not allowed to discuss or disclose any
                       questions on any online forum/Social Networking
-                      Sites/Chat/Emails. Students/Schools will be immediately
-                      debarred from participating in the quiz for non-compliance
-                      of rules.
+                      Sites/Chat/Emails. He/she will be immediately debarred
+                      from participating in the quiz for non-compliance of
+                      rules. However, the participants are encouraged to
+                      research before and during the Quiz to be able to crack
+                      all the Questions,
                     </li>
                   </ul>
                 </div>
@@ -319,28 +327,8 @@ const Index: React.FC = () => {
                 <div className="">
                   <ul className="list-disc pl-5">
                     <li>
-                      Top hundred (100) scorers will get attractive goodie bags
-                      from Goethe-Institut, Max Mueller Bhavan New Delhi
-                    </li>
-                    <li>
-                      10 lucky participants amongst the top 100 get a Kindle,
-                      sponsored by Goethe-Institut, Max Mueller Bhavan New
-                      Delhi. The selection would be through a lucky draw
-                      conducted by Goethe-Institut, Max Mueller Bhavan New Delhi
-                      and the decision would be final and cannot be contested.
-                    </li>
-                    <li>
-                      Top 10% of the participants in the online Quiz will be
-                      awarded Merit Certificates.
-                    </li>
-                    <li>
-                      Appreciation certificates will be awarded to the top ten
-                      schools with maximum number of student participation in
-                      the online quiz event.
-                    </li>
-                    <li>
-                      E certificate will be awarded to all students who
-                      successfully complete the quiz.
+                      Top fifty (50) meritorious performers of the online Quiz
+                      will be awarded attractive prizes.
                     </li>
                   </ul>
                 </div>
@@ -349,65 +337,45 @@ const Index: React.FC = () => {
 
             {!authenticated && (
               <ul className="list-disc pl-5 mt-5">
-                {schoolRegOpen && (
+                {teamRegOpen && !teamRegClosed && (
                   <li className="my-3">
-                    For schools:
                     <div className="flex flex-wrap justify-start">
                       <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
                         <InertiaLink
-                          href="/auth/school/login"
+                          href="/auth/team/register"
                           className="w-full button"
                         >
-                          School Login
+                          Register
                         </InertiaLink>
                       </div>
-                      {!schoolRegClosed && (
+                      {teamLoginOpen ? (
                         <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
                           <InertiaLink
-                            href="/auth/school/register"
+                            href="/auth/team/login"
                             className="w-full button"
                           >
-                            School Registration
+                            Login
                           </InertiaLink>
                         </div>
-                      )}
-                    </div>
-                  </li>
-                )}
-
-                {teamLoginOpen ? (
-                  <li className="my-3">
-                    For students:
-                    <div className="flex flex-wrap justify-start">
-                      <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
-                        <InertiaLink
-                          href="/auth/team/login"
-                          className="w-full button"
-                        >
-                          Student Login
-                        </InertiaLink>
-                      </div>
-                    </div>
-                  </li>
-                ) : (
-                  <li className="my-3">
-                    For students:
-                    <div className="flex flex-wrap justify-start">
-                      <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 my-2">
-                        <InertiaLink
-                          href="/auth/team/login"
-                          className={`w-full cursor-not-allowed bg-gray-400 block rounded-lg
+                      ) : (
+                        <>
+                          <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 my-2">
+                            <InertiaLink
+                              href="/auth/team/login"
+                              className={`w-full cursor-not-allowed bg-gray-400 block rounded-lg
                                       p-4 text-center uppercase leading-none font-bold border-2
                                       border-gray-400 text-sm text-gray-800 transition
                                       focus:outline-none focus:shadow-none`}
-                          disabled={true}
-                        >
-                          Student Login
-                        </InertiaLink>
-                      </div>
-                    </div>
-                    <div className="">
-                      Student Login will open when the quiz begins.
+                              disabled={true}
+                            >
+                              Login
+                            </InertiaLink>
+                          </div>
+                          <div className="">
+                            Student Login will open when the quiz begins.
+                          </div>
+                        </>
+                      )}
                     </div>
                   </li>
                 )}

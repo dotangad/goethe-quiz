@@ -3,11 +3,13 @@ import React from "react";
 import Layout from "../../components/Layout";
 
 interface ISchoolLoginProps {
+  admin?: boolean;
   error?: string;
 }
 
 const SchoolLogin: React.FC<ISchoolLoginProps> = ({
   error,
+  admin,
 }: ISchoolLoginProps) => {
   const { setData, post, processing, errors } = useForm({
     email: "",
@@ -21,12 +23,14 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({
     <Layout links={[{ href: "/", label: "Rules" }]}>
       <div className="flex w-full h-full items-center justify-center">
         <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-sm p-6 mx-2 shadow-sm">
-          <div className="text-2xl font-bold mb-5">Login as Team</div>
+          <div className="text-2xl font-bold mb-5">
+            Login {admin && "as Admin"}
+          </div>
 
           <form
             onSubmit={(e: React.SyntheticEvent) => {
               e.preventDefault();
-              post("/auth/team/login", {
+              post(admin ? "/auth/admin/login" : "/auth/team/login", {
                 preserveState: true,
               });
             }}

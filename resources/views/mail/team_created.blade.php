@@ -59,7 +59,7 @@
     <div style="border: none;border-radius: 10px;background:white; padding: 20px; max-width: 750px; margin: 0 auto;">
       <h1>Registration complete!</h1>
 
-      <p>We look forward to your participation in the DPS Goethe Quiz. Use the following credentials to <a href="https://dpsgoethequiz.com">login</a>:</p>
+      <p>We look forward to your participation in the DPS Goethe Quiz. You can <a href="https://dpsgoethequiz.com">login</a> on the day of the quiz:</p>
 
       <table>
         <tr>
@@ -69,10 +69,6 @@
         <tr>
           <td>Name</td>
           <td>{{ $user->student_name }}</td>
-        </tr>
-        <tr>
-          <td>Password</td>
-          <td style="font-family: monospace;">{{ $password }}</td>
         </tr>
       </table>
 

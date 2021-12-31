@@ -39,13 +39,12 @@ const Play: React.FC<IPlayPageProps> = ({
     // Disable right click
     // @ts-ignore
     const contextMenuHandler = (event: unknown) => event.preventDefault();
-    document.addEventListener('contextmenu', contextMenuHandler);
-
+    document.addEventListener("contextmenu", contextMenuHandler);
 
     return () => {
       clearInterval(interval);
-      document.removeEventListener('contextmenu', contextMenuHandler);
-    }
+      document.removeEventListener("contextmenu", contextMenuHandler);
+    };
   }, []);
 
   return (
@@ -65,9 +64,7 @@ const Play: React.FC<IPlayPageProps> = ({
           )}
 
           <div className="mt-4">
-            <div className="text-xs text-center">
-              {user.student_name}, {user.school?.name}
-            </div>
+            <div className="text-xs text-center">{user.student_name}</div>
           </div>
         </div>
       </div>

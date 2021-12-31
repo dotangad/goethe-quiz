@@ -17,20 +17,15 @@ class TeamCreatedMail extends Mailable
    * @var \App\Models\User
    */
   public $user;
-  /**
-   * @var string
-   */
-  public $password;
 
   /**
    * Create a new message instance.
    *
    * @return void
    */
-  public function __construct(User $user, string $password)
+  public function __construct(User $user)
   {
     $this->user = $user;
-    $this->password = $password;
   }
 
   /**
@@ -44,7 +39,6 @@ class TeamCreatedMail extends Mailable
       ->view('mail.team_created')
       ->with([
         'user' => $this->user,
-        'password' => $this->password,
       ]);
   }
 }

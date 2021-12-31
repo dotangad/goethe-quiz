@@ -10,31 +10,6 @@ interface ITeamsProps {
 }
 
 const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
-  // const data = React.useMemo(() => teams, []);
-  // const columns = React.useMemo(
-  //   () => [
-  //     { Header: "Email", accessor: "email" },
-  //     { Header: "Name", accessor: "student_name" },
-  //     {
-  //       id: "school.name",
-  //       Header: "School",
-  //       accessor: (row) => `${row.school.name}(${row.school.id})`,
-  //     },
-  //     {
-  //       Header: "",
-  //       id: "id",
-  //       Cell: ({ value }) => (
-  //         <InertiaLink href={`/admin/teams/${value}`}>-&gt;</InertiaLink>
-  //       ),
-  //     },
-  //   ],
-  //   []
-  // );
-
-  // const table = useTable({ data, columns });
-  // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-  //   table;
-
   return (
     <Layout links={[{ href: "/admin", label: "Home" }]}>
       <div className="w-full sm:max-w-screen-lg mx-auto">
@@ -65,61 +40,14 @@ const Teams: React.FC<ITeamsProps> = ({ teams }: ITeamsProps) => {
       </div>
 
       <div className="max-w-screen-lg min-w-screen-lg overflow-x-auto bg-white rounded-lg shadow-sm flex items-center my-4 mx-auto">
-        {/* <table
-          className="w-full border-collapse border-1 border-gray-300 divide-y divide-gray-100"
-          {...getTableProps()}
-        >
-          <thead>
-            {
-              // Loop over the header rows
-              headerGroups.map((headerGroup) => (
-                // Apply the header row props
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {
-                    // Loop over the headers in each row
-                    headerGroup.headers.map((column) => (
-                      // Apply the header cell props
-                      <th {...column.getHeaderProps()} className="p-4">
-                        {
-                          // Render the header
-                          column.render("Header")
-                        }
-                      </th>
-                    ))
-                  }
-                </tr>
-              ))
-            }
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {
-              // Loop over the table rows
-              rows.map((row) => {
-                // Prepare the row for display
-                prepareRow(row);
-                return (
-                  // Apply the row props
-                  <tr className="even:bg-gray-100" {...row.getRowProps()}>
-                    {
-                      // Loop over the rows cells
-                      row.cells.map((cell) => {
-                        // Apply the cell props
-                        return (
-                          <td className="p-4 text-center" {...cell.getCellProps()}>
-                            {
-                              // Render the cell contents
-                              cell.render("Cell")
-                            }
-                          </td>
-                        );
-                      })
-                    }
-                  </tr>
-                );
-              })
-            }
-          </tbody>
-        </table> */}
+        <Table
+          records={teams.map(({ id, name, email }) => ({
+            id: String(id),
+            name,
+            email,
+            toBtn: `/admin/teams/${id}`,
+          }))}
+        />
       </div>
     </Layout>
   );
