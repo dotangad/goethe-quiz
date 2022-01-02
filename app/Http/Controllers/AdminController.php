@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,8 @@ class AdminController extends Controller
     {
         return Inertia::render('admin/index', [
             'stats' => [
-                'Schools Registered' => User::where('type', 'school')->count(),
                 'Students Registered' => User::where('type', 'team')->count(),
+                'Questions' => Question::count(),
             ]
         ]);
     }
