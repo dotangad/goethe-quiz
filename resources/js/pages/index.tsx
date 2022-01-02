@@ -285,10 +285,14 @@ const Index: React.FC = () => {
                     </li>
                     <li>
                       There are in total 140 Questions in the Quiz, to be
-                      attempted within 24 hours. In case a candidate is unable
-                      to answer a question even after five attempts, they will
-                      be prompted with a SKIP button to roll over to the next
-                      question.
+                      attempted within 24 hours.{" "}
+                      <strong>
+                        After the first three unsuccessful attempts, the
+                        participant will be provided with a hint. In case a
+                        candidate is unable to answer a question even after a
+                        total of five attempts, they will be prompted with a
+                        SKIP button to roll over to the next question.
+                      </strong>
                     </li>
                     <li>
                       Content (syllabus) for online Quiz - It is a general
@@ -311,7 +315,7 @@ const Index: React.FC = () => {
                       from participating in the quiz for non-compliance of
                       rules. However, the participants are encouraged to
                       research before and during the Quiz to be able to crack
-                      all the Questions,
+                      all the Questions.
                     </li>
                   </ul>
                 </div>
