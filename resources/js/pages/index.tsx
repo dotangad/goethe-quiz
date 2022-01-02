@@ -193,7 +193,6 @@ const Index: React.FC = () => {
                     <tr className="border border-gray-800">
                       <td className="sm:px-3 py-3 flex flex-col items-start justify-start height-full">
                         <div className="font-bold">Online Registration</div>
-                        <div>(only through school)</div>
                       </td>
                       <td className="border border-gray-800 sm:px-3 py-3">
                         <div className="font-bold">
