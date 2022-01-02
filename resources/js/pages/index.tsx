@@ -90,7 +90,7 @@ const Index: React.FC = () => {
                   />
                 </div>
                 <div className="text-xl sm:text-3xl text-goethe-dark font-bold">
-                  Quiz on Germany 2021
+                  Quiz on Germany 2022
                 </div>
               </div>
               <div className="order-3">
@@ -258,7 +258,7 @@ const Index: React.FC = () => {
                       to login again.
                     </li>
                     <li>
-                      Wunderkind 2021 candidates are requested not to register.
+                      Wunderkind 2022 candidates are requested not to register.
                     </li>
                     <li>
                       There is no restriction on the age of candidates
