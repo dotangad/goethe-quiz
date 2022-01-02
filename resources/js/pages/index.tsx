@@ -255,7 +255,7 @@ const Index: React.FC = () => {
                       to login again.
                     </li>
                     <li>
-                      Wunderkind 2022 candidates are requested not to register.
+                      Wunderkind 2021 candidates are requested not to register.
                     </li>
                     <li>
                       There is no restriction on the age of candidates
