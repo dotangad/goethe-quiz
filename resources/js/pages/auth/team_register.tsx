@@ -93,7 +93,11 @@ const TeamRegister: React.FC = () => {
 
             <div className="input-group mt-3 w-full sm:w-1/2 sm:px-2 flex justify-center items-center">
               <label style={{ color: "white" }}>.</label>
-              <button type="submit" className="button w-full">
+              <button
+                type="submit"
+                className="button w-full"
+                disabled={processing}
+              >
                 Register
               </button>
             </div>
