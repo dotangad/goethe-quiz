@@ -240,7 +240,7 @@ const Index: React.FC = () => {
                   <ul className="list-disc pl-5">
                     <li>
                       There is no participation fee to register. To participate,
-                      the schools can register online at{" "}
+                      the students can register online at{" "}
                       <a
                         href="https://dpsgoethequiz.com/"
                         className="text-goethe-dark font-bold"
