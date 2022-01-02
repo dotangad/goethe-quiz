@@ -23,13 +23,14 @@ class LeaderboardController extends Controller
               'id' => $record->id,
               'question_id' => '-',
               'student_name' => $record->student_name,
+              'points' => $record->points,
             ];
           })
           ->toArray(),
         User::with('school')
           ->where('type', 'team')
           ->where('question_id',  '>', 1)
-          ->orderBy('question_id', 'DESC')
+          ->orderBy('points', 'DESC')
           ->orderBy('last_solved', 'ASC')
           // ->get(['id', 'question_id', 'student_name'])
           /* ->take(100) */
@@ -39,6 +40,7 @@ class LeaderboardController extends Controller
               'id' => $record->id,
               'question_id' => $record->question_id,
               'student_name' => $record->student_name,
+              'points' => $record->points,
             ];
           })
           ->toArray()

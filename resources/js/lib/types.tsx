@@ -28,6 +28,7 @@ export interface IUser {
   teams?: IUser[];
   attempts?: IUserAttempt[];
   reset_link?: string;
+  points: number;
 }
 
 export interface IPageProps extends Page<PageProps> {

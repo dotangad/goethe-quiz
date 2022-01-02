@@ -98,6 +98,8 @@ class TeamAuthController extends Controller
         $message = "You have successfully registered! Come back on the day of the quiz to be able to login.";
         if ($this->playTimeCheck()) {
             Auth::login($user, true);
+            $user->logged_in = true;
+            $user->save();
             $message = null;
         }
         return redirect("/")->with(

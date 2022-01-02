@@ -115,6 +115,9 @@ Route::prefix('/play')
 
         Route::post('/', [PlayController::class, 'attempt'])
             ->name('attempt');
+
+        Route::post('/skip', [PlayController::class, 'skip'])
+            ->name('skip');
     });
 
 Route::prefix('/admin')

@@ -43,9 +43,10 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
             {Object.entries({
               email: team.email,
               student_name: team.student_name,
-              student_mobile: team.student_mobile,
               last_solved: team.last_solved,
               logged_in: team.logged_in ? "Yes" : "No",
+              points: team.points,
+              question: team.question_id,
             }).map(([label, value], i) => (
               <div
                 className="input-group my-3 px-0 sm:odd:pr-3 sm:even:pl-3 w-full sm:w-1/2"
@@ -55,17 +56,6 @@ const Team: React.FC<ITeamProps> = ({ team, attempts }: ITeamProps) => {
                 <div className="w-full">{value || ""}</div>
               </div>
             ))}
-            <div className="input-group my-3 sm:odd:pr-3 sm:even:pl-3 w-full sm:w-1/2">
-              <label>School</label>
-              <div className="w-full">
-                <InertiaLink
-                  href={`/admin/schools/${team.school?.id}`}
-                  className="font-semibold"
-                >
-                  {team.school?.name || ""}
-                </InertiaLink>
-              </div>
-            </div>
           </div>
         </div>
 

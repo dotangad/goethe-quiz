@@ -9,11 +9,17 @@ import { IPageProps, IQuestion } from "../lib/types";
 interface IPlayPageProps {
   question?: IQuestion;
   showHint: boolean;
+  skipAllowed: boolean;
+  message?: string;
+  attemptNumber: number;
 }
 
 const Play: React.FC<IPlayPageProps> = ({
   question,
   showHint,
+  skipAllowed,
+  message,
+  attemptNumber,
 }: IPlayPageProps) => {
   const {
     props: { user, endDate, startDate },
@@ -56,7 +62,12 @@ const Play: React.FC<IPlayPageProps> = ({
               DPS Goethe Quiz has not started yet
             </div>
           ) : !ended ? (
-            <PlayComponent question={question} showHint={showHint} />
+            <PlayComponent
+              question={question}
+              showHint={showHint}
+              skipAllowed={skipAllowed}
+              message={message}
+            />
           ) : (
             <div className="font-bold text-center text-md">
               DPS Goethe Quiz has ended
@@ -64,7 +75,9 @@ const Play: React.FC<IPlayPageProps> = ({
           )}
 
           <div className="mt-4">
-            <div className="text-xs text-center">{user.student_name}</div>
+            <div className="text-xs text-center">
+              {user.student_name}: Attempt no: {attemptNumber}
+            </div>
           </div>
         </div>
       </div>
