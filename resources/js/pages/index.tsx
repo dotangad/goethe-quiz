@@ -157,11 +157,11 @@ const Index: React.FC = () => {
                   <div className="font-bold">Online Registration</div>
                   <div className="text-sm">
                     <div className="font-bold">
-                      From Monday, 3rd January 2022
+                      From Wednesday, 5th January 2022
                     </div>
                     <div>(9 am onwards)</div>
                     <div className="font-bold">
-                      Till Tuesday, 11th January 2022
+                      Till Saturday, 15th January 2022
                     </div>
                     <div>(5 pm - registration closes)</div>
                   </div>
@@ -196,11 +196,11 @@ const Index: React.FC = () => {
                       </td>
                       <td className="border border-gray-800 sm:px-3 py-3">
                         <div className="font-bold">
-                          From Monday, 3rd January 2022
+                          From Wednesday, 5th January 2022
                         </div>
                         <div>(9 am onwards)</div>
                         <div className="font-bold">
-                          Till Tuesday, 11th January 2022
+                          Till Saturday, 15th January 2022
                         </div>
                         <div>(5 pm - registration closes)</div>
                       </td>
