@@ -247,7 +247,7 @@ const Index: React.FC = () => {
                       >
                         dpsgoethequiz.com
                       </a>{" "}
-                      from <strong>3rd January to 11th January 2022</strong>.
+                      from <strong>5th January to 15th January 2022</strong>.
                     </li>
                     <li>
                       Please register only once. Candidates can use the Email
