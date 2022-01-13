@@ -67,7 +67,7 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
               className="mx-3 font-semibold"
               target="_blank"
               rel="noreferrer"
-              href="#"
+              href="https://dpsfamily.org"
             >
               DPS Society
             </a>{" "}
