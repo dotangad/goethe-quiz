@@ -338,9 +338,9 @@ const Index: React.FC = () => {
 
             {!authenticated && (
               <ul className="list-disc pl-5 mt-5">
-                {teamRegOpen && !teamRegClosed && (
-                  <li className="my-3">
-                    <div className="flex flex-wrap justify-start">
+                <li className="my-3">
+                  <div className="flex flex-wrap justify-start">
+                    {teamRegOpen && !teamRegClosed && (
                       <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
                         <InertiaLink
                           href="/auth/team/register"
@@ -349,37 +349,37 @@ const Index: React.FC = () => {
                           Register
                         </InertiaLink>
                       </div>
-                      {teamLoginOpen ? (
-                        <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
+                    )}
+                    {teamLoginOpen ? (
+                      <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 mt-2">
+                        <InertiaLink
+                          href="/auth/team/login"
+                          className="w-full button"
+                        >
+                          Login
+                        </InertiaLink>
+                      </div>
+                    ) : (
+                      <div className="block">
+                        <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 my-2">
                           <InertiaLink
                             href="/auth/team/login"
-                            className="w-full button"
+                            className={`w-full cursor-not-allowed bg-gray-400 block rounded-lg
+                                      p-4 text-center uppercase leading-none font-bold border-2
+                                      border-gray-400 text-sm text-gray-800 transition
+                                      focus:outline-none focus:shadow-none`}
+                            disabled={true}
                           >
                             Login
                           </InertiaLink>
                         </div>
-                      ) : (
-                        <>
-                          <div className="w-full sm:w-1/2 sm:odd:pr-3 sm:even:pl-3 my-2">
-                            <InertiaLink
-                              href="/auth/team/login"
-                              className={`w-full cursor-not-allowed bg-gray-400 block rounded-lg
-                                      p-4 text-center uppercase leading-none font-bold border-2
-                                      border-gray-400 text-sm text-gray-800 transition
-                                      focus:outline-none focus:shadow-none`}
-                              disabled={true}
-                            >
-                              Login
-                            </InertiaLink>
-                          </div>
-                          <div className="">
-                            Student Login will open when the quiz begins.
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </li>
-                )}
+                        <div className="">
+                          Student Login will open when the quiz begins.
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </li>
               </ul>
             )}
 

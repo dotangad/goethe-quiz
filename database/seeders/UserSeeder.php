@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         $u = new User([
-            'name' => 'Admin',
-            'email' => 'admin@dpsgoethequiz.com',
+            'name' => 'Test',
+            'email' => 'test@dpsrkp.net',
             'password' => Hash::make('randompwd'),
-            'type' => 'admin'
+            'email_verified_at' => '2022-01-10 00:49:43',
         ]);
         $u->save();
         /* \App\Models\User::factory()->count(50)->create(); */
