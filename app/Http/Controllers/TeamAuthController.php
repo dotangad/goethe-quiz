@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResetPasswordMail;
 use App\Mail\TeamCreatedMail;
 use App\Models\Question;
 use App\Models\User;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class TeamAuthController extends Controller
 {
@@ -102,6 +105,62 @@ class TeamAuthController extends Controller
             $user->save();
             $message = null;
         }
+        return redirect("/")->with(
+            "message",
+            $message
+        );
+    }
+
+    public function showForgotPassword()
+    {
+        return Inertia::render('auth/forgot_password');
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $body = $request->validate([
+            'email' => 'required|exists:users|email',
+        ]);
+
+        $user = User::where('email', $request->get('email'))->first();
+        Mail::to($request->get('email'))->send(new ResetPasswordMail($user));
+        $message = "Check your mail for a forgot password email. Please check your spam folder if you can't find it";
+        return redirect("/")->with(
+            "message",
+            $message
+        );
+    }
+
+    public function checkForgotPassword(Request $request)
+    {
+        try {
+            $decoded = (array) JWT::decode(
+                $request->hash,
+                new Key(env('JWT_KEY'), 'HS256')
+            );
+        } catch (\Exception $e) {
+            return Inertia::render('auth/verify_mail', [
+                'user' => null,
+                'error' => $e->getMessage()
+            ]);
+        }
+        $user = User::find($decoded['id']);
+
+        return Inertia::render('auth/verify_mail', [
+            'user' => $user,
+        ]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $body = $request->validate([
+            'password' => 'required|min:8|max:24',
+            'email' => 'required'
+        ]);
+        $user = User::where('email', $request->get('email'))->first();
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+        $message = "Login with your new password now";
         return redirect("/")->with(
             "message",
             $message

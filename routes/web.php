@@ -34,6 +34,7 @@ Route::get('/', function () {
 
 Route::get('/reset/password/{rand_string}', [TeamResetPassword::class, 'show']);
 Route::post('/reset/password', [TeamResetPassword::class, 'reset_password']);
+Route::get('/forgot-password/{hash}', [TeamAuthController::class, 'checkForgotPassword']);
 
 // ----- Authentication -----
 Route::prefix('/auth')
@@ -60,6 +61,9 @@ Route::prefix('/auth')
         Route::prefix('/team')
             ->name('team.')
             ->group(function () {
+                Route::get('/forgot-password', [TeamAuthController::class, 'showForgotPassword']);
+                Route::post('/reset-password', [TeamAuthController::class, 'resetPassword']);
+                Route::post('/forgot-password-email', [TeamAuthController::class, 'forgotPassword']);
                 Route::get('/login', [TeamAuthController::class, 'loginShow'])
                     ->name('login');
                 Route::post('/login', [TeamAuthController::class, 'login'])

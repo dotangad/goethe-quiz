@@ -1,19 +1,16 @@
-import { Link, useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 import React from "react";
 import Layout from "../../components/Layout";
 
-interface ISchoolLoginProps {
-  admin?: boolean;
+interface IForgotPasswordProps {
   error?: string;
 }
 
-const SchoolLogin: React.FC<ISchoolLoginProps> = ({
+const ForgotPassword: React.FC<IForgotPasswordProps> = ({
   error,
-  admin,
-}: ISchoolLoginProps) => {
+}: IForgotPasswordProps) => {
   const { setData, post, processing, errors } = useForm({
     email: "",
-    password: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -23,14 +20,12 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({
     <Layout links={[{ href: "/", label: "Rules" }]}>
       <div className="flex w-full h-full items-center justify-center">
         <div className="bg-white border-none border-gray-200 rounded-lg w-full max-w-sm p-6 mx-2 shadow-sm">
-          <div className="text-2xl font-bold mb-5">
-            Login {admin && "as Admin"}
-          </div>
+          <div className="text-2xl font-bold mb-5">Forgot Password</div>
 
           <form
             onSubmit={(e: React.SyntheticEvent) => {
               e.preventDefault();
-              post(admin ? "/auth/admin/login" : "/auth/team/login", {
+              post("/auth/team/forgot-password-email", {
                 preserveState: true,
               });
             }}
@@ -47,22 +42,6 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({
               />
               {errors.email && <div className="error">{errors.email}</div>}
             </div>
-
-            <div className="input-group my-5">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="5eb2658fb820"
-                disabled={processing}
-                onChange={handleChange}
-              />
-              {errors.password && (
-                <div className="error">{errors.password}</div>
-              )}
-            </div>
-
             {error && (
               <div className="input-group my-5">
                 <div className="error">{error}</div>
@@ -71,15 +50,9 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({
 
             <div className="input-group mt-5">
               <button type="submit" className="button w-full">
-                Login
+                Send Reset Password Link
               </button>
             </div>
-            <Link
-              href="/auth/team/forgot-password"
-              className="flex w-full justify-end input-group mt-2 text-blue-500 font-bold"
-            >
-              Forgot Password?
-            </Link>
           </form>
         </div>
       </div>
@@ -87,4 +60,4 @@ const SchoolLogin: React.FC<ISchoolLoginProps> = ({
   );
 };
 
-export default SchoolLogin;
+export default ForgotPassword;
