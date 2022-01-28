@@ -27,8 +27,8 @@ class PlayController extends Controller
           : $question->only(['id', 'text']))
         : null,
       'showHint' => $showHint,
-      'skipAllowed' => $skipAllowed,
-      'attemptNumber' => $request->user()->attempts()->where('question_id', $question->id)->count() + 1,
+      'skipAllowed' => $question ? $skipAllowed : false,
+      'attemptNumber' => $question ? $request->user()->attempts()->where('question_id', $question->id)->count() + 1 : null,
     ]);
   }
 
