@@ -101,6 +101,12 @@ const Index: React.FC = () => {
               </div>
             </div>
 
+            {authenticated && (
+              <a href="/play" className="button !bg-goethe-dark">
+                Play
+              </a>
+            )}
+
             {flash.message && (
               <div className="w-full border-red-500 border-2 p-6 rounded text-center">
                 <h3 className="text-md text-red-500 uppercase font-bold">
