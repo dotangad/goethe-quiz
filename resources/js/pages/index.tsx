@@ -1,5 +1,5 @@
 import React from "react";
-import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import { InertiaLink, Link, usePage } from "@inertiajs/inertia-react";
 import { compareAsc, subDays } from "date-fns";
 import { IPageProps } from "../lib/types";
 import useTitle from "../lib/use-title";
@@ -102,9 +102,9 @@ const Index: React.FC = () => {
             </div>
 
             {authenticated && (
-              <a href="/play" className="button !bg-goethe-dark">
+              <Link href="/play" className="button !bg-goethe-dark">
                 Play
-              </a>
+              </Link>
             )}
 
             {flash.message && (
