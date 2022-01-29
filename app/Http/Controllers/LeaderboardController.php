@@ -16,6 +16,7 @@ class LeaderboardController extends Controller
         User::with('school')
           ->where('type', 'team')
           ->whereNull('question_id')
+          ->orderBy('points', 'DESC')
           ->orderBy('last_solved', 'ASC')
           ->get()
           ->map(function ($record) {
