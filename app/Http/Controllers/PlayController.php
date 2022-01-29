@@ -78,7 +78,7 @@ class PlayController extends Controller
         'showHint' => $showHint,
         'message' => 'This is the last question. You cannot skip it.',
         'skipAllowed' => $skipAllowed,
-        'attemptNumber' => $request->user()->attempts()->where('question_id', $question->id)->count() + 1,
+        'attemptNumber' => $question ? $request->user()->attempts()->where('question_id', $question->id)->count() + 1 : null,
       ]);
     }
 
